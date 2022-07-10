@@ -1,24 +1,59 @@
+using System;
 using UnityEngine;
 
 public class CharacterMovement : MonoBehaviour {
-    public float movementSpeed = 1f;
-
+    public float playerSpeed = 10f;
+    
+    public float fallMultiplier = 1.5f;
+    public float lowJumpMultiplier = 1f;
+    public float jumpMultiplier = 1f;
+    
+    private bool isGrounded;
+    private Animator animator;
     private Rigidbody2D rb;
-
+    private CapsuleCollider2D collider;
     private void Awake() {
+        animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
-        
+        collider = GetComponent<CapsuleCollider2D>();
+    }
+
+    private void Update() {
+        isGrounded = IsGrounded();
+        if (Input.GetButtonDown("Jump") && isGrounded) {
+            animator.SetTrigger("Jump");
+            rb.velocity += Vector2.up * jumpMultiplier;
+        }
     }
 
     private void FixedUpdate() {
-        var currentPos = rb.position;
-        var horizontalInput = Input.GetAxis("Horizontal");
-        var verticalInput = Input.GetAxis("Vertical");
-        var inputVector = new Vector2(horizontalInput, verticalInput);
+        if (rb.velocity.y < 0) {
+            rb.velocity += Physics.gravity.y * fallMultiplier * Time.fixedDeltaTime * Vector2.up;
+        } else if (rb.velocity.y > 0 && !Input.GetButton("Jump")) {
+            rb.velocity += Physics.gravity.y * lowJumpMultiplier * Time.fixedDeltaTime * Vector2.up;
+        }
+        animator.SetFloat("AirSpeedY", rb.velocity.y);
+        float move = Input.GetAxis("Horizontal");
+        if (move != 0f) {
+            animator.SetInteger("AnimState", 1);
+        } else {
+            animator.SetInteger("AnimState", 0);
+        }
+
+        transform.rotation = Quaternion.Euler(0, move > 0 ? 0 : 180, 0);
         
-        inputVector = Vector2.ClampMagnitude(inputVector, 1);
-        var movement = inputVector * movementSpeed;
-        var newPos = currentPos + movement * Time.fixedDeltaTime;
-        rb.MovePosition(newPos);
+        Vector2 velocity = new Vector2(move * playerSpeed * Time.fixedDeltaTime, rb.velocity.y);
+        rb.velocity = velocity;
+    }
+
+    private float extraHeight = .05f;
+    private bool IsGrounded() {
+        RaycastHit2D hit = Physics2D.Raycast(collider.bounds.center, Vector2.down, collider.bounds.extents.y + extraHeight, LayerMask.GetMask("Tilemap"));
+        Color rayColor;
+        if (hit.collider != null) {
+            rayColor = Color.green;
+        } else rayColor = Color.red;
+        Debug.DrawRay(collider.bounds.center, Vector2.down * (collider.bounds.extents.y + extraHeight), rayColor);
+        return hit.collider != null;
     }
 }
