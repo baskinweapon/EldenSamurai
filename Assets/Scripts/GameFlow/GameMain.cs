@@ -1,8 +1,11 @@
+
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 public class GameMain : Singleton<GameMain> {
-    
+
+
+    public int sceneId;
+    private void Start() {
+        SceneController.instance.LoadScene(sceneId);
+    }
 }
