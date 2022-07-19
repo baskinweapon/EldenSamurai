@@ -1,6 +1,8 @@
 using UnityEngine;
 
 public class Portal : MonoBehaviour {
+    public int scene_id;
+    
     public SpriteRenderer keySprite;
     public InteractionAsset interactionAsset;
 
@@ -12,7 +14,7 @@ public class Portal : MonoBehaviour {
     
     private void InteractionInput() {
         if (!isStay) return;
-        SceneController.instance.LoadScene(2);
+        SceneController.instance.LoadScene(scene_id);
     }
 
 

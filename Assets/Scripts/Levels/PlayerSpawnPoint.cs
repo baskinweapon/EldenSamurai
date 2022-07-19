@@ -1,8 +1,7 @@
 using UnityEngine;
 
-public class PlayerSpawnPoint : MonoBehaviour
-{
-    private void Awake() {
-        Player.instance.transform.position = transform.position;
+public class PlayerSpawnPoint : MonoBehaviour {
+    private void Start() {
+        Player.instance.visualTransform.position = transform.position;
     }
 }
