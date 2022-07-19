@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CharacterMovement : MonoBehaviour {
     public float playerSpeed = 10f;
@@ -18,28 +19,34 @@ public class CharacterMovement : MonoBehaviour {
         collider = GetComponent<CapsuleCollider2D>();
     }
 
+    private void Start() {
+        InputSystem.OnJump += Jump;
+    }
+
     private void Update() {
         isGrounded = IsGrounded();
-        if (Input.GetButtonDown("Jump") && isGrounded) {
-            animator.SetTrigger("Jump");
-            rb.velocity += Vector2.up * jumpMultiplier;
-        }
+    }
+
+    private void Jump() {
+        if (!isGrounded) return;
+        animator.SetTrigger("Jump");
+        rb.velocity += Vector2.up * jumpMultiplier;
     }
 
     private void FixedUpdate() {
         if (rb.velocity.y < 0) {
             rb.velocity += Physics.gravity.y * fallMultiplier * Time.fixedDeltaTime * Vector2.up;
-        } else if (rb.velocity.y > 0 && !Input.GetButton("Jump")) {
+        } else if (rb.velocity.y > 0 && !InputSystem.instance.IsJumping()) {
             rb.velocity += Physics.gravity.y * lowJumpMultiplier * Time.fixedDeltaTime * Vector2.up;
         }
         animator.SetFloat("AirSpeedY", rb.velocity.y);
-        float move = Input.GetAxis("Horizontal");
+        float move = InputSystem.instance.GetMoveVector().x;
         if (move != 0f) {
             animator.SetInteger("AnimState", 1);
         } else {
             animator.SetInteger("AnimState", 0);
         }
-
+        
         transform.rotation = Quaternion.Euler(0, move > 0 ? 0 : 180, 0);
         
         Vector2 velocity = new Vector2(move * playerSpeed * Time.fixedDeltaTime, rb.velocity.y);
