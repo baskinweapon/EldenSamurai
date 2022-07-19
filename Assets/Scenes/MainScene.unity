@@ -2298,6 +2298,9 @@ MonoBehaviour:
   fallMultiplier: 2.5
   lowJumpMultiplier: 2
   jumpMultiplier: 7
+  m_RunStopDust: {fileID: 7310271610845027193, guid: 39afca3c109b26049a80bc07593eb271, type: 3}
+  m_JumpDust: {fileID: 8935918012585647707, guid: 4a4123fbc8b39d441868897a71d2b2b1, type: 3}
+  m_LandingDust: {fileID: 9076098953984712191, guid: 0b745be9abb3a6d4dadd8705950196d1, type: 3}
 --- !u!50 &1282890543
 Rigidbody2D:
   serializedVersion: 4
