@@ -994,8 +994,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b084d2aa1d32d4b3b99270f0f8f96f1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sounds:
-  - m_name: Footsteps
+  characterSounds:
+  - m_name: Footstep
     m_clips:
     - {fileID: 8300000, guid: 1a631ada4ecd9cf49a88b135aa70c396, type: 3}
     - {fileID: 8300000, guid: ee00faf8b8432ff40a6e008c84d5ae59, type: 3}
@@ -1025,6 +1025,7 @@ MonoBehaviour:
     pitch: 1
     m_randomVolumeRange: {x: 1, y: 1}
     m_randomPitchRange: {x: 1, y: 1}
+  backgroundSounds: {fileID: 11400000, guid: 2277e1c4ee001435da77f6641eff9222, type: 2}
 --- !u!1 &1022067295
 GameObject:
   m_ObjectHideFlags: 0

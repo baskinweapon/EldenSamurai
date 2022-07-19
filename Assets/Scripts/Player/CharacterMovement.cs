@@ -94,7 +94,7 @@ public class CharacterMovement : MonoBehaviour {
     }
 
     void AE_footstep() {
-        AudioManager.instance.PlaySound("Footsteps");
+        AudioManager.instance.PlaySound("Footstep");
     }
 
     void AE_Jump() {
