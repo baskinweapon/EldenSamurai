@@ -1,7 +1,4 @@
-using System;
-using System.Collections;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class CharacterMovement : MonoBehaviour {
     public float playerSpeed = 10f;
@@ -13,7 +10,7 @@ public class CharacterMovement : MonoBehaviour {
     private bool isGrounded;
     private Animator animator;
     private Rigidbody2D rb;
-    private CapsuleCollider2D collider;
+    private CapsuleCollider2D col;
     private SpriteRenderer spriteRenderer;
     
     [Header("Effects")]
@@ -23,7 +20,7 @@ public class CharacterMovement : MonoBehaviour {
     private void Awake() {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
-        collider = GetComponent<CapsuleCollider2D>();
+        col = GetComponent<CapsuleCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
@@ -70,13 +67,13 @@ public class CharacterMovement : MonoBehaviour {
 
     private float extraHeight = .05f;
     private bool IsGrounded() {
-        RaycastHit2D hit = Physics2D.Raycast(collider.bounds.center, Vector2.down, collider.bounds.extents.y + extraHeight, LayerMask.GetMask("Tilemap"));
+        RaycastHit2D hit = Physics2D.Raycast(col.bounds.center, Vector2.down, col.bounds.extents.y + extraHeight, LayerMask.GetMask("Tilemap"));
         Color rayColor;
         var isGround = hit.collider != null;
         if (isGround) {
             rayColor = Color.green;
         } else rayColor = Color.red;
-        Debug.DrawRay(collider.bounds.center, Vector2.down * (collider.bounds.extents.y + extraHeight), rayColor);
+        Debug.DrawRay(col.bounds.center, Vector2.down * (col.bounds.extents.y + extraHeight), rayColor);
         return isGround;
     }
     
@@ -86,9 +83,25 @@ public class CharacterMovement : MonoBehaviour {
         {
             // Set dust spawn position
             Vector3 dustSpawnPosition = transform.position + new Vector3(dustXOffset, 0.0f, 0.0f);
-            GameObject newDust = Instantiate(dust, dustSpawnPosition, Quaternion.identity) as GameObject;
+            GameObject newDust = Instantiate(dust, dustSpawnPosition, Quaternion.identity);
             // Turn dust in correct X direction
             newDust.transform.localScale = newDust.transform.localScale.x * new Vector3(dir, 1, 1);
         }
+    }
+    
+    void AE_runStop() {
+        AudioManager.instance.PlaySound("RunStop");
+    }
+
+    void AE_footstep() {
+        AudioManager.instance.PlaySound("Footsteps");
+    }
+
+    void AE_Jump() {
+        AudioManager.instance.PlaySound("Jump");
+    }
+
+    void AE_Landing() {
+        AudioManager.instance.PlaySound("Landing");
     }
 }

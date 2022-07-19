@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [System.Serializable]
-public class Sound
+public class SoundM
 {
     public string m_name;
     public AudioClip[] m_clips;

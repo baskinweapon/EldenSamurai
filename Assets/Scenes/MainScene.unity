@@ -168,7 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e6194d1d8ef246b988832a2009df9ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  visualTransform: {fileID: 1282890540}
+  bodyTransform: {fileID: 1282890540}
 --- !u!1 &122953725
 GameObject:
   m_ObjectHideFlags: 3
@@ -919,6 +919,7 @@ GameObject:
   - component: {fileID: 900408732}
   - component: {fileID: 900408734}
   - component: {fileID: 900408736}
+  - component: {fileID: 900408737}
   m_Layer: 0
   m_Name: Game
   m_TagString: Untagged
@@ -981,6 +982,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 964139809b6a4e6eb04ae410bb19d7bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &900408737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 900408731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b084d2aa1d32d4b3b99270f0f8f96f1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - m_name: Footsteps
+    m_clips:
+    - {fileID: 8300000, guid: 1a631ada4ecd9cf49a88b135aa70c396, type: 3}
+    - {fileID: 8300000, guid: ee00faf8b8432ff40a6e008c84d5ae59, type: 3}
+    - {fileID: 8300000, guid: 9b0833c02b71a294faba6438278d937a, type: 3}
+    volume: 1
+    pitch: 1
+    m_randomVolumeRange: {x: 0.6, y: 1}
+    m_randomPitchRange: {x: 0.6, y: 0.9}
+  - m_name: RunStop
+    m_clips:
+    - {fileID: 8300000, guid: 1a631ada4ecd9cf49a88b135aa70c396, type: 3}
+    volume: 1
+    pitch: 1
+    m_randomVolumeRange: {x: 1, y: 1}
+    m_randomPitchRange: {x: 1, y: 1}
+  - m_name: Jump
+    m_clips:
+    - {fileID: 8300000, guid: 5a18f2ef7db9f1943bedda13ff85ee89, type: 3}
+    volume: 1
+    pitch: 1.2
+    m_randomVolumeRange: {x: 1, y: 1}
+    m_randomPitchRange: {x: 1, y: 1}
+  - m_name: Landing
+    m_clips:
+    - {fileID: 8300000, guid: 5329b99920a6642409627b29d379aff7, type: 3}
+    volume: 1
+    pitch: 1
+    m_randomVolumeRange: {x: 1, y: 1}
+    m_randomPitchRange: {x: 1, y: 1}
 --- !u!1 &1022067295
 GameObject:
   m_ObjectHideFlags: 0
@@ -2299,7 +2343,6 @@ MonoBehaviour:
   lowJumpMultiplier: 2
   jumpMultiplier: 7
   m_RunStopDust: {fileID: 7310271610845027193, guid: 39afca3c109b26049a80bc07593eb271, type: 3}
-  m_JumpDust: {fileID: 8935918012585647707, guid: 4a4123fbc8b39d441868897a71d2b2b1, type: 3}
   m_LandingDust: {fileID: 9076098953984712191, guid: 0b745be9abb3a6d4dadd8705950196d1, type: 3}
 --- !u!50 &1282890543
 Rigidbody2D:
