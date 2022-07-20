@@ -1868,6 +1868,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61161411cc7774576875c290f15b3e21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactionAsset: {fileID: 11400000, guid: 676281e59eeb74239bd22d71949605e4, type: 2}
   sceneId: 1
 --- !u!4 &900408733
 Transform:

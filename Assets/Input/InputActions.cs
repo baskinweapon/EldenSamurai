@@ -71,6 +71,15 @@ public partial class @EldenSamurai : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Menu"",
+                    ""type"": ""Button"",
+                    ""id"": ""519f69fb-7d24-4db0-bd07-5e831875bc09"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -313,6 +322,17 @@ public partial class @EldenSamurai : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""91fd7f78-155a-49f7-a76e-fa5771816731"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Menu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -905,6 +925,7 @@ public partial class @EldenSamurai : IInputActionCollection2, IDisposable
         m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
         m_Player_Interaction = m_Player.FindAction("Interaction", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
+        m_Player_Menu = m_Player.FindAction("Menu", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -981,6 +1002,7 @@ public partial class @EldenSamurai : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Fire;
     private readonly InputAction m_Player_Interaction;
     private readonly InputAction m_Player_Jump;
+    private readonly InputAction m_Player_Menu;
     public struct PlayerActions
     {
         private @EldenSamurai m_Wrapper;
@@ -990,6 +1012,7 @@ public partial class @EldenSamurai : IInputActionCollection2, IDisposable
         public InputAction @Fire => m_Wrapper.m_Player_Fire;
         public InputAction @Interaction => m_Wrapper.m_Player_Interaction;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
+        public InputAction @Menu => m_Wrapper.m_Player_Menu;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1014,6 +1037,9 @@ public partial class @EldenSamurai : IInputActionCollection2, IDisposable
                 @Jump.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
+                @Menu.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenu;
+                @Menu.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenu;
+                @Menu.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenu;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1033,6 +1059,9 @@ public partial class @EldenSamurai : IInputActionCollection2, IDisposable
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
+                @Menu.started += instance.OnMenu;
+                @Menu.performed += instance.OnMenu;
+                @Menu.canceled += instance.OnMenu;
             }
         }
     }
@@ -1194,6 +1223,7 @@ public partial class @EldenSamurai : IInputActionCollection2, IDisposable
         void OnFire(InputAction.CallbackContext context);
         void OnInteraction(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+        void OnMenu(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
