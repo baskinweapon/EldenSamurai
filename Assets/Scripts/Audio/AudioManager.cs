@@ -59,15 +59,15 @@ public class AudioManager : Singleton<AudioManager> {
         backgroundSounds.backgroundMusic.Play(count, currentSource);
         count++; 
         while (true) {
-            Debug.Log(currentSource.clip.length - mixTime);
             yield return new WaitForSeconds(currentSource.clip.length - mixTime);
-            Debug.Log("Next source");
+            
             float currentTime = 0;
             var start = currentSource.volume;
             var secondSource = currentSource == backgroundSource ? secondBackSource : backgroundSource;
             backgroundSounds.backgroundMusic.Play(count, secondSource);
             secondSource.volume = 0;
             count++;
+            
             while (currentTime < mixTime) {
                 currentTime += Time.deltaTime;
                 currentSource.volume = Mathf.Lerp(start, 0f, currentTime / mixTime);
