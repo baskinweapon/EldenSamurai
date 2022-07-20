@@ -67,7 +67,7 @@ public class CharacterMovement : MonoBehaviour {
 
     private float extraHeight = .05f;
     private bool IsGrounded() {
-        RaycastHit2D hit = Physics2D.Raycast(col.bounds.center, Vector2.down, col.bounds.extents.y + extraHeight, LayerMask.GetMask("Tilemap"));
+        RaycastHit2D hit = Physics2D.Raycast(col.bounds.center, Vector2.down, col.bounds.extents.y + extraHeight, LayerMask.GetMask("Obstacle"));
         Color rayColor;
         var isGround = hit.collider != null;
         if (isGround) {
