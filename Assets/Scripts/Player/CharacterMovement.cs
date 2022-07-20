@@ -89,6 +89,7 @@ public class CharacterMovement : MonoBehaviour {
         }
     }
     
+    //For animation
     void AE_runStop() {
         AudioManager.instance.PlaySound("RunStop");
     }
