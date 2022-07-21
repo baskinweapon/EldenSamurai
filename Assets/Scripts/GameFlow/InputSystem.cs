@@ -7,8 +7,7 @@ public class InputSystem : Singleton<InputSystem> {
 
     public static Action OnJump;
     public static Action OnInteraction;
-    public static Action<bool> OnMenu;
-
+    
     private Vector2 moveVector;
     protected override void Awake() {
         base.Awake();
@@ -35,9 +34,9 @@ public class InputSystem : Singleton<InputSystem> {
     }
 
     private bool isMenuOpen;
-    private void MenuPressed(InputAction.CallbackContext ctx) {
+    public void MenuPressed(InputAction.CallbackContext ctx = default) {
         isMenuOpen = !isMenuOpen;
-        OnMenu?.Invoke(isMenuOpen);
+        PauseManager.instance.Pause(isMenuOpen);
     }
 
 #endregion

@@ -5,15 +5,18 @@ public class Menu : MonoBehaviour {
     private RectTransform menuPanel;
 
     private void OnEnable() {
-        InputSystem.OnMenu += MenuButtonClick;
+        PauseManager.OnPause += Pause;
     }
 
     public void MenuButtonClick(bool _state) {
-        PauseManager.OnPause?.Invoke(_state);
+        InputSystem.instance.MenuPressed();
+    }
+
+    public void Pause(bool _state) {
         menuPanel.gameObject.SetActive(_state);
     }
 
     private void OnDisable() {
-        InputSystem.OnMenu -= MenuButtonClick;
+        PauseManager.OnPause -= Pause;
     }
 }

@@ -3,16 +3,14 @@ using UnityEngine;
 
 public class PauseManager : Singleton<PauseManager> {
     public static Action<bool> OnPause;
-
-    private void OnEnable() {
-        OnPause += Pause;
+    
+    public void Pause(bool _state) {
+        if (_state) {
+            Time.timeScale = 0;
+        } else {
+            Time.timeScale = 1;
+        }
+        OnPause?.Invoke(_state);
     }
-
-    private void Pause(bool _state) {
-        Time.timeScale = 0;
-    }
-
-    private void OnDisable() {
-        OnPause -= Pause;
-    }
+    
 }

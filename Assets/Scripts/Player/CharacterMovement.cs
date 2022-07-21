@@ -42,9 +42,9 @@ public class CharacterMovement : MonoBehaviour {
     private bool isMove;
     private void FixedUpdate() {
         if (rb.velocity.y < 0) {
-            rb.velocity += Physics.gravity.y * fallMultiplier * Time.fixedDeltaTime * Vector2.up;
+            rb.velocity += Physics.gravity.y * fallMultiplier * Time.deltaTime * Vector2.up;
         } else if (rb.velocity.y > 0 && !InputSystem.instance.IsJumping()) {
-            rb.velocity += Physics.gravity.y * lowJumpMultiplier * Time.fixedDeltaTime * Vector2.up;
+            rb.velocity += Physics.gravity.y * lowJumpMultiplier * Time.deltaTime * Vector2.up;
         }
         animator.SetFloat("AirSpeedY", rb.velocity.y);
         float move = InputSystem.instance.GetMoveVector().x;
@@ -61,7 +61,7 @@ public class CharacterMovement : MonoBehaviour {
         if (move > 0) spriteRenderer.flipX = true;
         else if (move < 0) spriteRenderer.flipX = false;
         
-        Vector2 velocity = new Vector2(move * playerSpeed * Time.fixedDeltaTime, rb.velocity.y);
+        Vector2 velocity = new Vector2(move * playerSpeed * Time.deltaTime, rb.velocity.y);
         rb.velocity = velocity;
     }
 
