@@ -12,5 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72ef9d54b795420d9071ae37af397cfc, type: 3}
   m_Name: InteractionAsset
   m_EditorClassIdentifier: 
-  visualInteraction: {fileID: 0}
-  keyVisual: {fileID: 21300000, guid: b258510de74814b5eb4c8ad6c8d6d340, type: 3}
+  keyVisual: {fileID: 21300000, guid: d3f58ff612ea34d31956f4712b6eed5b, type: 3}

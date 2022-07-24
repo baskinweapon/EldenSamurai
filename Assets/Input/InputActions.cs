@@ -80,6 +80,33 @@ public partial class @EldenSamurai : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""FirstAbility"",
+                    ""type"": ""Button"",
+                    ""id"": ""158ba82c-b008-4ccc-9009-3b8921f2cb8b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SecondAbility"",
+                    ""type"": ""Button"",
+                    ""id"": ""d37500e0-fbfb-419a-8e51-c64165fbd7b6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ThirdAbility"",
+                    ""type"": ""Button"",
+                    ""id"": ""c0118ac3-c992-4541-9934-1f0126674052"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -306,7 +333,7 @@ public partial class @EldenSamurai : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""b29d0a42-0d96-4f2d-8f29-e1ca6cd7f939"",
-                    ""path"": ""<Keyboard>/e"",
+                    ""path"": ""<Keyboard>/f"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
@@ -333,6 +360,39 @@ public partial class @EldenSamurai : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Menu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b44ed1f0-f9a7-4b7b-a916-618fae429c97"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""FirstAbility"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4dd92bbf-0ac5-488d-ab5e-c2e1eb53aad8"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""SecondAbility"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dcd74d33-10a9-4814-bf09-4e7e73d4b6ab"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""ThirdAbility"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -926,6 +986,9 @@ public partial class @EldenSamurai : IInputActionCollection2, IDisposable
         m_Player_Interaction = m_Player.FindAction("Interaction", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Menu = m_Player.FindAction("Menu", throwIfNotFound: true);
+        m_Player_FirstAbility = m_Player.FindAction("FirstAbility", throwIfNotFound: true);
+        m_Player_SecondAbility = m_Player.FindAction("SecondAbility", throwIfNotFound: true);
+        m_Player_ThirdAbility = m_Player.FindAction("ThirdAbility", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1003,6 +1066,9 @@ public partial class @EldenSamurai : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Interaction;
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Menu;
+    private readonly InputAction m_Player_FirstAbility;
+    private readonly InputAction m_Player_SecondAbility;
+    private readonly InputAction m_Player_ThirdAbility;
     public struct PlayerActions
     {
         private @EldenSamurai m_Wrapper;
@@ -1013,6 +1079,9 @@ public partial class @EldenSamurai : IInputActionCollection2, IDisposable
         public InputAction @Interaction => m_Wrapper.m_Player_Interaction;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Menu => m_Wrapper.m_Player_Menu;
+        public InputAction @FirstAbility => m_Wrapper.m_Player_FirstAbility;
+        public InputAction @SecondAbility => m_Wrapper.m_Player_SecondAbility;
+        public InputAction @ThirdAbility => m_Wrapper.m_Player_ThirdAbility;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1040,6 +1109,15 @@ public partial class @EldenSamurai : IInputActionCollection2, IDisposable
                 @Menu.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenu;
                 @Menu.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenu;
                 @Menu.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenu;
+                @FirstAbility.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFirstAbility;
+                @FirstAbility.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFirstAbility;
+                @FirstAbility.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFirstAbility;
+                @SecondAbility.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSecondAbility;
+                @SecondAbility.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSecondAbility;
+                @SecondAbility.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSecondAbility;
+                @ThirdAbility.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnThirdAbility;
+                @ThirdAbility.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnThirdAbility;
+                @ThirdAbility.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnThirdAbility;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1062,6 +1140,15 @@ public partial class @EldenSamurai : IInputActionCollection2, IDisposable
                 @Menu.started += instance.OnMenu;
                 @Menu.performed += instance.OnMenu;
                 @Menu.canceled += instance.OnMenu;
+                @FirstAbility.started += instance.OnFirstAbility;
+                @FirstAbility.performed += instance.OnFirstAbility;
+                @FirstAbility.canceled += instance.OnFirstAbility;
+                @SecondAbility.started += instance.OnSecondAbility;
+                @SecondAbility.performed += instance.OnSecondAbility;
+                @SecondAbility.canceled += instance.OnSecondAbility;
+                @ThirdAbility.started += instance.OnThirdAbility;
+                @ThirdAbility.performed += instance.OnThirdAbility;
+                @ThirdAbility.canceled += instance.OnThirdAbility;
             }
         }
     }
@@ -1224,6 +1311,9 @@ public partial class @EldenSamurai : IInputActionCollection2, IDisposable
         void OnInteraction(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnMenu(InputAction.CallbackContext context);
+        void OnFirstAbility(InputAction.CallbackContext context);
+        void OnSecondAbility(InputAction.CallbackContext context);
+        void OnThirdAbility(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

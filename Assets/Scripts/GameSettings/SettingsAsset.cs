@@ -11,16 +11,17 @@ public class SettingsAsset : ScriptableObject {
 	[Header("other info")]
 	public string path;
 	public string saveName = "save.save";
-
-
+	
 	[Header("debug")]
 	public bool debugMode;
 
 	private void OnEnable() {
 		path = Application.streamingAssetsPath + $"/settings/{saveName}";
+#if UNITY_EDITOR
+		path = Application.streamingAssetsPath + $"/settings/{saveName}";
+#endif
 	}
-
-
+	
 	public bool FileCheck() {
 		if (string.IsNullOrEmpty(path)) OnEnable();
 
@@ -47,8 +48,7 @@ public class SettingsAsset : ScriptableObject {
 	public void SetDefaultSave() {
 		
 	}
-
-
+	
 	public void LoadFromFile() {
 		if (!FileCheck()) {
 			SetDefaultSave();
@@ -95,6 +95,7 @@ public class SettingsAsset : ScriptableObject {
 
 
 #if UNITY_EDITOR
+
 [CustomEditor(typeof(SettingsAsset))]
 public class SettingsAssetEditor : Editor {
 	public override void OnInspectorGUI() {
