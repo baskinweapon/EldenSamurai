@@ -89,6 +89,7 @@ public class EnemyAI : MonoBehaviour {
         float distance = Vector2.Distance(rb.position, path.vectorPath[currentWapoint]);
         if (distance < nextWaypointDistance) {
             StopAllCoroutines();
+            effect.SetActive(false);
             attacking = false;
             currentWapoint++;
         } 

@@ -873,6 +873,7 @@ GameObject:
   - component: {fileID: 568416606}
   - component: {fileID: 568416605}
   - component: {fileID: 568416604}
+  - component: {fileID: 568416608}
   m_Layer: 0
   m_Name: fireball
   m_TagString: Untagged
@@ -890,7 +891,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -993,6 +994,21 @@ Transform:
   m_Father: {fileID: 746046110}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &568416608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 568416603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc4f2880c2df460b92a6638dbfbdf299, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageValue: 10
+  duration: 1
+  col: {fileID: 568416604}
 --- !u!1 &691054464
 GameObject:
   m_ObjectHideFlags: 0
@@ -6233,6 +6249,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyGFX: {fileID: 746046110}
   effect: {fileID: 568416603}
+  distanceToAttack: 2
   activateDistance: 50
   speed: 400
   nextWaypointDistance: 3
