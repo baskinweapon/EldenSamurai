@@ -1,4 +1,5 @@
 using System;
+using Abilities;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,6 +8,12 @@ public class InputSystem : Singleton<InputSystem> {
 
     public static Action OnJump;
     public static Action OnInteraction;
+
+    
+    //ability input
+    public static Action OnFirstAbility;
+    public static Action OnSecondAbility;
+    public static Action OnThirdAbility;
     
     private Vector2 moveVector;
     protected override void Awake() {
@@ -14,9 +21,13 @@ public class InputSystem : Singleton<InputSystem> {
         
         playerInput = new EldenSamurai();
         playerInput.Enable();
+        
+        
         playerInput.Player.Jump.performed += Jump;
         playerInput.Player.Interaction.performed += InteractionInput;
         playerInput.Player.Menu.performed += MenuPressed;
+
+        playerInput.Player.FirstAbility.performed += FirstAbilityPress;
     }
 
     private void FixedUpdate() {
@@ -39,9 +50,12 @@ public class InputSystem : Singleton<InputSystem> {
         PauseManager.instance.Pause(isMenuOpen);
     }
 
+    private void FirstAbilityPress(InputAction.CallbackContext ctx = default) {
+       OnFirstAbility?.Invoke();
+    }
+    
 #endregion
-    
-    
+
     public Vector2 GetMoveVector() {
         return moveVector;
     }
@@ -56,5 +70,7 @@ public class InputSystem : Singleton<InputSystem> {
         playerInput.Player.Jump.performed -= Jump;
         playerInput.Player.Interaction.performed -= InteractionInput;
         playerInput.Player.Menu.performed -= MenuPressed;
+        
+        playerInput.Player.FirstAbility.performed -= FirstAbilityPress;
     }
 }

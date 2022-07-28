@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
@@ -8,6 +9,9 @@ public class Health : MonoBehaviour {
     private float curHealth;
     [SerializeField]
     private float maxHealth = 100f;
+
+    [SerializeField] 
+    private float persistantHealValue = 0.5f;
     
     public UnityEvent<float> OnDamage;
     public UnityEvent<float> OnHeal;
@@ -21,6 +25,8 @@ public class Health : MonoBehaviour {
         curHealth -= value;
         if (curHealth <= 0) curHealth = 0;
         OnDamage?.Invoke(curHealth);
+        StopAllCoroutines();
+        StartCoroutine(PersistandHeal());
         if (curHealth <= 0) 
             Death();
     }
@@ -30,16 +36,24 @@ public class Health : MonoBehaviour {
         OnHeal?.Invoke(value);
     }
 
+    public void Death() {
+        Debug.Log("Death");
+        StopAllCoroutines();
+        OnDeath?.Invoke();
+    }
+    
+    IEnumerator PersistandHeal() {
+        while (curHealth <= maxHealth) {
+            yield return new WaitForSeconds(1f);
+            curHealth += persistantHealValue;
+            OnHeal?.Invoke(persistantHealValue);
+        }
+    }
+
     public void ChangeMaxHealth(float value) {
         maxHealth += value;
         OnChangeMaxHealth?.Invoke();
     }
-
-    public void Death() {
-        Debug.Log("Death");
-        OnDeath?.Invoke();
-    }
-    
 }
 
 #if UNITY_EDITOR
