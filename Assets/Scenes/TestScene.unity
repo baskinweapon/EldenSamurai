@@ -6186,7 +6186,7 @@ MonoBehaviour:
   manualDebugFloorRoof: 0
   showSearchTree: 0
   unwalkableNodeDebugSize: 0.3
-  logPathResults: 1
+  logPathResults: 0
   maxNearestNodeDistance: 100
   scanOnStartup: 1
   fullGetNearestSearch: 0
@@ -6204,8 +6204,8 @@ MonoBehaviour:
   tagNames: []
   heuristic: 2
   heuristicScale: 1
-  threadCount: 1
-  maxFrameTime: 1
+  threadCount: 8
+  maxFrameTime: 10
   batchGraphUpdates: 0
   graphUpdateBatchingInterval: 0.2
   euclideanEmbedding:
@@ -6248,12 +6248,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyGFX: {fileID: 746046110}
-  effect: {fileID: 568416603}
   distanceToAttack: 2
-  activateDistance: 50
+  activateDistance: 10
   speed: 400
   nextWaypointDistance: 3
-  jumpNodeHeightRequirement: 0.8
+  jumpNodeHeightRequirement: 0.1
   jumpModifier: 0.3
   jumpCheckOffset: 0.1
   followEnable: 1

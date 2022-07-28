@@ -6,9 +6,10 @@ using UnityEngine.Timeline;
 
 public class EnemyAI : MonoBehaviour {
     public Transform enemyGFX;
-    public GameObject effect;
     
     private Transform target;
+    
+    [Header("Distance to Action")]
     public float distanceToAttack = 2f;
     public float activateDistance = 50f;
 
@@ -89,11 +90,9 @@ public class EnemyAI : MonoBehaviour {
         float distance = Vector2.Distance(rb.position, path.vectorPath[currentWapoint]);
         if (distance < nextWaypointDistance) {
             StopAllCoroutines();
-            effect.SetActive(false);
             attacking = false;
             currentWapoint++;
         } 
-
         
         if (directionLookEnabled) {
             if (rb.velocity.x >= 0.01f) {
@@ -117,10 +116,8 @@ public class EnemyAI : MonoBehaviour {
     private WaitForSeconds wfs = new WaitForSeconds(1f);
     IEnumerator AttackProcess() {
         attacking = true;
-        effect.SetActive(false);
         while (true) {
             animator.SetTrigger("Attack");
-            effect.SetActive(true);
             yield return wfs;
         }
     }
@@ -130,31 +127,4 @@ public class EnemyAI : MonoBehaviour {
     bool TargetInDistance() {
         return Vector2.Distance(transform.position, target.transform.position) < activateDistance;
     }
-    
-
-    // private void FixedUpdate() {
-    //     if (path == null) return;
-    //     if (currentWapoint >= path.vectorPath.Count) {
-    //         reachedEndOfPath = true;
-    //         return;
-    //     } else {
-    //         reachedEndOfPath = false;
-    //     }
-    //
-    //     Vector2 direction = ((Vector2)path.vectorPath[currentWapoint] - rb.position).normalized;
-    //     Vector2 force =  speed * Time.deltaTime * direction;
-    //
-    //     rb.AddForce(force);
-    //     
-    //     float distance = Vector2.Distance(rb.position, path.vectorPath[currentWapoint]);
-    //     if (distance < nextWaypointDistance) {
-    //         currentWapoint++;
-    //     }
-    //     
-    //     if (force.x >= 0.01f) {
-    //         enemyGFX.localScale = new Vector3(1f, 1f, 1f);
-    //     } else if (force.x <= -0.01f) {
-    //         enemyGFX.localScale = new Vector3(-1f, 1f, 1f);
-    //     }
-    // }
 }
