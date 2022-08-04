@@ -19,7 +19,6 @@ public class Damager : MonoBehaviour {
         var health = col.GetComponentInParent<Health>();
         if (!health) return;
         health.Damage(damageValue);
-        StartCoroutine(EndProcess());
     }
 
     IEnumerator EndProcess() {

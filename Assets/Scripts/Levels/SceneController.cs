@@ -17,10 +17,14 @@ public class SceneController : Singleton<SceneController> {
 [CustomEditor(typeof(SceneController))]
 public class SceneLoaderEditor : Editor {
     public override void OnInspectorGUI() {
+        base.OnInspectorGUI();
         var me = target as SceneController;
         
         if (GUILayout.Button("Load Test scene")) {
             me.LoadScene(1);
+        } 
+        if (GUILayout.Button("Load Hell scene")) {
+            me.LoadScene(3);
         }
     }
 }

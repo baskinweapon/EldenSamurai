@@ -22,7 +22,7 @@ namespace Abilities {
             Initiallize(ability, abilityHolder);
         }
         
-        protected virtual void Update() {
+        protected void Update() {
             bool coolDownComplete = (Time.time > nextReadyTime);
             if (coolDownComplete) {
                 AbilityReady();
@@ -31,7 +31,7 @@ namespace Abilities {
             }
         }
         
-        public virtual void Initiallize(Ability ability, GameObject _abilityHolder) {
+        public void Initiallize(Ability ability, GameObject _abilityHolder) {
             this.ability = ability;
             coolDownDuration = ability.baseCooldown;
             ability.Initiliaze(_abilityHolder, owner);
@@ -51,7 +51,7 @@ namespace Abilities {
             return coolDownComplete;
         }
         
-        public virtual void Triggered() {
+        public void Triggered() {
             bool coolDownComplete = (Time.time > nextReadyTime);
             if (!coolDownComplete) return;
             nextReadyTime = coolDownDuration + Time.time;

@@ -128,19 +128,19 @@ public class EnemyAI : MonoBehaviour {
                 enemyGFX.localScale = new Vector3(-1f, 1f, 1f);
             }
         }
-
-        if (attacking) return;
+        
         if (Vector2.Distance(rb.position, target.position) < distanceToAttack) {
             Attack();
         }
     }
 
     private void Attack() {
+        if (abilityCooldown.CooldownComplete())
+            animator.SetTrigger("Attack");
         abilityCooldown.Triggered();
     }
     
-    private bool attacking = false;
-
+    
     bool TargetInDistance() {
         return Vector2.Distance(transform.position, target.transform.position) < activateDistance;
     }

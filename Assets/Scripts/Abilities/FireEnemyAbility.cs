@@ -16,7 +16,7 @@ namespace Abilities {
             _damager = inst.GetComponent<Damager>();
             moveDirection = inst.GetComponent<MoveDirection>();
             _damager.SetActive(false);
-            
+            _damager.gameObject.SetActive(false);
         }
 
         public override void TriggerAbility() {
