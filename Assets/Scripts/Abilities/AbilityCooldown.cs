@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 namespace Abilities {
     public class AbilityCooldown : MonoBehaviour {
-
         public Image darkMask;
         public Image noManaMask;
         public TextMeshProUGUI coolDowntText;
@@ -36,7 +35,7 @@ namespace Abilities {
             coolDownDuration = ability.baseCooldown;
             _buttonPosition = ability.buttonPosition;
             UIAbilityAction(ability.buttonPosition);
-            ability.Initiliaze(_abilityHolder);
+            ability.Initiliaze(_abilityHolder, Player.instance.bodyTransform);
             AbilityReady();
         }
 
@@ -56,11 +55,10 @@ namespace Abilities {
             coolDowntText.enabled = false;
             darkMask.enabled = false;
         }
-
         
         private bool notMana;
         private bool NotManaCondition() {
-            if (Player.instance.mana.GetCurrentMana() <= ability.manaCost) {
+            if (Player.instance.mana.GetCurrentMana() < ability.manaCost) {
                 noManaMask.gameObject.SetActive(true);
                 return true;
             } else {

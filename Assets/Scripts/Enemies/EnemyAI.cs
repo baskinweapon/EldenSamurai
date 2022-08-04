@@ -1,10 +1,12 @@
 using System;
 using System.Collections;
+using Abilities;
 using Pathfinding;
 using UnityEngine;
-using UnityEngine.Timeline;
 
 public class EnemyAI : MonoBehaviour {
+    
+    public BaseAbilityCooldown abilityCooldown;
     public Transform enemyGFX;
     
     private Transform target;
@@ -36,18 +38,33 @@ public class EnemyAI : MonoBehaviour {
 
     public Animator animator;
 
+    public Action OnMyWay;
+    public Action OnFindTarget;
+    public Action OnLostTarget;
+    public Action OnAttack;
+
+    [Header("Patrol")]
+    public bool mustPatrol;
+    public float distanceToSpawnPoint = 3f;
+
+    private Vector3 spawnedPosition;
+    
     private void Start() {
         target = Player.instance.bodyTransform;
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<Collider2D>();
 
+        spawnedPosition = rb.position;
         InvokeRepeating(nameof(UpdatePath), 0, .5f);
     }
 
     void UpdatePath() {
         if (followEnable && TargetInDistance() && seeker.IsDone())
             seeker.StartPath(rb.position, target.position, OnPathComplete);
+        else if (mustPatrol && Vector2.Distance(rb.position, spawnedPosition) >= distanceToSpawnPoint) {
+            seeker.StartPath(rb.position, spawnedPosition, OnPathComplete);
+        }
     }
 
     void OnPathComplete(Path p) {
@@ -58,14 +75,23 @@ public class EnemyAI : MonoBehaviour {
     }
 
     private void FixedUpdate() {
+        
+        //anim
         if (rb.velocity.x != 0) {
             animator.SetInteger("AnimState", 1);
         } else {
             animator.SetInteger("AnimState", 0);
         }
+        
         if (TargetInDistance() && followEnable) {
             PathFollow();
+        } else if (mustPatrol) {
+            Patrol();
         }
+    }
+
+    public void Patrol() {
+        PathFollow();
     }
 
     void PathFollow() {
@@ -81,16 +107,17 @@ public class EnemyAI : MonoBehaviour {
         //Jump
         if (jumpEnable && isGrounded) {
             if (direction.y > jumpNodeHeightRequirement) {
-                rb.AddForce(speed * jumpModifier * Vector2.up);
+                rb.velocity += speed * jumpModifier * Vector2.up;
+                // rb.AddForce(speed * jumpModifier * Vector2.up);
             }
         }
-        
-        rb.AddForce(force);
+
+        rb.velocity += force;
+        // rb.AddForce(force);
 
         float distance = Vector2.Distance(rb.position, path.vectorPath[currentWapoint]);
         if (distance < nextWaypointDistance) {
             StopAllCoroutines();
-            attacking = false;
             currentWapoint++;
         } 
         
@@ -109,21 +136,11 @@ public class EnemyAI : MonoBehaviour {
     }
 
     private void Attack() {
-        StartCoroutine(AttackProcess());
+        abilityCooldown.Triggered();
     }
-
+    
     private bool attacking = false;
-    private WaitForSeconds wfs = new WaitForSeconds(1f);
-    IEnumerator AttackProcess() {
-        attacking = true;
-        while (true) {
-            animator.SetTrigger("Attack");
-            yield return wfs;
-        }
-    }
-    
-    
-    
+
     bool TargetInDistance() {
         return Vector2.Distance(transform.position, target.transform.position) < activateDistance;
     }

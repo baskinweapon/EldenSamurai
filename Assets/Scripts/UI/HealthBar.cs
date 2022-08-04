@@ -4,17 +4,18 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour {
+    public Health health;
     public Slider sliderBar;
     public float speed = 5f;
     public Image fill;
     public Gradient gradient;
     
     private void Start() {
-        Player.instance.health.OnDamage.AddListener(Fade);
-        Player.instance.health.OnHeal.AddListener(Fade);
-        Player.instance.health.OnChangeMaxHealth += ChangeMaxHealth;
-        sliderBar.maxValue = Player.instance.health.GetMaxHealth();
-        sliderBar.value = Player.instance.health.GetCurrentHealth();
+        health.OnDamage.AddListener(Fade);
+        health.OnHeal.AddListener(Fade);
+        health.OnChangeMaxHealth += ChangeMaxHealth;
+        sliderBar.maxValue = health.GetMaxHealth();
+        sliderBar.value = health.GetCurrentHealth();
         fill.color = gradient.Evaluate(sliderBar.value);
     }
     
@@ -25,8 +26,8 @@ public class HealthBar : MonoBehaviour {
     }
     
     IEnumerator FadeProcess() {
-        while (sliderBar.value != Player.instance.health.GetCurrentHealth()) {
-            sliderBar.value = Mathf.Lerp(sliderBar.value, Player.instance.health.GetCurrentHealth(), Time.deltaTime * speed);
+        while (sliderBar.value != health.GetCurrentHealth()) {
+            sliderBar.value = Mathf.Lerp(sliderBar.value, health.GetCurrentHealth(), Time.deltaTime * speed);
             fill.color = gradient.Evaluate(sliderBar.value / sliderBar.maxValue);
             yield return null;
         }
@@ -35,13 +36,13 @@ public class HealthBar : MonoBehaviour {
     }
 
     private void ChangeMaxHealth() {
-        sliderBar.maxValue = Player.instance.health.GetMaxHealth();
+        sliderBar.maxValue = health.GetMaxHealth();
         Fade(0);
     }
     
     private void OnDestroy() {
-        Player.instance.health.OnDamage.RemoveListener(Fade);
-        Player.instance.health.OnHeal.RemoveListener(Fade);
-        Player.instance.health.OnChangeMaxHealth -= ChangeMaxHealth;
+        health.OnDamage.RemoveListener(Fade);
+        health.OnHeal.RemoveListener(Fade);
+        health.OnChangeMaxHealth -= ChangeMaxHealth;
     }
 }

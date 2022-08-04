@@ -26,14 +26,13 @@ public class Mana : MonoBehaviour
     public float GetMaxMana() => maxMana;
 
     public bool SpendMana(float value) {
+        if (curMana - value < 0) {
+            OnNeedMana?.Invoke();
+            return false;
+        }
         curMana -= value;
         StopAllCoroutines();
         StartCoroutine(PersistandRest());
-        if (curMana < 0) {
-            OnNeedMana?.Invoke();
-            curMana = 0;
-            return false;
-        } 
         OnSpend?.Invoke(value);
         return true;
     }

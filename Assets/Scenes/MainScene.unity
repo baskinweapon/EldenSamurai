@@ -345,8 +345,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6ab0706c0d7541db94f368269a15486, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curMana: 100
-  maxMana: 100
+  curMana: 1000
+  maxMana: 1000
   persistantRestValue: 0.5
   OnSpend:
     m_PersistentCalls:
@@ -1126,6 +1126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bbb580e943442b293b9f69511f2c69a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: {fileID: 120705691}
   sliderBar: {fileID: 289127172}
   speed: 3
   fill: {fileID: 1181980033}
@@ -7006,7 +7007,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7782686, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

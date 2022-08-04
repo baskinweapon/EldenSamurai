@@ -20,7 +20,7 @@ namespace Abilities {
         // for chose button position on UI 
         public AbilityButton buttonPosition;
         
-        public abstract void Initiliaze(GameObject obj);
+        public abstract void Initiliaze(GameObject obj, Transform parent);
         public abstract void TriggerAbility();
     }
 }
