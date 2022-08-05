@@ -9,11 +9,16 @@ public class Damager : MonoBehaviour {
     
     [SerializeField]
     private Collider2D col;
-    
-    public void SetActive(bool _state) {
-        col.enabled = _state;
+
+    private void OnEnable() {
         StartCoroutine(EndProcess());
     }
+
+    // public void SetActive(bool _state) {
+    //     col.enabled = _state;
+    //     // if (_state)
+    //     //     StartCoroutine(EndProcess());
+    // }
     
     private void OnTriggerEnter2D(Collider2D col) {
         var health = col.GetComponentInParent<Health>();

@@ -17,6 +17,8 @@ namespace Abilities {
         protected float coolDownDuration;
         protected float nextReadyTime;
         protected float coolDownTimeLeft;
+
+        private Damager _damager;
         
         private void Start() {
             Initiallize(ability, abilityHolder);
@@ -34,7 +36,7 @@ namespace Abilities {
         public void Initiallize(Ability ability, GameObject _abilityHolder) {
             this.ability = ability;
             coolDownDuration = ability.baseCooldown;
-            ability.Initiliaze(_abilityHolder, owner);
+            _damager = ability.Initiliaze(_abilityHolder, owner);
             AbilityReady();
         }
         
@@ -59,7 +61,7 @@ namespace Abilities {
             
             abilitySource.clip = ability.sound;
             abilitySource.Play();
-            ability.TriggerAbility();
+            ability.TriggerAbility(_damager);
         }
     }
     

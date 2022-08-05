@@ -91,7 +91,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageValue: 10
-  duration: 1
+  duration: 2
   col: {fileID: 2227419769561137195}
 --- !u!1001 &7815868167996805193
 PrefabInstance:

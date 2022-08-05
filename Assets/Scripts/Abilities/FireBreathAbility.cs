@@ -8,17 +8,17 @@ namespace Abilities {
         private PlayEffects _playEffects;
 
         private Damager _damager;
-        public override void Initiliaze(GameObject obj, Transform parent) {
+        public override Damager Initiliaze(GameObject obj, Transform parent) {
             var inst = Instantiate(obj, Player.instance.bodyTransform);
             _playEffects = inst.GetComponent<PlayEffects>();
             _damager = inst.GetComponent<Damager>();
-            _damager.SetActive(false);
             _playEffects.Stop();
+            _damager.gameObject.SetActive(false);
+            return _damager;
         }
 
-        public override void TriggerAbility() {
+        public override void TriggerAbility(Damager _damager) {
             _damager.gameObject.SetActive(true);
-            _damager.SetActive(true);
             if (Player.instance.playerSpriteRenderer.flipX) {
                 _playEffects.transform.localPosition = new Vector3(-0.6f, 1.2f, 0);
                 _playEffects.transform.localRotation = new Quaternion(0, 0, 180, 0);

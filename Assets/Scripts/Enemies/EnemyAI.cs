@@ -108,12 +108,10 @@ public class EnemyAI : MonoBehaviour {
         if (jumpEnable && isGrounded) {
             if (direction.y > jumpNodeHeightRequirement) {
                 rb.velocity += speed * jumpModifier * Vector2.up;
-                // rb.AddForce(speed * jumpModifier * Vector2.up);
             }
         }
 
         rb.velocity += force;
-        // rb.AddForce(force);
 
         float distance = Vector2.Distance(rb.position, path.vectorPath[currentWapoint]);
         if (distance < nextWaypointDistance) {
