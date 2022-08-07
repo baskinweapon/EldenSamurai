@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using Abilities;
 using Pathfinding;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyAI : MonoBehaviour {
@@ -58,6 +59,20 @@ public class EnemyAI : MonoBehaviour {
         spawnedPosition = rb.position;
         InvokeRepeating(nameof(UpdatePath), 0, .5f);
     }
+
+    #region Animation
+
+    public void DamageAnim() {
+        animator.SetTrigger("Damage");
+    }
+
+    public void DieAnim() {
+        animator.SetTrigger("Die");
+        
+        Invoke(nameof(OnDestroy), 1f);
+    }
+
+    #endregion
 
     void UpdatePath() {
         if (followEnable && TargetInDistance() && seeker.IsDone())
@@ -137,8 +152,11 @@ public class EnemyAI : MonoBehaviour {
             animator.SetTrigger("Attack");
         abilityCooldown.Triggered();
     }
-    
-    
+
+    private void OnDestroy() {
+        Destroy(gameObject);   
+    }
+
     bool TargetInDistance() {
         return Vector2.Distance(transform.position, target.transform.position) < activateDistance;
     }

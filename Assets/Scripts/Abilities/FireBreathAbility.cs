@@ -17,15 +17,15 @@ namespace Abilities {
             return _damager;
         }
 
-        public override void TriggerAbility(Damager _damager) {
-            _damager.gameObject.SetActive(true);
+        public override void TriggerAbility(Damager damager) {
             if (Player.instance.playerSpriteRenderer.flipX) {
-                _playEffects.transform.localPosition = new Vector3(-0.6f, 1.2f, 0);
-                _playEffects.transform.localRotation = new Quaternion(0, 0, 180, 0);
+                _playEffects.transform.localPosition = new Vector3(-1f, 1.2f, 0);
+                _playEffects.transform.localRotation = new Quaternion(0, 90, 0, 0);
             } else {
-                _playEffects.transform.localPosition = new Vector3(0.6f, 1.2f, 0);
+                _playEffects.transform.localPosition = new Vector3(1f, 1.2f, 0);
                 _playEffects.transform.localRotation = new Quaternion(0, 0, 0, 0);
             }
+            _damager.gameObject.SetActive(true);
             _playEffects.Play();
         }
     }
