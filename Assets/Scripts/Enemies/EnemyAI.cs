@@ -156,8 +156,14 @@ public class EnemyAI : MonoBehaviour {
     private void OnDestroy() {
         Destroy(gameObject);   
     }
-
+    
     bool TargetInDistance() {
         return Vector2.Distance(transform.position, target.transform.position) < activateDistance;
     }
+
+    private void OnDrawGizmos() {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, activateDistance);
+    }
+
 }

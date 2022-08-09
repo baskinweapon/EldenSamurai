@@ -154,7 +154,7 @@ MonoBehaviour:
   abilityCooldown: {fileID: 4239060040413842595}
   enemyGFX: {fileID: 4239060041271513866}
   distanceToAttack: 5
-  activateDistance: 10
+  activateDistance: 3
   speed: 5
   nextWaypointDistance: 3
   jumpNodeHeightRequirement: 0.5
