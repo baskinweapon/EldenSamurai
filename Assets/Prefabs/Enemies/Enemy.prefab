@@ -367,6 +367,7 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
+  separator: {fileID: 9011706172325941922, guid: ee19734cb77ab401aafa3d5792e80f2e, type: 3}
 --- !u!1 &4239060040255123664
 GameObject:
   m_ObjectHideFlags: 0

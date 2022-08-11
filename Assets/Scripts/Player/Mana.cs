@@ -52,6 +52,8 @@ public class Mana : MonoBehaviour
 
     public void ChangeMaxMana(float value) {
         maxMana += value;
+        StopAllCoroutines();
+        StartCoroutine(PersistandRest());
         OnChangeMaxMana?.Invoke();
     }
 }
@@ -72,7 +74,14 @@ public class ManaEditor : Editor {
             me.RestMana(10f);
         }
         
+
         EditorGUILayout.EndHorizontal();
+        
+        EditorGUILayout.Space();
+        
+        if (GUILayout.Button("Up max Health")) {
+            me.ChangeMaxMana(100f);
+        }
     }
 }
 

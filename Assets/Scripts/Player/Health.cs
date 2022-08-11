@@ -52,6 +52,8 @@ public class Health : MonoBehaviour {
 
     public void ChangeMaxHealth(float value) {
         maxHealth += value;
+        StopAllCoroutines();
+        StartCoroutine(PersistandHeal());
         OnChangeMaxHealth?.Invoke();
     }
 }
@@ -75,6 +77,12 @@ public class HealthEditor : Editor {
 
         EditorGUILayout.EndHorizontal();
 
+        EditorGUILayout.Space();
+        
+        if (GUILayout.Button("Up max Health")) {
+            me.ChangeMaxHealth(100f);
+        }
+        
         EditorGUILayout.Space();
         
         if (GUILayout.Button("Death")) {
