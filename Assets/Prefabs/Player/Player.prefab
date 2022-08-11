@@ -159,7 +159,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee02cea7b3a24951b1fa003940b73696, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _owner: {fileID: 5882923366135570155}
 --- !u!114 &3064403374756844530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -368,9 +367,9 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 6200000, guid: 8001ba1af990e475dabef6ed23922d82, type: 2}
-  m_Interpolate: 0
+  m_Interpolate: 2
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!70 &3064403375742605912
 CapsuleCollider2D:

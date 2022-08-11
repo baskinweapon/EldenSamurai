@@ -8,6 +8,12 @@ public class Damager : MonoBehaviour {
     public float duration = 1f;
     
     private void OnEnable() {
+        StopAllCoroutines();
+        StartCoroutine(EndProcess());
+    }
+
+    public void TriggerAbility() {
+        StopAllCoroutines();
         StartCoroutine(EndProcess());
     }
     

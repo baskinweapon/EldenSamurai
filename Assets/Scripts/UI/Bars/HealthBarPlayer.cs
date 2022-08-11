@@ -11,7 +11,7 @@ namespace UI.Bars {
             public Image fill;
             public Gradient gradient;
             
-            public GameObject separator;
+            public RectTransform separator;
             
             private RectTransform rect;
             private void Start() {
@@ -56,7 +56,7 @@ namespace UI.Bars {
                     sizeBetween = s;
                 } 
                 for (int i = 0; i < size - 1; i++) {
-                    var sep = Instantiate(separator.gameObject, rect).GetComponent<RectTransform>();
+                    var sep = Instantiate(separator, rect);
                     sep.localPosition = new Vector2(rect.rect.x + sizeBetween + i * sizeBetween,0);
                     if (i % 5 == 0 && i != 0) sep.sizeDelta += Vector2.right;
                     separators.Add(sep.gameObject);

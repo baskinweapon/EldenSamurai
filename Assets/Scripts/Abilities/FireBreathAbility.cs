@@ -26,6 +26,7 @@ namespace Abilities {
                 _playEffects.transform.localRotation = new Quaternion(0, 0, 0, 0);
             }
             _damager.gameObject.SetActive(true);
+            _damager.TriggerAbility();
             _playEffects.Play();
         }
     }

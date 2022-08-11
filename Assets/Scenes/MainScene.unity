@@ -1071,7 +1071,7 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
-  separator: {fileID: 9011706172325941922, guid: ee19734cb77ab401aafa3d5792e80f2e, type: 3}
+  separator: {fileID: 9011706172325941923, guid: ee19734cb77ab401aafa3d5792e80f2e, type: 3}
 --- !u!1 &298327613
 GameObject:
   m_ObjectHideFlags: 0
@@ -6698,6 +6698,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3064403374259124121, guid: d802c6296442840268bf5e254e301122, type: 3}
+      propertyPath: m_Intensity
+      value: 0.05
+      objectReference: {fileID: 0}
     - target: {fileID: 3064403374756844528, guid: d802c6296442840268bf5e254e301122, type: 3}
       propertyPath: m_Name
       value: Player
