@@ -136,7 +136,7 @@ TextureImporter:
         width: 604
         height: 384
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -157,7 +157,7 @@ TextureImporter:
         width: 5
         height: 6
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -173,12 +173,12 @@ TextureImporter:
       name: IMG_2644_2
       rect:
         serializedVersion: 2
-        x: 1788
-        y: 3022
-        width: 360
-        height: 326
+        x: 1681
+        y: 2990
+        width: 467
+        height: 358
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -186,27 +186,6 @@ TextureImporter:
       bones: []
       spriteID: 17ce4a9c6a7b2445c99dbb8dedc14878
       internalID: -1912704071
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: IMG_2644_3
-      rect:
-        serializedVersion: 2
-        x: 1694
-        y: 2992
-        width: 141
-        height: 202
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: facb444cd33694de1a41abaa57d10627
-      internalID: 1146299854
       vertices: []
       indices: 
       edges: []
@@ -220,7 +199,7 @@ TextureImporter:
         width: 4
         height: 5
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -241,7 +220,7 @@ TextureImporter:
         width: 401
         height: 566
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

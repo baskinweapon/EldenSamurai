@@ -1,4 +1,5 @@
 
+using System;
 using UnityEngine;
 
 public class GameMain : Singleton<GameMain> {
@@ -16,13 +17,19 @@ public class GameMain : Singleton<GameMain> {
 
     private void Start() {
         SceneController.instance.LoadScene(sceneId);
+        Player.instance.health.OnDeath.AddListener(OnFinishGame);
     }
 
     public void OnFinishGame() {
-        
+        SceneController.instance.LoadScene(sceneId);
+        Player.instance.ResetPlayer();
     }
 
     private void OnApplicationQuit() {
         settingsAsset.SaveToFile();
+    }
+
+    private void OnDestroy() {
+        Player.instance.health.OnDeath.RemoveListener(OnFinishGame);
     }
 }
