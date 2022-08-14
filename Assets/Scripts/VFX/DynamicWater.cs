@@ -95,16 +95,23 @@ public class DynamicWater : MonoBehaviour {
         Splash(col, rb.velocity.y * collisionVelocityFactor);
         firstSplash = true;
     }
-    
+
+
+    private float time;
     private void OnTriggerStay2D(Collider2D other) {
-        float difference = other.transform.position.y - bound.top;
-        var health = other.GetComponentInParent<Health>();
-        if (health) {
-            health.Damage(permanentDamage);
+        time += Time.deltaTime;
+        if (time >= 1f) {
+            time = 0;
+            var health = other.GetComponentInParent<Health>();
+            if (health) {
+                health.Damage(permanentDamage);
+            }
         }
+        
         if (firstSplash && timer <= 0f)
             SplashContinue(other, other.attachedRigidbody.velocity.y * collisionVelocityFactor);
         
+        float difference = other.transform.position.y - bound.top;
         if (difference < 0) {
             other.attachedRigidbody.AddForceAtPosition(Vector2.up * floatingPower * Mathf.Abs(difference), other.transform.position, ForceMode2D.Force);
             SwitchState(true, other.attachedRigidbody);

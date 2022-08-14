@@ -25,6 +25,7 @@ namespace Abilities {
         private float coolDownTimeLeft;
 
         private void Start() {
+            if (!ability) this.enabled = false;
             Initiallize(ability, abilityHolder);
         }
         

@@ -345,9 +345,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpeed: 200
-  fallMultiplier: 2.5
-  lowJumpMultiplier: 2
-  jumpMultiplier: 7
+  fallMultiplier: 1
+  lowJumpMultiplier: 5
+  jumpMultiplier: 4
   m_RunStopDust: {fileID: 7310271610845027193, guid: 39afca3c109b26049a80bc07593eb271, type: 3}
   m_LandingDust: {fileID: 9076098953984712191, guid: 0b745be9abb3a6d4dadd8705950196d1, type: 3}
 --- !u!50 &3064403375742605895

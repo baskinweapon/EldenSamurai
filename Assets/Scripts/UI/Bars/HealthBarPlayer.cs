@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +12,7 @@ namespace UI.Bars {
             public float speed = 5f;
             public Image fill;
             public Gradient gradient;
+            public TextMeshProUGUI text;
             
             public RectTransform separator;
             
@@ -24,6 +27,8 @@ namespace UI.Bars {
                 rect.SetRight(1000 - (health.GetMaxHealth() > 1000 ? 1000 : health.GetMaxHealth()));
                 SetSeparator();
                 fill.color = gradient.Evaluate(sliderBar.value);
+                
+                text.text = Mathf.Round(health.GetCurrentHealth()) + "/" + Mathf.Round(health.GetMaxHealth());
             }
             
             private Coroutine fadeCoroutine;
@@ -36,10 +41,15 @@ namespace UI.Bars {
                 while (sliderBar.value != health.GetCurrentHealth()) {
                     sliderBar.value = Mathf.Lerp(sliderBar.value, health.GetCurrentHealth(), Time.deltaTime * speed);
                     fill.color = gradient.Evaluate(sliderBar.value / sliderBar.maxValue);
+                    text.text = Mathf.Round(health.GetCurrentHealth()) + "/" + Mathf.Round(health.GetMaxHealth());
                     yield return null;
                 }
         
                 fadeCoroutine = null;
+            }
+
+            public Color GetCurrentColor() {
+                return gradient.Evaluate(sliderBar.value);
             }
 
 

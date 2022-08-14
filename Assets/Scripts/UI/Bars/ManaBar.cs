@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +11,8 @@ public class ManaBar : MonoBehaviour {
     public float speed = 5f;
     public Image fill;
     public Gradient gradient;
+
+    public TextMeshProUGUI text;
     
     private RectTransform rect;
     private void Start() {
@@ -25,6 +28,7 @@ public class ManaBar : MonoBehaviour {
         
         fill.color = gradient.Evaluate(sliderBar.value);
         
+        text.text = Mathf.Round(mana.GetCurrentMana()) + "/" + Mathf.Round(mana.GetMaxMana());
         
     }
     
@@ -38,6 +42,7 @@ public class ManaBar : MonoBehaviour {
         while (sliderBar.value != Player.instance.mana.GetCurrentMana()) {
             sliderBar.value = Mathf.Lerp(sliderBar.value, Player.instance.mana.GetCurrentMana(), Time.deltaTime * speed);
             fill.color = gradient.Evaluate(sliderBar.value / sliderBar.maxValue);
+            text.text = Mathf.Round(mana.GetCurrentMana()) + "/" + Mathf.Round(mana.GetMaxMana());
             yield return null;
         }
 

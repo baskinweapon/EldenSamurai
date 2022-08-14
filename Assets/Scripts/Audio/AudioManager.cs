@@ -6,7 +6,7 @@ using Random = UnityEngine.Random;
 public class AudioManager : Singleton<AudioManager> {
     [SerializeField]
     Sound[] characterSounds;
-
+    
     [SerializeField]
     AudioAsset backgroundSounds;
     

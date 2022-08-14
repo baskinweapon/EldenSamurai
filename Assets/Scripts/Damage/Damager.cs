@@ -1,11 +1,16 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
 public class Damager : MonoBehaviour {
+    
     public float damageValue = 10f;
     public float duration = 1f;
+    
+    private IResetAfterDamage resetObject;
+    public void Set(IResetAfterDamage resetObject) {
+        this.resetObject = resetObject;
+    }
     
     private void OnEnable() {
         StopAllCoroutines();
@@ -19,12 +24,18 @@ public class Damager : MonoBehaviour {
     
     private void OnTriggerEnter2D(Collider2D col) {
         var health = col.GetComponentInParent<Health>();
-        if (!health) return;
-        var owner = GetComponentInParent<Owner>();
-        var triggeredOwner = col.GetComponentInParent<Owner>();
-        if (owner && triggeredOwner && owner == triggeredOwner) return;
+        if (health) {
+            var owner = GetComponentInParent<Owner>();
+            var triggeredOwner = col.GetComponentInParent<Owner>();
+            if (owner && triggeredOwner && owner == triggeredOwner) return;
+            
+            //pass damage
+            health.Damage(damageValue);
+        }
         
-        health.Damage(damageValue);
+        if (resetObject == null) return;
+        StopAllCoroutines();
+        resetObject.ResetObj();
     }
 
     IEnumerator EndProcess() {
