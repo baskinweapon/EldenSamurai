@@ -42,7 +42,7 @@ public class ManaBar : MonoBehaviour {
         while (sliderBar.value != Player.instance.mana.GetCurrentMana()) {
             sliderBar.value = Mathf.Lerp(sliderBar.value, Player.instance.mana.GetCurrentMana(), Time.deltaTime * speed);
             fill.color = gradient.Evaluate(sliderBar.value / sliderBar.maxValue);
-            text.text = Mathf.Round(mana.GetCurrentMana()) + "/" + Mathf.Round(mana.GetMaxMana());
+            text.text = Mathf.Round(sliderBar.value) + "/" + Mathf.Round(mana.GetMaxMana());
             yield return null;
         }
 
