@@ -48,10 +48,11 @@ GameObject:
   - component: {fileID: 4239060040130435865}
   - component: {fileID: 4239060040130435864}
   - component: {fileID: 2371454097503557847}
+  - component: {fileID: 6875115208309097350}
   - component: {fileID: 4239060040130435871}
   - component: {fileID: 4239060040130435869}
   - component: {fileID: 4239060040130435866}
-  - component: {fileID: 6875115208309097350}
+  - component: {fileID: 8122622387232438446}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -118,6 +119,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee02cea7b3a24951b1fa003940b73696, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!70 &6875115208309097350
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4239060040130435868}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.009235382, y: -0.0900532}
+  m_Size: {x: 0.65702057, y: 1.3740675}
+  m_Direction: 0
 --- !u!50 &4239060040130435871
 Rigidbody2D:
   serializedVersion: 4
@@ -214,22 +231,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!70 &6875115208309097350
-CapsuleCollider2D:
+--- !u!114 &8122622387232438446
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4239060040130435868}
   m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.009235382, y: -0.0900532}
-  m_Size: {x: 0.65702057, y: 1.3740675}
-  m_Direction: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 646ea41120c534341af2537523e9bb67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropPrefab: {fileID: 1714471151194879750, guid: 28c024db15b6442bf85c11679fe33cd1, type: 3}
+  minDropObject: 1
+  maxDropObject: 5
 --- !u!1 &4239060040162338536
 GameObject:
   m_ObjectHideFlags: 0

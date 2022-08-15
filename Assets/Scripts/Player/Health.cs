@@ -22,6 +22,7 @@ public class Health : MonoBehaviour {
     public float GetMaxHealth() => maxHealth;
     
     public void Damage(float value) {
+        if (curHealth == 0) return;
         curHealth -= value;
         if (curHealth <= 0) curHealth = 0;
         OnDamage?.Invoke(curHealth);
@@ -43,6 +44,7 @@ public class Health : MonoBehaviour {
     }
     
     IEnumerator PersistandHeal() {
+        if (persistantHealValue == 0) yield break;
         while (curHealth <= maxHealth) {
             yield return new WaitForSeconds(1f);
             curHealth += persistantHealValue;
