@@ -188,7 +188,6 @@ namespace StableFluids
 
             
             direction = new  Vector2(diffX, diffY).normalized;
-            Debug.Log(direction);
             
             Vector2 force;
             if (!_state) {
