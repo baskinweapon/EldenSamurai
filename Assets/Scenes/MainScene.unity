@@ -5775,6 +5775,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 3064403375742605893, guid: d802c6296442840268bf5e254e301122, type: 3}
+      propertyPath: jumpMultiplier
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3064403375742605895, guid: d802c6296442840268bf5e254e301122, type: 3}
       propertyPath: m_LinearDrag
       value: 0.1
