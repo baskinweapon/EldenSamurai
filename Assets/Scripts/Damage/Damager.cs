@@ -4,6 +4,8 @@ using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
 public class Damager : MonoBehaviour {
+    [Header("no ended")]
+    public bool permanent;
     
     public float damageValue = 10f;
     public float duration = 1f;
@@ -14,6 +16,7 @@ public class Damager : MonoBehaviour {
     }
     
     private void OnEnable() {
+        if (permanent) return;
         StopAllCoroutines();
         StartCoroutine(EndProcess());
     }
