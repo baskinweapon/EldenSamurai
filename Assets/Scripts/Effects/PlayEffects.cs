@@ -4,21 +4,23 @@ using UnityEngine.VFX;
 
 namespace Effects {
     public class PlayEffects : MonoBehaviour {
-        public ParticleSystem[] particleSystems;
         public VisualEffect vfx;
-        
+        public Damager damager;
+
+        private void OnEnable() {
+            damager.OnEnd += Stop;
+        }
+
         public void Play() {
-            vfx.Play();
-            // foreach (var par in particleSystems) {
-            //     par.Play();
-            // }
+            vfx.Reinit();
         }
 
         public void Stop() {
             vfx.Stop();
-            // foreach (var par in particleSystems) {
-            //     par.Stop();
-            // }
+        }
+
+        private void OnDisable() {
+            damager.OnEnd -= Stop;
         }
     }
 }

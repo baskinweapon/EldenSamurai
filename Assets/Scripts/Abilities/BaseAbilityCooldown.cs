@@ -1,9 +1,14 @@
+using System;
+using Architecture.Interfaces;
 using UnityEngine;
 
 namespace Abilities {
     public class BaseAbilityCooldown: MonoBehaviour {
-        [SerializeField, Header("Main Owner ability")]
-        protected Transform owner;
+        [Header("Cast object need ICastAbility")]
+        public GameObject castObject;
+        
+        [SerializeField, Header("Parent Ability")]
+        protected Transform parent;
         
         [SerializeField, Header("Main Ability")] 
         protected Ability ability;
@@ -18,9 +23,11 @@ namespace Abilities {
         protected float nextReadyTime;
         protected float coolDownTimeLeft;
 
-        private Damager _damager;
+        private Damager damager;
+        private ICastAbility castAbility;
         
         private void Start() {
+            castAbility = castObject.GetComponent<ICastAbility>();
             Initiallize(ability, abilityHolder);
         }
         
@@ -32,11 +39,23 @@ namespace Abilities {
                 CoolDown();
             }
         }
-        
+
+        private bool isCasting;
+        private float time;
+        private void LateUpdate() {
+            if (isCasting) {
+                time += Time.deltaTime;
+                if (time >= ability.castTime) {
+                    castAbility.EndCasting();
+                    time = 0;
+                }
+            }
+        }
+
         public void Initiallize(Ability ability, GameObject _abilityHolder) {
             this.ability = ability;
             coolDownDuration = ability.baseCooldown;
-            _damager = ability.Initiliaze(_abilityHolder, owner);
+            damager = ability.Initiliaze(_abilityHolder, parent);
             AbilityReady();
         }
         
@@ -59,9 +78,11 @@ namespace Abilities {
             nextReadyTime = coolDownDuration + Time.time;
             coolDownTimeLeft = coolDownDuration;
             
+            castAbility.StartCasting();
+            
             abilitySource.clip = ability.sound;
             abilitySource.Play();
-            ability.TriggerAbility(_damager);
+            ability.TriggerAbility(damager);
         }
     }
     

@@ -1,10 +1,14 @@
 using System;
+using Architecture.Interfaces;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Abilities {
     public class AbilityCooldown : MonoBehaviour {
+        [Header("Cast object need ICastAbility")]
+        public GameObject castObject;
+        
         public Image darkMask;
         public Image noManaMask;
         public TextMeshProUGUI coolDowntText;
@@ -24,9 +28,12 @@ namespace Abilities {
         private float nextReadyTime;
         private float coolDownTimeLeft;
 
+        private Damager damager;
+        private ICastAbility castAbility;
         private void Start() {
             if (!ability) this.enabled = false;
             Initiallize(ability, abilityHolder);
+            castAbility = castObject.GetComponent<ICastAbility>();
         }
         
         public void Initiallize(Ability ability, GameObject _abilityHolder) {
@@ -36,7 +43,7 @@ namespace Abilities {
             coolDownDuration = ability.baseCooldown;
             _buttonPosition = ability.buttonPosition;
             UIAbilityAction(ability.buttonPosition);
-            ability.Initiliaze(_abilityHolder, Player.instance.bodyTransform);
+            damager = ability.Initiliaze(_abilityHolder, Player.instance.abilityContainer);
             AbilityReady();
         }
 
@@ -49,6 +56,19 @@ namespace Abilities {
                 AbilityReady();
             } else {
                 CoolDown();
+            }
+        }
+        
+        private bool isCasting;
+        private float time;
+        private void LateUpdate() {
+            if (isCasting) {
+                time += Time.deltaTime;
+                if (time >= ability.castTime) {
+                    isCasting = false;
+                    castAbility.EndCasting();
+                    time = 0;
+                }
             }
         }
 
@@ -84,9 +104,12 @@ namespace Abilities {
             darkMask.enabled = true;
             coolDowntText.enabled = true;
 
+            isCasting = true;
+            castAbility.StartCasting();
+
             abilitiSource.clip = ability.sound;
             abilitiSource.Play();
-            ability.TriggerAbility();
+            ability.TriggerAbility(damager);
         }
 
 

@@ -15,8 +15,8 @@ TagManager:
   - MenuRender
   - Interaction
   - EnvironmentInteraction
-  - 
-  - 
+  - Damager
+  - Cinemachine
   - 
   - 
   - 

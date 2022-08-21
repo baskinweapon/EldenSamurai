@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7293884725946964764}
   - component: {fileID: 7293884725946964768}
   - component: {fileID: 4918205732006273267}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: fireball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -146,10 +146,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc4f2880c2df460b92a6638dbfbdf299, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  permanent: 0
   damageValue: 10
   duration: 1
-  selfDestroy: 1
-  col: {fileID: 7293884725946964764}
 --- !u!114 &4918205732006273267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,4 +161,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 931c1f743bf104a4f892b5fa5e7b589a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 6
+  target: {fileID: 0}
+  speed: 3

@@ -1,5 +1,4 @@
 using System;
-using Abilities;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -21,7 +20,6 @@ public class InputSystem : Singleton<InputSystem> {
         
         playerInput = new EldenSamurai();
         playerInput.Enable();
-        
         
         playerInput.Player.Jump.performed += Jump;
         playerInput.Player.Interaction.performed += InteractionInput;

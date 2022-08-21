@@ -15,12 +15,14 @@ namespace Abilities {
         public Sprite sprite;
         public AudioClip sound;
         public float baseCooldown = 1f;
+        public float castTime = 1f;
         public float manaCost = 10f;
-
+        public float damage = 50f;
+        
         // for chose button position on UI 
         public AbilityButton buttonPosition;
         
         public abstract Damager Initiliaze(GameObject obj, Transform parent);
-        public abstract void TriggerAbility(Damager _damager = null);
+        public abstract void TriggerAbility(Damager _damager);
     }
 }

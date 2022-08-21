@@ -30,7 +30,7 @@ MonoBehaviour:
   active: 1
   color:
     m_OverrideState: 1
-    m_Value: {r: 1, g: 0.009791791, b: 0, a: 1}
+    m_Value: {r: 1, g: 0, b: 0, a: 1}
   center:
     m_OverrideState: 1
     m_Value: {x: 0.5, y: 0.5}
@@ -69,8 +69,8 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 65472
   tint:
-    m_OverrideState: 0
-    m_Value: {r: 0.9056604, g: 0.8415806, b: 0.8415806, a: 1}
+    m_OverrideState: 1
+    m_Value: {r: 0.9529412, g: 0.17029022, b: 0, a: 1}
   highQualityFiltering:
     m_OverrideState: 0
     m_Value: 0

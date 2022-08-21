@@ -5,8 +5,6 @@ using UnityEngine;
 public class GameMain : Singleton<GameMain> {
     public SettingsAsset settingsAsset;
     public InteractionAsset interactionAsset;
-    public Camera mainCamera;
-    
     
     public int sceneId;
 

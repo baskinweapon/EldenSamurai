@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player : Singleton<Player> {
     public Transform bodyTransform;
+    public Transform abilityContainer;
     
     public Health health;
     public Mana mana;

@@ -1,5 +1,58 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2810297605542448521
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4794788551264761684}
+  - component: {fileID: 7504748989667377778}
+  m_Layer: 3
+  m_Name: Ability
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4794788551264761684
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2810297605542448521}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3064403374756844529}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7504748989667377778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2810297605542448521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4f9aa321a8274d7c8a772fd9d4e7dfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerSpeed: 200
+  lowJumpMultiplier: 5
+  jumpMultiplier: 4
+  animator: {fileID: 3064403375742605890}
+  spriteRenderer: {fileID: 3064403375742605891}
+  col: {fileID: 3064403375742605912}
+  rb: {fileID: 3064403375742605895}
+  m_RunStopDust: {fileID: 7310271610845027193, guid: 39afca3c109b26049a80bc07593eb271, type: 3}
+  m_LandingDust: {fileID: 9076098953984712191, guid: 0b745be9abb3a6d4dadd8705950196d1, type: 3}
 --- !u!1 &3064403374259124120
 GameObject:
   m_ObjectHideFlags: 0
@@ -143,6 +196,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 4794788551264761684}
   - {fileID: 3064403375742605892}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -172,6 +226,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bodyTransform: {fileID: 3064403375742605892}
+  abilityContainer: {fileID: 0}
   health: {fileID: 3064403374756844531}
   mana: {fileID: 3064403374756844532}
   playerSpriteRenderer: {fileID: 3064403375742605891}
@@ -234,9 +289,9 @@ GameObject:
   - component: {fileID: 3064403375742605892}
   - component: {fileID: 3064403375742605891}
   - component: {fileID: 3064403375742605890}
-  - component: {fileID: 3064403375742605893}
   - component: {fileID: 3064403375742605895}
   - component: {fileID: 3064403375742605912}
+  - component: {fileID: 1501951134181672844}
   m_Layer: 0
   m_Name: Character
   m_TagString: Player
@@ -258,7 +313,7 @@ Transform:
   m_Children:
   - {fileID: 3064403374259124122}
   m_Father: {fileID: 3064403374756844529}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!212 &3064403375742605891
 SpriteRenderer:
@@ -332,24 +387,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &3064403375742605893
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3064403375742605889}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4f9aa321a8274d7c8a772fd9d4e7dfe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerSpeed: 200
-  fallMultiplier: 1
-  lowJumpMultiplier: 5
-  jumpMultiplier: 4
-  m_RunStopDust: {fileID: 7310271610845027193, guid: 39afca3c109b26049a80bc07593eb271, type: 3}
-  m_LandingDust: {fileID: 9076098953984712191, guid: 0b745be9abb3a6d4dadd8705950196d1, type: 3}
 --- !u!50 &3064403375742605895
 Rigidbody2D:
   serializedVersion: 4
@@ -387,3 +424,15 @@ CapsuleCollider2D:
   m_Offset: {x: -0.000000029802322, y: 0.730216}
   m_Size: {x: 0.7048933, y: 1.3252661}
   m_Direction: 0
+--- !u!114 &1501951134181672844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3064403375742605889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14e82ae2f97dd495894e04d649577f57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

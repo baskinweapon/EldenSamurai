@@ -1,14 +1,13 @@
 using System;
-using System.Collections;
 using Abilities;
+using Architecture.Interfaces;
 using Pathfinding;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class EnemyAI : MonoBehaviour {
+public class EnemyAI : MonoBehaviour, ICastAbility {
     
     public BaseAbilityCooldown abilityCooldown;
-    public Transform enemyGFX;
+    public SpriteRenderer enemyGFX;
     
     private Transform target;
     
@@ -36,6 +35,7 @@ public class EnemyAI : MonoBehaviour {
     private Seeker seeker;
     private Rigidbody2D rb;
     private Collider2D col;
+    private Owner owner;
 
     public Animator animator;
 
@@ -55,6 +55,7 @@ public class EnemyAI : MonoBehaviour {
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<Collider2D>();
+        owner = GetComponentInParent<Owner>();
 
         spawnedPosition = rb.position;
         InvokeRepeating(nameof(UpdatePath), 0, .5f);
@@ -68,8 +69,7 @@ public class EnemyAI : MonoBehaviour {
 
     public void DieAnim() {
         animator.SetTrigger("Die");
-        
-        Invoke(nameof(OnDestroy), 1f);
+        Invoke(nameof(OnDestroy), 0.2f);
     }
 
     #endregion
@@ -90,7 +90,10 @@ public class EnemyAI : MonoBehaviour {
     }
 
     private void FixedUpdate() {
-        
+        if (isCasting) {
+            rb.velocity = new Vector2(0f, rb.velocity.y);
+            animator.SetInteger("AnimState", 0);
+        }
         //anim
         if (rb.velocity.x != 0) {
             animator.SetInteger("AnimState", 1);
@@ -132,13 +135,13 @@ public class EnemyAI : MonoBehaviour {
         if (distance < nextWaypointDistance) {
             StopAllCoroutines();
             currentWapoint++;
-        } 
+        }
         
         if (directionLookEnabled) {
             if (rb.velocity.x >= 0.01f) {
-                enemyGFX.localScale = new Vector3(1f, 1f, 1f);
+                enemyGFX.flipX = false;
             } else if (rb.velocity.x <= -0.01f) {
-                enemyGFX.localScale = new Vector3(-1f, 1f, 1f);
+                enemyGFX.flipX = true;
             }
         }
         
@@ -154,7 +157,7 @@ public class EnemyAI : MonoBehaviour {
     }
 
     private void OnDestroy() {
-        Destroy(gameObject);   
+        Destroy(owner.gameObject);
     }
     
     bool TargetInDistance() {
@@ -166,4 +169,12 @@ public class EnemyAI : MonoBehaviour {
         Gizmos.DrawWireSphere(transform.position, activateDistance);
     }
 
+    private bool isCasting;
+    public void StartCasting() {
+        isCasting = true;
+    }
+
+    public void EndCasting() {
+        isCasting = false;
+    }
 }

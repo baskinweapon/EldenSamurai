@@ -170,6 +170,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   effect: {fileID: 5578114616576684596}
+  col: {fileID: 5578114616576684601}
+  speedColSize: 10
   OnPlay:
     m_PersistentCalls:
       m_Calls:
@@ -202,3 +204,4 @@ MonoBehaviour:
         m_CallState: 2
   cooldown: 1
   duration: 2
+  maxSizeCol: {x: 1, y: 4}
