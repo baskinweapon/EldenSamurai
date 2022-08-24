@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1061047954718323151
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6832554965866452033}
+  m_Layer: 0
+  m_Name: IsGrounded
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6832554965866452033
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1061047954718323151}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1, y: -1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4239060041271513866}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4239060039704512724
 GameObject:
   m_ObjectHideFlags: 0
@@ -175,8 +206,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   owner: {fileID: 2371454097503557847}
-  abilityContainer: {fileID: 4239060040130435868}
   enemyAI: {fileID: 4321683082912959333}
+  animator: {fileID: 4239060041271513867}
 --- !u!1 &4239060040162338536
 GameObject:
   m_ObjectHideFlags: 0
@@ -401,6 +432,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4239060040413842594}
   - component: {fileID: 4239060040413842595}
+  - component: {fileID: 8790481005615115328}
   m_Layer: 0
   m_Name: Abilities
   m_TagString: Untagged
@@ -440,6 +472,20 @@ MonoBehaviour:
   ability: {fileID: 11400000, guid: 59bc919ac6b8d4170ac3f4d2db16899b, type: 2}
   abilityHolder: {fileID: 7293884725946964763, guid: f8f9fd496d0d94900a730917a8c2826f, type: 3}
   abilitySource: {fileID: 4239060040528800598}
+--- !u!114 &8790481005615115328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4239060040413842593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b44a36cc2e2c4f07b153099d72a4a291, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 7764676649895106731}
+  abilityCooldown: {fileID: 4239060040413842595}
 --- !u!1 &4239060040528800596
 GameObject:
   m_ObjectHideFlags: 0
@@ -651,6 +697,7 @@ Transform:
   - {fileID: 4239060040413842594}
   - {fileID: 4239060041524431830}
   - {fileID: 4239060040528800597}
+  - {fileID: 6832554965866452033}
   m_Father: {fileID: 4239060040130435865}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -767,10 +814,10 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 100
-  m_LinearDrag: 0.5
+  m_LinearDrag: 0.1
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 8001ba1af990e475dabef6ed23922d82, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -803,11 +850,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cefad79f625964491a1c097df8b2402e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  abilityCooldown: {fileID: 4239060040413842595}
   enemyGFX: {fileID: 4239060041271513908}
-  distanceToAttack: 3
-  activateDistance: 5
-  speed: 10
+  fallChecker: {fileID: 6832554965866452033}
+  distanceToAttack: 2
+  activateDistance: 4
+  speed: 5
   nextWaypointDistance: 3
   jumpNodeHeightRequirement: 0.5
   jumpModifier: 0.5
@@ -817,7 +864,7 @@ MonoBehaviour:
   directionLookEnabled: 1
   animator: {fileID: 4239060041271513867}
   mustPatrol: 1
-  distanceToSpawnPoint: 3
+  distanceToReturn: 3
 --- !u!1 &4239060041286037318
 GameObject:
   m_ObjectHideFlags: 0

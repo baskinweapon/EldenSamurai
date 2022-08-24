@@ -26,6 +26,7 @@ public class InputSystem : Singleton<InputSystem> {
         playerInput.Player.Menu.performed += MenuPressed;
 
         playerInput.Player.FirstAbility.performed += FirstAbilityPress;
+        playerInput.Player.SecondAbility.performed += SecondAbilityPress;
     }
 
     private void FixedUpdate() {
@@ -52,6 +53,10 @@ public class InputSystem : Singleton<InputSystem> {
        OnFirstAbility?.Invoke();
     }
     
+    private void SecondAbilityPress(InputAction.CallbackContext ctx = default) {
+        OnSecondAbility?.Invoke();
+    }
+    
 #endregion
 
     public Vector2 GetMoveVector() {
@@ -70,5 +75,6 @@ public class InputSystem : Singleton<InputSystem> {
         playerInput.Player.Menu.performed -= MenuPressed;
         
         playerInput.Player.FirstAbility.performed -= FirstAbilityPress;
+        playerInput.Player.SecondAbility.performed -= SecondAbilityPress;
     }
 }

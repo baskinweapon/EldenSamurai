@@ -53,6 +53,7 @@ public class Damager : MonoBehaviour {
 
     IEnumerator EndProcess() {
         yield return new WaitForSeconds(duration);
+        resetObject?.ResetObj();
         OnEnd?.Invoke();
         gameObject.SetActive(false);
     }

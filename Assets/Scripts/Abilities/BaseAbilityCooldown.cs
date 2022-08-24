@@ -46,7 +46,7 @@ namespace Abilities {
             if (isCasting) {
                 time += Time.deltaTime;
                 if (time >= ability.castTime) {
-                    castAbility.EndCasting();
+                    castAbility?.EndCasting();
                     time = 0;
                 }
             }
@@ -67,6 +67,10 @@ namespace Abilities {
             coolDownTimeLeft -= Time.deltaTime;
         }
 
+        public float GetCooldownTimeLeft() {
+            return coolDownTimeLeft;
+        }
+
         public bool CooldownComplete() {
             bool coolDownComplete = (Time.time > nextReadyTime);
             return coolDownComplete;
@@ -77,9 +81,9 @@ namespace Abilities {
             if (!coolDownComplete) return;
             nextReadyTime = coolDownDuration + Time.time;
             coolDownTimeLeft = coolDownDuration;
-            
-            castAbility.StartCasting();
-            
+
+            castAbility?.StartCasting();
+
             abilitySource.clip = ability.sound;
             abilitySource.Play();
             ability.TriggerAbility(damager);

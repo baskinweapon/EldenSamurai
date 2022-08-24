@@ -42,7 +42,7 @@ public class CharacterMovement : MonoBehaviour, ICastAbility {
     private void FixedUpdate() {
         if (isCasting) {
             animator.SetInteger("AnimState", 0);
-            rb.velocity = new Vector2(0f, rb.velocity.y);
+            rb.velocity = new Vector2(0f, 0f);
             return;
         }
         if (rb.velocity.y <= 0) {

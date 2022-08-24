@@ -162,4 +162,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  mover: {fileID: 7293884725946964767}
   speed: 3
+  dir: {x: 0, y: 0, z: 0}

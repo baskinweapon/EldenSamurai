@@ -3893,15 +3893,19 @@ PrefabInstance:
     - target: {fileID: 5367057041080693921, guid: 0c8e570277ae64204a8a168b85147c9b, type: 3}
       propertyPath: ability
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: 6e5490e4e59f14ece81d1420fb731e35, type: 2}
     - target: {fileID: 5367057041080693921, guid: 0c8e570277ae64204a8a168b85147c9b, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5367057041080693921, guid: 0c8e570277ae64204a8a168b85147c9b, type: 3}
+      propertyPath: castObject
+      value: 
+      objectReference: {fileID: 1954759468}
     - target: {fileID: 5367057041080693921, guid: 0c8e570277ae64204a8a168b85147c9b, type: 3}
       propertyPath: abilityHolder
       value: 
-      objectReference: {fileID: 6628089414046828226, guid: a61a7d1c66eda4175849a9b384561b23, type: 3}
+      objectReference: {fileID: 6041993467064713547, guid: e152a074763dd4ecabdd7ad0dffccb5f, type: 3}
     - target: {fileID: 7000158502020021779, guid: 0c8e570277ae64204a8a168b85147c9b, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -5897,11 +5901,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3064403374756844532, guid: d802c6296442840268bf5e254e301122, type: 3}
       propertyPath: curMana
-      value: 200
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 3064403374756844532, guid: d802c6296442840268bf5e254e301122, type: 3}
       propertyPath: maxMana
-      value: 300
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3064403374756844532, guid: d802c6296442840268bf5e254e301122, type: 3}
+      propertyPath: persistantRestValue
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3064403375742605889, guid: d802c6296442840268bf5e254e301122, type: 3}
       propertyPath: m_Layer

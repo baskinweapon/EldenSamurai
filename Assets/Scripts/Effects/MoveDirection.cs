@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class MoveDirection : MonoBehaviour, IResetAfterDamage {
     public Transform target;
+    public Transform mover;
     public float speed;
     
-    private Vector3 dir;
+    public Vector3 dir;
     private Damager damager;
     
     private void Awake() {
@@ -16,6 +17,7 @@ public class MoveDirection : MonoBehaviour, IResetAfterDamage {
     }
 
     private void OnEnable() {
+        if (dir != Vector3.zero) return;
         dir = target.position - transform.position;
         dir.Normalize();
         dir.y = 0;
@@ -24,11 +26,11 @@ public class MoveDirection : MonoBehaviour, IResetAfterDamage {
     }
 
     private void Update() {
-        transform.position += speed * Time.deltaTime * dir;
+        mover.position += speed * Time.deltaTime * dir;
     }
 
     public void ResetObj() {
-        transform.localPosition = Vector3.zero;
+        mover.localPosition = Vector3.zero;
         gameObject.SetActive(false);
     }
 }

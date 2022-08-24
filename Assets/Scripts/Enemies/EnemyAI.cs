@@ -5,10 +5,9 @@ using Pathfinding;
 using UnityEngine;
 
 public class EnemyAI : MonoBehaviour, ICastAbility {
-    
-    public BaseAbilityCooldown abilityCooldown;
     public SpriteRenderer enemyGFX;
-    
+
+    public Transform fallChecker;
     private Transform target;
     
     [Header("Distance to Action")]
@@ -30,8 +29,8 @@ public class EnemyAI : MonoBehaviour, ICastAbility {
     private Path path;
     private int currentWapoint = 0;
     private bool isGrounded = false;
-    private bool reachedEndOfPath = false;
-
+    private bool isGroundedNextWayport = false;
+        
     private Seeker seeker;
     private Rigidbody2D rb;
     private Collider2D col;
@@ -46,7 +45,7 @@ public class EnemyAI : MonoBehaviour, ICastAbility {
 
     [Header("Patrol")]
     public bool mustPatrol;
-    public float distanceToSpawnPoint = 3f;
+    public float distanceToReturn = 3f;
 
     private Vector3 spawnedPosition;
     
@@ -77,7 +76,7 @@ public class EnemyAI : MonoBehaviour, ICastAbility {
     void UpdatePath() {
         if (followEnable && TargetInDistance() && seeker.IsDone())
             seeker.StartPath(rb.position, target.position, OnPathComplete);
-        else if (mustPatrol && Vector2.Distance(rb.position, spawnedPosition) >= distanceToSpawnPoint) {
+        else if (mustPatrol && Vector2.Distance(rb.position, spawnedPosition) >= distanceToReturn && seeker.IsDone()) {
             seeker.StartPath(rb.position, spawnedPosition, OnPathComplete);
         }
     }
@@ -91,9 +90,10 @@ public class EnemyAI : MonoBehaviour, ICastAbility {
 
     private void FixedUpdate() {
         if (isCasting) {
-            rb.velocity = new Vector2(0f, rb.velocity.y);
+            rb.velocity = new Vector2(0f, 0f);
             animator.SetInteger("AnimState", 0);
         }
+        
         //anim
         if (rb.velocity.x != 0) {
             animator.SetInteger("AnimState", 1);
@@ -108,7 +108,7 @@ public class EnemyAI : MonoBehaviour, ICastAbility {
         }
     }
 
-    public void Patrol() {
+    private void Patrol() {
         PathFollow();
     }
 
@@ -116,17 +116,22 @@ public class EnemyAI : MonoBehaviour, ICastAbility {
         if (path == null) return;
         if (currentWapoint >= path.vectorPath.Count) return;
 
-        var startOffset = transform.position - new Vector3(0, col.bounds.extents.y + jumpCheckOffset);
-        isGrounded = Physics2D.Raycast(startOffset, -Vector2.up, 0.05f);
-
+        isGrounded = IsGrounded();
+        isGroundedNextWayport = IsGroundedNextWayport();
+        
+        if (isGroundedNextWayport) {
+            rb.velocity = Vector2.zero;
+        }
+        
         Vector2 direction = ((Vector2)path.vectorPath[currentWapoint] - rb.position).normalized;
+        Debug.Log("Direction = " + direction);
         Vector2 force =  speed * Time.deltaTime * direction;
         
+        Debug.Log("Force = " + force);
         //Jump
         if (jumpEnable && isGrounded) {
-            if (direction.y > jumpNodeHeightRequirement) {
+            if (direction.y > jumpNodeHeightRequirement) 
                 rb.velocity += speed * jumpModifier * Vector2.up;
-            }
         }
 
         rb.velocity += force;
@@ -144,16 +149,15 @@ public class EnemyAI : MonoBehaviour, ICastAbility {
                 enemyGFX.flipX = true;
             }
         }
-        
+
+        if (!isGrounded) return;
         if (Vector2.Distance(rb.position, target.position) < distanceToAttack) {
             Attack();
         }
     }
-
+    
     private void Attack() {
-        if (abilityCooldown.CooldownComplete())
-            animator.SetTrigger("Attack");
-        abilityCooldown.Triggered();
+        OnAttack?.Invoke();
     }
 
     private void OnDestroy() {
@@ -162,6 +166,16 @@ public class EnemyAI : MonoBehaviour, ICastAbility {
     
     bool TargetInDistance() {
         return Vector2.Distance(transform.position, target.transform.position) < activateDistance;
+    }
+
+    bool IsGrounded() {
+        var startOffset = transform.position - new Vector3(0, col.bounds.extents.y + jumpCheckOffset);
+        return Physics2D.Raycast(startOffset, -Vector2.up, 0.05f);
+    }
+
+    bool IsGroundedNextWayport() {
+        fallChecker.localPosition = enemyGFX.flipX ? new Vector3(-1, -1f, 0f) : new Vector3(1, -1f, 0f);
+        return Physics2D.Raycast(fallChecker.position, -Vector2.up, 0.05f);
     }
 
     private void OnDrawGizmos() {
