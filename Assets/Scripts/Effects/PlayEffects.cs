@@ -7,7 +7,7 @@ namespace Effects {
         public Damager damager;
 
         private void OnEnable() {
-            damager.OnEnd += Stop;
+            damager.OnEnd.AddListener(Stop);
         }
 
         public void Play() {
@@ -19,7 +19,7 @@ namespace Effects {
         }
 
         private void OnDisable() {
-            damager.OnEnd -= Stop;
+            damager.OnEnd.RemoveListener(Stop);
         }
     }
 }

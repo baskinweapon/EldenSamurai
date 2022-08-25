@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6832554965866452033}
   m_Layer: 0
-  m_Name: IsGrounded
+  m_Name: FallChecker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -82,7 +82,7 @@ GameObject:
   - component: {fileID: 8122622387232438446}
   - component: {fileID: 6374320113904003917}
   - component: {fileID: 7764676649895106731}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4239060040130435868}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 34.5, y: 3.48, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -432,7 +432,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4239060040413842594}
   - component: {fileID: 4239060040413842595}
-  - component: {fileID: 8790481005615115328}
   m_Layer: 0
   m_Name: Abilities
   m_TagString: Untagged
@@ -448,7 +447,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4239060040413842593}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.08, y: -0.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -467,25 +466,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a51f0ead652b4009a4b1dc039e89ed4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemy: {fileID: 7764676649895106731}
   castObject: {fileID: 4239060041271513865}
   parent: {fileID: 4239060040413842594}
   ability: {fileID: 11400000, guid: 59bc919ac6b8d4170ac3f4d2db16899b, type: 2}
-  abilityHolder: {fileID: 7293884725946964763, guid: f8f9fd496d0d94900a730917a8c2826f, type: 3}
+  abilityHolder: {fileID: 7506262354835907958, guid: 4a63e6fe31f444219941408d03d0e54b, type: 3}
   abilitySource: {fileID: 4239060040528800598}
---- !u!114 &8790481005615115328
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4239060040413842593}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b44a36cc2e2c4f07b153099d72a4a291, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemy: {fileID: 7764676649895106731}
-  abilityCooldown: {fileID: 4239060040413842595}
 --- !u!1 &4239060040528800596
 GameObject:
   m_ObjectHideFlags: 0
@@ -675,7 +661,7 @@ GameObject:
   - component: {fileID: 8764549014666210929}
   - component: {fileID: 5679489086978997374}
   - component: {fileID: 4321683082912959333}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Character
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -690,7 +676,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4239060041271513865}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.08, y: 0.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -852,10 +838,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyGFX: {fileID: 4239060041271513908}
   fallChecker: {fileID: 6832554965866452033}
-  distanceToAttack: 2
+  distanceToAttack: 2.5
   activateDistance: 4
-  speed: 5
-  nextWaypointDistance: 3
+  speed: 2
+  nextWaypointDistance: 0.1
   jumpNodeHeightRequirement: 0.5
   jumpModifier: 0.5
   jumpCheckOffset: 0.1
@@ -863,7 +849,7 @@ MonoBehaviour:
   jumpEnable: 0
   directionLookEnabled: 1
   animator: {fileID: 4239060041271513867}
-  mustPatrol: 1
+  mustPatrol: 0
   distanceToReturn: 3
 --- !u!1 &4239060041286037318
 GameObject:

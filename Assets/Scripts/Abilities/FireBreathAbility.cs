@@ -1,3 +1,4 @@
+using Damage;
 using Effects;
 using UnityEngine;
 
@@ -7,7 +8,7 @@ namespace Abilities {
     public class FireBreathAbility : Ability {
         private PlayEffects _playEffects;
         
-        public override Damager Initiliaze(GameObject obj, Transform parent) {
+        public override BaseDamager Initiliaze(GameObject obj, Transform parent) {
             var inst = Instantiate(obj, parent);
             _playEffects = inst.GetComponent<PlayEffects>();
             var _damager = inst.GetComponentInChildren<Damager>();
@@ -18,7 +19,7 @@ namespace Abilities {
             return _damager;
         }
 
-        public override void TriggerAbility(Damager damager) {
+        public override void TriggerAbility(BaseDamager damager) {
             var prevParent = _playEffects.transform.parent;
             
             if (Player.instance.playerSpriteRenderer.flipX) {
@@ -34,7 +35,6 @@ namespace Abilities {
             }
             
             damager.gameObject.SetActive(true);
-            damager.TriggerAbility();
             _playEffects.Play();
         }
     }

@@ -1,4 +1,5 @@
 using System;
+using Damage;
 using UnityEngine;
 
 [Serializable]
@@ -27,7 +28,7 @@ namespace Abilities {
         // for chose button position on UI, only Player
         public AbilityButton buttonPosition;
         
-        public abstract Damager Initiliaze(GameObject obj, Transform parent);
-        public abstract void TriggerAbility(Damager _damager);
+        public abstract BaseDamager Initiliaze(GameObject obj, Transform parent);
+        public abstract void TriggerAbility(BaseDamager _damager);
     }
 }

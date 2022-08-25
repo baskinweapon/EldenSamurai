@@ -30,13 +30,14 @@ namespace VFX {
         }
         
         protected bool isPlaying;
-        protected virtual void Play() {
+        public virtual void Play() {
             effect.Play();
             OnPlay?.Invoke();
             isPlaying = true;
         }
 
-        protected virtual void Stop() {
+        public virtual void Stop() {
+            effect.SendEvent("OnStop");
             effect.Stop();
             OnStop?.Invoke();
             isPlaying = false;

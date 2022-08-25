@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - VFX
   layers:
   - Default
   - TransparentFX
@@ -17,8 +18,8 @@ TagManager:
   - EnvironmentInteraction
   - Damager
   - Cinemachine
-  - 
-  - 
+  - VFX
+  - Enemy
   - 
   - 
   - 

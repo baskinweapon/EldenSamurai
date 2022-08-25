@@ -17,7 +17,7 @@ public class VerticalColliderVFXEvent : VFXEvents {
         }
     }
     
-    protected override void Stop() {
+    public override void Stop() {
         base.Stop();
         col.offset = Vector2.zero;
         col.size = Vector2.zero;

@@ -15,8 +15,9 @@ MonoBehaviour:
   abilityName: Fire Enemy
   sprite: {fileID: 0}
   sound: {fileID: 8300000, guid: 6e5eb1306d2b94e0193ba850f71d7df4, type: 3}
-  baseCooldown: 3
-  castTime: 1
+  baseCooldown: 4
+  castTime: 0.5
+  duration: 3
   manaCost: 10
   damage: 100
   buttonPosition: 0

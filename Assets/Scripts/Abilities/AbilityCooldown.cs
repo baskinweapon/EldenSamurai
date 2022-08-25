@@ -1,5 +1,6 @@
 using System;
 using Architecture.Interfaces;
+using Damage;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -28,7 +29,7 @@ namespace Abilities {
         private float nextReadyTime;
         private float coolDownTimeLeft;
 
-        private Damager damager;
+        private BaseDamager damager;
         private ICastAbility castAbility;
         private void Start() {
             if (!ability) this.enabled = false;

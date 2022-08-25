@@ -1,20 +1,13 @@
 using System;
 using System.Collections;
 using Architecture.Interfaces;
+using Damage;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
-public class Damager : MonoBehaviour {
+public class Damager : BaseDamager {
     [Header("no ended")]
     public bool permanent;
-    
-    public Action OnDamaged;
-    public Action OnEnd;
-
-    [HideInInspector]
-    public float damageValue = 10f;
-    [HideInInspector]
-    public float duration = 1f;
     
     private IResetAfterDamage resetObject;
     public void Set(IResetAfterDamage resetObject) {
@@ -23,11 +16,6 @@ public class Damager : MonoBehaviour {
     
     private void OnEnable() {
         if (permanent) return;
-        StopAllCoroutines();
-        StartCoroutine(EndProcess());
-    }
-
-    public void TriggerAbility() {
         StopAllCoroutines();
         StartCoroutine(EndProcess());
     }
@@ -44,6 +32,8 @@ public class Damager : MonoBehaviour {
                 health.Damage(damageValue);
             }
         }
+        
+        if (col.transform == this.transform.parent) return;
         
         OnDamaged?.Invoke();
         if (resetObject == null) return;

@@ -30,7 +30,7 @@ public class EnemyAI : MonoBehaviour, ICastAbility {
     private int currentWapoint = 0;
     private bool isGrounded = false;
     private bool isGroundedNextWayport = false;
-        
+    
     private Seeker seeker;
     private Rigidbody2D rb;
     private Collider2D col;
@@ -92,6 +92,7 @@ public class EnemyAI : MonoBehaviour, ICastAbility {
         if (isCasting) {
             rb.velocity = new Vector2(0f, 0f);
             animator.SetInteger("AnimState", 0);
+            return;
         }
         
         //anim
@@ -111,34 +112,39 @@ public class EnemyAI : MonoBehaviour, ICastAbility {
     private void Patrol() {
         PathFollow();
     }
-
+    
     void PathFollow() {
         if (path == null) return;
         if (currentWapoint >= path.vectorPath.Count) return;
-
+        
         isGrounded = IsGrounded();
         isGroundedNextWayport = IsGroundedNextWayport();
         
-        if (isGroundedNextWayport) {
-            rb.velocity = Vector2.zero;
-        }
+        if (!isGrounded) return;
+        if (Vector2.Distance(rb.position, target.position) < distanceToAttack) {
+            Attack();
+            return;
+        } 
         
         Vector2 direction = ((Vector2)path.vectorPath[currentWapoint] - rb.position).normalized;
-        Debug.Log("Direction = " + direction);
-        Vector2 force =  speed * Time.deltaTime * direction;
+        Vector2 force = speed * Time.deltaTime * direction;
+        force.y = 0f;
         
-        Debug.Log("Force = " + force);
         //Jump
         if (jumpEnable && isGrounded) {
             if (direction.y > jumpNodeHeightRequirement) 
                 rb.velocity += speed * jumpModifier * Vector2.up;
         }
 
-        rb.velocity += force;
+        if (isGrounded)
+            rb.velocity += force;
 
+        if (!isGroundedNextWayport) {
+            rb.velocity = new Vector2(0f, rb.velocity.y);
+        }
+        
         float distance = Vector2.Distance(rb.position, path.vectorPath[currentWapoint]);
         if (distance < nextWaypointDistance) {
-            StopAllCoroutines();
             currentWapoint++;
         }
         
@@ -148,11 +154,6 @@ public class EnemyAI : MonoBehaviour, ICastAbility {
             } else if (rb.velocity.x <= -0.01f) {
                 enemyGFX.flipX = true;
             }
-        }
-
-        if (!isGrounded) return;
-        if (Vector2.Distance(rb.position, target.position) < distanceToAttack) {
-            Attack();
         }
     }
     
@@ -175,7 +176,7 @@ public class EnemyAI : MonoBehaviour, ICastAbility {
 
     bool IsGroundedNextWayport() {
         fallChecker.localPosition = enemyGFX.flipX ? new Vector3(-1, -1f, 0f) : new Vector3(1, -1f, 0f);
-        return Physics2D.Raycast(fallChecker.position, -Vector2.up, 0.05f);
+        return Physics2D.Raycast(fallChecker.position, Vector2.down, 0.5f, LayerMask.GetMask("Obstacle"));
     }
 
     private void OnDrawGizmos() {
