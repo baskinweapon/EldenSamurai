@@ -21,3 +21,4 @@ MonoBehaviour:
   manaCost: 10
   damage: 100
   buttonPosition: 0
+  prefab: {fileID: 7506262354835907958, guid: 4a63e6fe31f444219941408d03d0e54b, type: 3}

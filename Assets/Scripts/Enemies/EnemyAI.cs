@@ -120,7 +120,18 @@ public class EnemyAI : MonoBehaviour, ICastAbility {
         isGrounded = IsGrounded();
         isGroundedNextWayport = IsGroundedNextWayport();
         
+        
+        
         if (!isGrounded) return;
+        
+        if (directionLookEnabled) {
+            if (rb.velocity.x >= 0.01f || Player.instance.bodyTransform.position.x > rb.position.x) {
+                enemyGFX.flipX = false;
+            } else if (rb.velocity.x <= -0.01f || Player.instance.bodyTransform.position.x < rb.position.x) {
+                enemyGFX.flipX = true;
+            }
+        }
+        
         if (Vector2.Distance(rb.position, target.position) < distanceToAttack) {
             Attack();
             return;
@@ -146,14 +157,6 @@ public class EnemyAI : MonoBehaviour, ICastAbility {
         float distance = Vector2.Distance(rb.position, path.vectorPath[currentWapoint]);
         if (distance < nextWaypointDistance) {
             currentWapoint++;
-        }
-        
-        if (directionLookEnabled) {
-            if (rb.velocity.x >= 0.01f) {
-                enemyGFX.flipX = false;
-            } else if (rb.velocity.x <= -0.01f) {
-                enemyGFX.flipX = true;
-            }
         }
     }
     

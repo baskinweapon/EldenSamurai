@@ -5,5 +5,6 @@ namespace Enemies {
         public Owner owner;
         public EnemyAI enemyAI;
         public Animator animator;
+        public Rigidbody2D rb;
     }
 }

@@ -208,6 +208,7 @@ MonoBehaviour:
   owner: {fileID: 2371454097503557847}
   enemyAI: {fileID: 4321683082912959333}
   animator: {fileID: 4239060041271513867}
+  rb: {fileID: 8764549014666210929}
 --- !u!1 &4239060040162338536
 GameObject:
   m_ObjectHideFlags: 0
@@ -838,8 +839,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyGFX: {fileID: 4239060041271513908}
   fallChecker: {fileID: 6832554965866452033}
-  distanceToAttack: 2.5
-  activateDistance: 4
+  distanceToAttack: 4
+  activateDistance: 7
   speed: 2
   nextWaypointDistance: 0.1
   jumpNodeHeightRequirement: 0.5
