@@ -6,7 +6,7 @@ public class GameMain : Singleton<GameMain> {
     public SettingsAsset settingsAsset;
     public InteractionAsset interactionAsset;
     
-    public int sceneId;
+    public Scenes sceneId;
 
     protected override void Awake() {
         base.Awake();
@@ -15,10 +15,10 @@ public class GameMain : Singleton<GameMain> {
 
     private void Start() {
         SceneController.instance.LoadScene(sceneId);
-        Player.instance.health.OnDeath.AddListener(OnFinishGame);
+        Player.instance.health.OnDeath.AddListener(FinishGame);
     }
 
-    public void OnFinishGame() {
+    public void FinishGame() {
         SceneController.instance.LoadScene(sceneId);
         Player.instance.ResetPlayer();
     }
@@ -28,6 +28,6 @@ public class GameMain : Singleton<GameMain> {
     }
 
     private void OnDestroy() {
-        Player.instance.health.OnDeath.RemoveListener(OnFinishGame);
+        Player.instance.health.OnDeath.RemoveListener(FinishGame);
     }
 }

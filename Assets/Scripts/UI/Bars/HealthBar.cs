@@ -7,6 +7,7 @@ public class HealthBar : MonoBehaviour {
     public Slider sliderBar;
     public float speed = 5f;
     public Image fill;
+    [GradientUsage(true)]
     public Gradient gradient;
     
     public GameObject separator;

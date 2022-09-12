@@ -6,8 +6,10 @@ public class Player : Singleton<Player> {
     public Transform bodyTransform;
     public Transform abilityContainer;
     
+    // Gentleman set
     public Health health;
     public Mana mana;
+    public Expirience expirience;
     
     public SpriteRenderer playerSpriteRenderer;
 

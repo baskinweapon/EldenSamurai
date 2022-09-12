@@ -9,6 +9,7 @@ namespace UI.Bars {
             public Slider sliderBar;
             public float speed = 5f;
             public Image fill;
+            [GradientUsage(true)]
             public Gradient gradient;
             public TextMeshProUGUI text;
             

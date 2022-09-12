@@ -6,7 +6,6 @@ public class DropEvent : MonoBehaviour {
     public int minDropObject;
     public int maxDropObject;
     
-
     public void OnEnable() {
         GetComponent<Health>().OnDeath.AddListener(Dropped);
     }

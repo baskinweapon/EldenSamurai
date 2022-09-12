@@ -2,10 +2,21 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+public enum Scenes {
+    MAIN,
+    HELL,
+    TEAHOUSE,
+    TEST
+}
+
 public class SceneController : Singleton<SceneController> {
     
     public void LoadScene(int sceneId) {
         SceneManager.LoadScene(sceneId);
+    }
+    
+    public void LoadScene(Scenes sceneId) {
+        SceneManager.LoadScene((int)sceneId);
     }
 
     public void LoadScene(string sceneName) {
@@ -21,10 +32,10 @@ public class SceneLoaderEditor : Editor {
         var me = target as SceneController;
         
         if (GUILayout.Button("Load Test scene")) {
-            me.LoadScene(1);
+            me.LoadScene(Scenes.TEST);
         } 
         if (GUILayout.Button("Load Hell scene")) {
-            me.LoadScene(3);
+            me.LoadScene(Scenes.HELL);
         }
     }
 }

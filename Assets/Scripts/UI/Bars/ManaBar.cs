@@ -10,6 +10,7 @@ public class ManaBar : MonoBehaviour {
     public Slider sliderBar;
     public float speed = 5f;
     public Image fill;
+    [GradientUsage(true)]
     public Gradient gradient;
 
     public TextMeshProUGUI text;
@@ -18,9 +19,9 @@ public class ManaBar : MonoBehaviour {
     private void Start() {
         rect = GetComponent<RectTransform>();
         mana = Player.instance.mana;
-        Player.instance.mana.OnSpend.AddListener(Fade);
-        Player.instance.mana.OnRest.AddListener(Fade);
-        Player.instance.mana.OnChangeMaxMana += ChangeMaxHealth;
+        mana.OnSpend.AddListener(Fade);
+        mana.OnRest.AddListener(Fade);
+        mana.OnChangeMaxMana += ChangeMaxHealth;
         sliderBar.maxValue = Player.instance.mana.GetMaxMana();
         sliderBar.value = Player.instance.mana.GetCurrentMana();
         
@@ -51,13 +52,13 @@ public class ManaBar : MonoBehaviour {
 
     private void ChangeMaxHealth() {
         rect.SetRight(1000 - (mana.GetMaxMana() > 1000 ? 1000 : mana.GetMaxMana()));
-        sliderBar.maxValue = Player.instance.mana.GetMaxMana();
+        sliderBar.maxValue = mana.GetMaxMana();
         Fade(0);
     }
     
     private void OnDestroy() {
-        Player.instance.mana.OnSpend.RemoveListener(Fade);
-        Player.instance.mana.OnRest.RemoveListener(Fade);
-        Player.instance.mana.OnChangeMaxMana -= ChangeMaxHealth;
+        mana.OnSpend.RemoveListener(Fade);
+        mana.OnRest.RemoveListener(Fade);
+        mana.OnChangeMaxMana -= ChangeMaxHealth;
     }
 }

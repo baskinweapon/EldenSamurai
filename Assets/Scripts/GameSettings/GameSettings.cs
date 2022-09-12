@@ -1,7 +1,7 @@
 using System;
 
 [Serializable]
-public struct GameSettings {
+public struct  GameSettings {
     public PlayerSettings playerSettings;
 }
 

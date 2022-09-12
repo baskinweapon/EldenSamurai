@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5578114616576684602}
   - component: {fileID: 5578114616576684600}
   m_Layer: 0
-  m_Name: Fire
+  m_Name: FireObstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

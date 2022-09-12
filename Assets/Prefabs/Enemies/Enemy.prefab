@@ -147,6 +147,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 7764676649895106731}
+        m_TargetAssemblyTypeName: Enemies.Enemy, Assembly-CSharp
+        m_MethodName: HurtAudio
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnHeal:
     m_PersistentCalls:
       m_Calls: []
@@ -156,6 +168,18 @@ MonoBehaviour:
       - m_Target: {fileID: 4321683082912959333}
         m_TargetAssemblyTypeName: EnemyAI, Assembly-CSharp
         m_MethodName: DieAnim
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 7764676649895106731}
+        m_TargetAssemblyTypeName: Enemies.Enemy, Assembly-CSharp
+        m_MethodName: DeathAudio
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -178,7 +202,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dropPrefab: {fileID: 1714471151194879750, guid: 28c024db15b6442bf85c11679fe33cd1, type: 3}
-  minDropObject: 1
+  minDropObject: 2
   maxDropObject: 5
 --- !u!114 &6374320113904003917
 MonoBehaviour:
@@ -209,6 +233,10 @@ MonoBehaviour:
   enemyAI: {fileID: 4321683082912959333}
   animator: {fileID: 4239060041271513867}
   rb: {fileID: 8764549014666210929}
+  health: {fileID: 4239060040130435866}
+  audioSource: {fileID: 4239060040528800598}
+  soundAsset: {fileID: 11400000, guid: 5b5cacc08f97941d5bf168849f4f536e, type: 2}
+  expirience: 10
 --- !u!1 &4239060040162338536
 GameObject:
   m_ObjectHideFlags: 0
@@ -516,7 +544,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.5
   m_Pitch: 1
   Loop: 0

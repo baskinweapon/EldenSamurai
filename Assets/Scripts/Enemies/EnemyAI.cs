@@ -68,7 +68,7 @@ public class EnemyAI : MonoBehaviour, ICastAbility {
 
     public void DieAnim() {
         animator.SetTrigger("Die");
-        Invoke(nameof(OnDestroy), 0.2f);
+        Invoke(nameof(OnDestroy), 0.5f);
     }
 
     #endregion
