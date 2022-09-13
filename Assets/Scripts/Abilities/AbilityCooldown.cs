@@ -43,7 +43,7 @@ namespace Abilities {
             darkMask.sprite = ability.sprite;
             coolDownDuration = ability.baseCooldown;
             _buttonPosition = ability.buttonPosition;
-            UIAbilityAction(ability.buttonPosition);
+            InputSlotAction(ability.buttonPosition);
             damager = ability.Initiliaze(_abilityHolder, Player.instance.abilityContainer);
             AbilityReady();
         }
@@ -115,7 +115,7 @@ namespace Abilities {
 
 
         private AbilityButton _buttonPosition;
-        public void UIAbilityAction(AbilityButton _stage, bool removeListener = false) {
+        public void InputSlotAction(AbilityButton _stage, bool removeListener = false) {
             switch (_stage) {
                 case AbilityButton.first:
                     if (removeListener) InputSystem.OnFirstAbility -= ButtonTriggered;
@@ -130,14 +130,14 @@ namespace Abilities {
                     else InputSystem.OnThirdAbility += ButtonTriggered;
                     break;
                 case AbilityButton.four:
+                    if (removeListener) InputSystem.OnFourthAbility -= ButtonTriggered;
+                    else InputSystem.OnFourthAbility += ButtonTriggered;
                     break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(_stage), _stage, null);
             }
         }
         
         private void OnDestroy() {
-            UIAbilityAction(_buttonPosition, true);
+            InputSlotAction(_buttonPosition, true);
         }
     }
 }

@@ -20,18 +20,19 @@ namespace Abilities {
         }
 
         public override void TriggerAbility(BaseDamager damager) {
-            var prevParent = _playEffects.transform.parent;
+            var tr = _playEffects.transform;
+            var prevParent = tr.parent;
             
             if (Player.instance.playerSpriteRenderer.flipX) {
-                _playEffects.transform.parent = Player.instance.bodyTransform;
-                _playEffects.transform.localPosition = new Vector3(-0.3f, 1f, 0);
-                _playEffects.transform.localRotation = new Quaternion(0, 90, 0, 0);
-                _playEffects.transform.parent = prevParent;
+                tr.parent = Player.instance.bodyTransform;
+                tr.localPosition = new Vector3(-0.3f, 1f, 0);
+                tr.localRotation = new Quaternion(0, 90, 0, 0);
+                tr.parent = prevParent;
             } else {
-                _playEffects.transform.parent = Player.instance.bodyTransform;
-                _playEffects.transform.localPosition = new Vector3(0.3f, 1f, 0);
-                _playEffects.transform.localRotation = new Quaternion(0, 0, 0, 0);
-                _playEffects.transform.parent = prevParent;
+                tr.parent = Player.instance.bodyTransform;
+                tr.localPosition = new Vector3(0.3f, 1f, 0);
+                tr.localRotation = new Quaternion(0, 0, 0, 0);
+                tr.parent = prevParent;
             }
             
             damager.gameObject.SetActive(true);

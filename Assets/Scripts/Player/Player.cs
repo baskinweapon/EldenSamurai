@@ -3,6 +3,7 @@ using Saver;
 using UnityEngine;
 
 public class Player : Singleton<Player> {
+    public Rigidbody2D rb;
     public Transform bodyTransform;
     public Transform abilityContainer;
     

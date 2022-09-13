@@ -85,6 +85,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "FourthAbility",
+                    "type": "Button",
+                    "id": "cd49ee42-d13f-47dd-966f-c87d48e15579",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -355,7 +364,7 @@
                 {
                     "name": "",
                     "id": "4dd92bbf-0ac5-488d-ab5e-c2e1eb53aad8",
-                    "path": "<Keyboard>/e",
+                    "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
@@ -366,11 +375,22 @@
                 {
                     "name": "",
                     "id": "dcd74d33-10a9-4814-bf09-4e7e73d4b6ab",
-                    "path": "<Keyboard>/r",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "ThirdAbility",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "54cd22b3-9bd2-4bbc-8fcd-33a8a84b6bfb",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "FourthAbility",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

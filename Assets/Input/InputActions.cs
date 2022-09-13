@@ -107,6 +107,15 @@ public partial class @EldenSamurai : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""FourthAbility"",
+                    ""type"": ""Button"",
+                    ""id"": ""cd49ee42-d13f-47dd-966f-c87d48e15579"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -377,7 +386,7 @@ public partial class @EldenSamurai : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""4dd92bbf-0ac5-488d-ab5e-c2e1eb53aad8"",
-                    ""path"": ""<Keyboard>/e"",
+                    ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
@@ -388,11 +397,22 @@ public partial class @EldenSamurai : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""dcd74d33-10a9-4814-bf09-4e7e73d4b6ab"",
-                    ""path"": ""<Keyboard>/r"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""ThirdAbility"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""54cd22b3-9bd2-4bbc-8fcd-33a8a84b6bfb"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""FourthAbility"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -989,6 +1009,7 @@ public partial class @EldenSamurai : IInputActionCollection2, IDisposable
         m_Player_FirstAbility = m_Player.FindAction("FirstAbility", throwIfNotFound: true);
         m_Player_SecondAbility = m_Player.FindAction("SecondAbility", throwIfNotFound: true);
         m_Player_ThirdAbility = m_Player.FindAction("ThirdAbility", throwIfNotFound: true);
+        m_Player_FourthAbility = m_Player.FindAction("FourthAbility", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1069,6 +1090,7 @@ public partial class @EldenSamurai : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_FirstAbility;
     private readonly InputAction m_Player_SecondAbility;
     private readonly InputAction m_Player_ThirdAbility;
+    private readonly InputAction m_Player_FourthAbility;
     public struct PlayerActions
     {
         private @EldenSamurai m_Wrapper;
@@ -1082,6 +1104,7 @@ public partial class @EldenSamurai : IInputActionCollection2, IDisposable
         public InputAction @FirstAbility => m_Wrapper.m_Player_FirstAbility;
         public InputAction @SecondAbility => m_Wrapper.m_Player_SecondAbility;
         public InputAction @ThirdAbility => m_Wrapper.m_Player_ThirdAbility;
+        public InputAction @FourthAbility => m_Wrapper.m_Player_FourthAbility;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1118,6 +1141,9 @@ public partial class @EldenSamurai : IInputActionCollection2, IDisposable
                 @ThirdAbility.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnThirdAbility;
                 @ThirdAbility.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnThirdAbility;
                 @ThirdAbility.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnThirdAbility;
+                @FourthAbility.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFourthAbility;
+                @FourthAbility.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFourthAbility;
+                @FourthAbility.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFourthAbility;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1149,6 +1175,9 @@ public partial class @EldenSamurai : IInputActionCollection2, IDisposable
                 @ThirdAbility.started += instance.OnThirdAbility;
                 @ThirdAbility.performed += instance.OnThirdAbility;
                 @ThirdAbility.canceled += instance.OnThirdAbility;
+                @FourthAbility.started += instance.OnFourthAbility;
+                @FourthAbility.performed += instance.OnFourthAbility;
+                @FourthAbility.canceled += instance.OnFourthAbility;
             }
         }
     }
@@ -1314,6 +1343,7 @@ public partial class @EldenSamurai : IInputActionCollection2, IDisposable
         void OnFirstAbility(InputAction.CallbackContext context);
         void OnSecondAbility(InputAction.CallbackContext context);
         void OnThirdAbility(InputAction.CallbackContext context);
+        void OnFourthAbility(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

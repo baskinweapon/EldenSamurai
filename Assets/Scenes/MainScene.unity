@@ -3881,18 +3881,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5367057041080693921, guid: 0c8e570277ae64204a8a168b85147c9b, type: 3}
-      propertyPath: ability
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5367057041080693921, guid: 0c8e570277ae64204a8a168b85147c9b, type: 3}
+    - target: {fileID: 5321174292345407287, guid: 0c8e570277ae64204a8a168b85147c9b, type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5367057041080693921, guid: 0c8e570277ae64204a8a168b85147c9b, type: 3}
+      propertyPath: ability
+      value: 
+      objectReference: {fileID: 11400000, guid: 0196fd2d930dd4ccea5c83ce7c4b3bdb, type: 2}
+    - target: {fileID: 5367057041080693921, guid: 0c8e570277ae64204a8a168b85147c9b, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5367057041080693921, guid: 0c8e570277ae64204a8a168b85147c9b, type: 3}
+      propertyPath: castObject
+      value: 
+      objectReference: {fileID: 1954759468}
+    - target: {fileID: 5367057041080693921, guid: 0c8e570277ae64204a8a168b85147c9b, type: 3}
       propertyPath: abilityHolder
       value: 
-      objectReference: {fileID: 6628089414046828226, guid: a61a7d1c66eda4175849a9b384561b23, type: 3}
+      objectReference: {fileID: 7480584805923031711, guid: 0ca707e55b30a4f48a2de509361d8f5a, type: 3}
     - target: {fileID: 7000158502020021779, guid: 0c8e570277ae64204a8a168b85147c9b, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -4601,9 +4609,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1954759469}
     - target: {fileID: 3064403374756844531, guid: d802c6296442840268bf5e254e301122, type: 3}
+      propertyPath: persistantHealValue
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 3064403374756844531, guid: d802c6296442840268bf5e254e301122, type: 3}
       propertyPath: OnDamage.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 900408737}
+    - target: {fileID: 3064403374756844532, guid: d802c6296442840268bf5e254e301122, type: 3}
+      propertyPath: persistantRestValue
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 3064403375742605889, guid: d802c6296442840268bf5e254e301122, type: 3}
       propertyPath: m_Layer
       value: 3
@@ -4842,6 +4858,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1530782142}
     m_Modifications:
+    - target: {fileID: 6418431691809965528, guid: bb140edd656694573bdf6bd66e32fa81, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6418431691809965528, guid: bb140edd656694573bdf6bd66e32fa81, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6418431691809965528, guid: bb140edd656694573bdf6bd66e32fa81, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6418431692935353634, guid: bb140edd656694573bdf6bd66e32fa81, type: 3}
       propertyPath: m_Name
       value: ExpBar
@@ -5260,6 +5288,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8832290280352400266, guid: b0cca2013cb32494ca456f95a3400ee2, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8832290280693760913, guid: b0cca2013cb32494ca456f95a3400ee2, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8832290280693760913, guid: b0cca2013cb32494ca456f95a3400ee2, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8832290280693760913, guid: b0cca2013cb32494ca456f95a3400ee2, type: 3}
+      propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

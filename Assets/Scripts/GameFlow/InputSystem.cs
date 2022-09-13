@@ -13,6 +13,7 @@ public class InputSystem : Singleton<InputSystem> {
     public static Action OnFirstAbility;
     public static Action OnSecondAbility;
     public static Action OnThirdAbility;
+    public static Action OnFourthAbility;
     
     private Vector2 moveVector;
     protected override void Awake() {
@@ -27,6 +28,8 @@ public class InputSystem : Singleton<InputSystem> {
 
         playerInput.Player.FirstAbility.performed += FirstAbilityPress;
         playerInput.Player.SecondAbility.performed += SecondAbilityPress;
+        playerInput.Player.ThirdAbility.performed += ThirdAbilityPress;
+        playerInput.Player.FourthAbility.performed += FourthAbilityPress;
     }
 
     private void FixedUpdate() {
@@ -57,6 +60,14 @@ public class InputSystem : Singleton<InputSystem> {
         OnSecondAbility?.Invoke();
     }
     
+    private void ThirdAbilityPress(InputAction.CallbackContext ctx = default) {
+        OnThirdAbility?.Invoke();
+    }
+    
+    private void FourthAbilityPress(InputAction.CallbackContext ctx = default) {
+        OnThirdAbility?.Invoke();
+    }
+    
 #endregion
 
     public Vector2 GetMoveVector() {
@@ -76,5 +87,7 @@ public class InputSystem : Singleton<InputSystem> {
         
         playerInput.Player.FirstAbility.performed -= FirstAbilityPress;
         playerInput.Player.SecondAbility.performed -= SecondAbilityPress;
+        playerInput.Player.ThirdAbility.performed -= ThirdAbilityPress;
+        playerInput.Player.FourthAbility.performed -= FourthAbilityPress;
     }
 }

@@ -226,6 +226,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e6194d1d8ef246b988832a2009df9ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 3064403375742605895}
   bodyTransform: {fileID: 3064403375742605892}
   abilityContainer: {fileID: 4794788551264761684}
   health: {fileID: 3064403374756844531}
@@ -307,6 +308,7 @@ MonoBehaviour:
   curExpirience: 0
   currentLevel: 1
   needExpToLevel: 100
+  multiplyExp: 100
   OnUpExpirence:
     m_PersistentCalls:
       m_Calls: []

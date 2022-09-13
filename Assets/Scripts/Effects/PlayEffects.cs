@@ -1,10 +1,11 @@
+using Damage;
 using UnityEngine;
 using UnityEngine.VFX;
 
 namespace Effects {
     public class PlayEffects : MonoBehaviour {
         public VisualEffect vfx;
-        public Damager damager;
+        public BaseDamager damager;
 
         private void OnEnable() {
             damager.OnEnd.AddListener(Stop);
