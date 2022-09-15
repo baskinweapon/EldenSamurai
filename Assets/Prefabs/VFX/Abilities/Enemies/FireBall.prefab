@@ -120,7 +120,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1151864178187123695}
   - component: {fileID: 1265250096550983030}
-  - component: {fileID: 1229280703412210422}
+  - component: {fileID: 3372345600114997029}
   m_Layer: 10
   m_Name: Damager
   m_TagString: Untagged
@@ -159,7 +159,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.6
---- !u!114 &1229280703412210422
+--- !u!114 &3372345600114997029
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -168,16 +168,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 6328503005681500387}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88aae687c56f42728b14d39ae2380897, type: 3}
+  m_Script: {fileID: 11500000, guid: cc4f2880c2df460b92a6638dbfbdf299, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   OnDamaged:
     m_PersistentCalls:
       m_Calls: []
   OnTriggered:
-    m_PersistentCalls:
-      m_Calls: []
-  OnEnd:
     m_PersistentCalls:
       m_Calls: []
   damageValue: 10
@@ -248,7 +245,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effect: {fileID: 2875093538014352163}
   damager: {fileID: 6328503005681500387}
-  rigidbody: {fileID: 8239728262474085130}
+  rb: {fileID: 8239728262474085130}
   speed: 2
 --- !u!50 &8239728262474085130
 Rigidbody2D:

@@ -13,16 +13,12 @@ namespace Abilities {
         public override BaseDamager Initiliaze(GameObject obj, Transform parent) {
             var inst = Instantiate(obj, parent);
             _playEffects = inst.GetComponent<PlayEffects>();
-            BaseDamager damager = inst.GetComponentInChildren<BaseDamager>();
-            damager.duration = duration;
-            damager.damageValue = damage;
-            damager.gameObject.SetActive(false);
             _playEffects.Stop();
             
-            return damager;
+            return null;
         }
 
-        public override void TriggerAbility(BaseDamager _damager) {
+        public override void TriggerAbility(BaseDamager _damager = null) {
             var tr = _playEffects.transform;
             var prevParent = tr.parent;
 
@@ -40,9 +36,11 @@ namespace Abilities {
             
             Player.instance.rb.velocity = Vector2.zero;
             Player.instance.rb.AddForce(power * 1000f * dir);
-            _damager.gameObject.SetActive(true);
-            _playEffects.Play();
+            _playEffects.Play(duration);
             tr.parent = prevParent;
         }
+
+       
     }
+    
 }

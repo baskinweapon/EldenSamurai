@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using Damage;
 using UnityEngine;
 using UnityEngine.VFX;
@@ -5,22 +7,19 @@ using UnityEngine.VFX;
 namespace Effects {
     public class PlayEffects : MonoBehaviour {
         public VisualEffect vfx;
-        public BaseDamager damager;
-
-        private void OnEnable() {
-            damager.OnEnd.AddListener(Stop);
-        }
-
-        public void Play() {
+        
+        public void Play(float _duration) {
             vfx.Reinit();
+            StartCoroutine(WaitEnd(_duration));
         }
 
         public void Stop() {
             vfx.Stop();
         }
-
-        private void OnDisable() {
-            damager.OnEnd.RemoveListener(Stop);
+        
+        IEnumerator WaitEnd(float duration) {
+            yield return new WaitForSeconds(duration);
+            vfx.Stop();
         }
     }
 }

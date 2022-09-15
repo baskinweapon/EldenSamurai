@@ -17,8 +17,8 @@ namespace Abilities {
             return _damager;
         }
         
-        public override void TriggerAbility(BaseDamager _damager) {
-            _damager.GetComponentInParent<Fireball>().StartCast(duration);
+        public override void TriggerAbility(BaseDamager _damager = null) {
+            if (_damager != null) _damager.GetComponentInParent<Fireball>().StartCast(duration);
         }
     }
 }

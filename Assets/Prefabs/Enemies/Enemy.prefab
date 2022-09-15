@@ -80,7 +80,6 @@ GameObject:
   - component: {fileID: 2371454097503557847}
   - component: {fileID: 4239060040130435866}
   - component: {fileID: 8122622387232438446}
-  - component: {fileID: 6374320113904003917}
   - component: {fileID: 7764676649895106731}
   m_Layer: 13
   m_Name: Enemy
@@ -204,19 +203,6 @@ MonoBehaviour:
   dropPrefab: {fileID: 1714471151194879750, guid: 28c024db15b6442bf85c11679fe33cd1, type: 3}
   minDropObject: 2
   maxDropObject: 5
---- !u!114 &6374320113904003917
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4239060040130435868}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 473f273702e6443dac785cccd1042e19, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ability: {fileID: 4239060040413842593}
 --- !u!114 &7764676649895106731
 MonoBehaviour:
   m_ObjectHideFlags: 0

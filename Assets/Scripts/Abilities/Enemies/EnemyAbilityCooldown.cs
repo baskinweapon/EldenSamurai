@@ -1,32 +1,30 @@
-using System;
 using Architecture.Interfaces;
 using Damage;
 using Enemies;
-using Helpers;
 using UnityEngine;
 
-namespace Abilities {
-    public class BaseAbilityCooldown: MonoBehaviour {
+namespace Abilities.Enemies {
+    public class EnemyAbilityCooldown: MonoBehaviour {
         public Enemy enemy;
-        
+    
         [Header("Cast object need ICastAbility")]
         public GameObject castObject;
-        
+    
         [SerializeField, Header("Parent Ability")]
         protected Transform parent;
-        
+    
         [SerializeField, Header("Main Ability")] 
         protected Ability ability;
 
         [SerializeField, Header("abilit Game Object")]
         private GameObject abilityHolder;
-        
+    
         [SerializeField]
         protected AudioSource abilitySource;
-        
-        protected float coolDownDuration;
-        protected float nextReadyTime;
-        protected float coolDownTimeLeft;
+
+        private float coolDownDuration;
+        private float nextReadyTime;
+        private float coolDownTimeLeft;
 
         private BaseDamager damager;
         private ICastAbility castAbility;
@@ -42,10 +40,10 @@ namespace Abilities {
 
         private void EnemyAttack() {
             if (!CooldownComplete()) return;
-            enemy.animator.SetTrigger("Attack");
+            enemy.animator.SetTrigger(Attack);
             Triggered();
         }
-        
+    
         protected void Update() {
             bool coolDownComplete = (Time.time > nextReadyTime);
             if (coolDownComplete) {
@@ -53,7 +51,7 @@ namespace Abilities {
             } else {
                 CoolDown();
             }
-            
+        
             //casting timer
             if (isCasting) {
                 time += Time.deltaTime;
@@ -67,18 +65,19 @@ namespace Abilities {
 
         private bool isCasting;
         private float time;
-        
-        public void Initiallize(Ability ability, GameObject _abilityHolder) {
-            this.ability = ability;
+        private static readonly int Attack = Animator.StringToHash("Attack");
+
+        private void Initiallize(Ability _ability, GameObject _abilityHolder) {
+            this.ability = _ability;
             coolDownDuration = ability.baseCooldown;
             damager = ability.Initiliaze(_abilityHolder, parent);
             AbilityReady();
         }
-        
+    
         protected virtual void AbilityReady() {
-            
-        }
         
+        }
+    
         private void CoolDown() {
             coolDownTimeLeft -= Time.deltaTime;
         }
@@ -87,12 +86,12 @@ namespace Abilities {
             return coolDownTimeLeft;
         }
 
-        public bool CooldownComplete() {
+        private bool CooldownComplete() {
             bool coolDownComplete = (Time.time > nextReadyTime);
             return coolDownComplete;
         }
-        
-        public void Triggered() {
+
+        private void Triggered() {
             bool coolDownComplete = (Time.time > nextReadyTime);
             if (!coolDownComplete) return;
             nextReadyTime = coolDownDuration + Time.time;
@@ -110,5 +109,5 @@ namespace Abilities {
             enemy.enemyAI.OnAttack -= EnemyAttack;
         }
     }
-    
 }
+    

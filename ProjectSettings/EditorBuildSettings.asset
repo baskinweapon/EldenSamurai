@@ -12,11 +12,11 @@ EditorBuildSettings:
     path: Assets/Scenes/HellScene.unity
     guid: bba0a7030d6c94d95aacb964d8d198ad
   - enabled: 1
-    path: Assets/Scenes/TestScene.unity
-    guid: d66c5d3ffca9e42ef9c54e1ff32e2d7c
-  - enabled: 1
     path: Assets/Scenes/TeaHouseScene.unity
     guid: f3d345170c0f64fe891bf7026933d67e
+  - enabled: 1
+    path: Assets/Scenes/TestScene.unity
+    guid: d66c5d3ffca9e42ef9c54e1ff32e2d7c
   - enabled: 1
     path: Assets/Scenes/DeathScene.unity
     guid: 946e4662e665b44e8add5b461a6da89b

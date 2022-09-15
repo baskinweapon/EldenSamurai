@@ -1,12 +1,11 @@
-using System;
+using System.Globalization;
 using Architecture.Interfaces;
-using Damage;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Abilities {
-    public class AbilityCooldown : MonoBehaviour {
+    public class PlayerAbilityCooldown : MonoBehaviour {
         [Header("Cast object need ICastAbility")]
         public GameObject castObject;
         
@@ -28,8 +27,7 @@ namespace Abilities {
         private float coolDownDuration;
         private float nextReadyTime;
         private float coolDownTimeLeft;
-
-        private BaseDamager damager;
+        
         private ICastAbility castAbility;
         private void Start() {
             if (!ability) this.enabled = false;
@@ -37,14 +35,14 @@ namespace Abilities {
             castAbility = castObject.GetComponent<ICastAbility>();
         }
         
-        public void Initiallize(Ability ability, GameObject _abilityHolder) {
-            this.ability = ability;
+        private void Initiallize(Ability _ability, GameObject _abilityHolder) {
+            ability = _ability;
             buttonImage.sprite = ability.sprite;
             darkMask.sprite = ability.sprite;
             coolDownDuration = ability.baseCooldown;
             _buttonPosition = ability.buttonPosition;
             InputSlotAction(ability.buttonPosition);
-            damager = ability.Initiliaze(_abilityHolder, Player.instance.abilityContainer);
+            ability.Initiliaze(_abilityHolder, Player.instance.abilityContainer);
             AbilityReady();
         }
 
@@ -63,14 +61,14 @@ namespace Abilities {
         private bool isCasting;
         private float time;
         private void LateUpdate() {
-            if (isCasting) {
-                time += Time.deltaTime;
-                if (time >= ability.castTime) {
-                    isCasting = false;
-                    castAbility.EndCasting();
-                    time = 0;
-                }
+            if (!isCasting) return;
+            time += Time.deltaTime;
+            if (time >= ability.castTime) {
+                isCasting = false;
+                castAbility.EndCasting();
+                time = 0;
             }
+            Player.instance.SetCastingState(isCasting);
         }
 
         private void AbilityReady() {
@@ -92,13 +90,14 @@ namespace Abilities {
         private void CoolDown() {
             coolDownTimeLeft -= Time.deltaTime;
             float roundedCd = Mathf.Round(coolDownTimeLeft);
-            coolDowntText.text = roundedCd.ToString();
+            coolDowntText.text = roundedCd.ToString(CultureInfo.InvariantCulture);
             darkMask.fillAmount = (coolDownTimeLeft / coolDownDuration);
         }
         
         private void ButtonTriggered() {
             bool coolDownComplete = (Time.time > nextReadyTime);
             if (!coolDownComplete) return;
+            if (Player.instance.IsCastingAbility()) return;
             if (!Player.instance.mana.SpendMana(ability.manaCost)) return;
             nextReadyTime = coolDownDuration + Time.time;
             coolDownTimeLeft = coolDownDuration;
@@ -110,12 +109,12 @@ namespace Abilities {
 
             abilitiSource.clip = ability.sound;
             abilitiSource.Play();
-            ability.TriggerAbility(damager);
+            ability.TriggerAbility();
         }
 
 
         private AbilityButton _buttonPosition;
-        public void InputSlotAction(AbilityButton _stage, bool removeListener = false) {
+        private void InputSlotAction(AbilityButton _stage, bool removeListener = false) {
             switch (_stage) {
                 case AbilityButton.first:
                     if (removeListener) InputSystem.OnFirstAbility -= ButtonTriggered;

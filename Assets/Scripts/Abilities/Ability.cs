@@ -11,6 +11,7 @@ public enum AbilityButton {
 }
 
 namespace Abilities {
+    
     public abstract class Ability : ScriptableObject {
         public string abilityName = "New Ability";
         public Sprite sprite;
@@ -29,6 +30,6 @@ namespace Abilities {
         public AbilityButton buttonPosition;
         
         public abstract BaseDamager Initiliaze(GameObject obj, Transform parent);
-        public abstract void TriggerAbility(BaseDamager _damager);
+        public abstract void TriggerAbility(BaseDamager _damager = null);
     }
 }

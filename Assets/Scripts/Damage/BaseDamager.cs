@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -9,28 +7,27 @@ namespace Damage {
         
         public UnityEvent OnDamaged;
         public UnityEvent OnTriggered;
-        public UnityEvent OnEnd;
-
+        
         [HideInInspector]
         public float damageValue = 10f;
         [HideInInspector]
         public float duration = 1f;
         
         protected virtual void OnTriggerEnter2D(Collider2D col) {
-            if (col.gameObject.layer != 10) { // Damager layer
-                var health = col.GetComponentInParent<Health>();
-                if (health) {
-                    var owner = GetComponentInParent<Owner>();
-                    var triggeredOwner = col.GetComponentInParent<Owner>();
-                    if (CheckOwners(col)) return;
-                    if (damageValue == 0) return;
+            if (col.gameObject.layer == 10) return; // Damager layer
+            var health = col.GetComponentInParent<Health>();
+            if (health) {
+                var owner = GetComponentInParent<Owner>();
+                var triggeredOwner = col.GetComponentInParent<Owner>();
+                if (CheckOwners(col)) return;
+                if (damageValue == 0) return;
+                if (col.transform == this.transform.parent) return;
                     
-                    //pass damage
-                    health.Damage(damageValue);
-                    OnDamaged?.Invoke();
-                } else {
-                    OnTriggered?.Invoke();
-                }
+                //pass damage
+                health.Damage(damageValue);
+                OnDamaged?.Invoke();
+            } else {
+                OnTriggered?.Invoke();
             }
         }
         
@@ -47,16 +44,14 @@ namespace Damage {
             }
             var victim = col.transform.parent;
             var victimOwner = victim.GetComponent<Owner>();
-            if (victimOwner == null) {
-                while (victimOwner == null) {
-                    victim = victim.parent;
-                    if (!victim) break;
-                    victimOwner = victim.GetComponent<Owner>();
-                    if (victimOwner != null) break;
-                }
+            if (victimOwner != null) return owner && victimOwner && owner == victimOwner;
+            while (victimOwner == null) {
+                victim = victim.parent;
+                if (!victim) break;
+                victimOwner = victim.GetComponent<Owner>();
+                if (victimOwner != null) break;
             }
-            if (owner && victimOwner && owner == victimOwner) return true;
-            return false;
+            return owner && victimOwner && owner == victimOwner;
         }
     }
 }

@@ -2,19 +2,14 @@ using Architecture.Interfaces;
 using UnityEngine;
 
 namespace Environment.EnvironmentBehavior {
-    public class FallObject : MonoBehaviour, IResetAfterDamage {
+    public class FallObject : MonoBehaviour {
         [SerializeField] private GameObject rbObject;
         [SerializeField] private SpriteRenderer render;
         public float distanceToActivate;
         public float coolDown;
         
-        
         private bool isFalling;
         private float time;
-
-        private void Start() {
-            rbObject.GetComponent<Damager>().Set(this);
-        }
         
         private void Update() {
             time += Time.deltaTime;
@@ -29,7 +24,7 @@ namespace Environment.EnvironmentBehavior {
             }
         }
 
-        public void StartFall() {
+        private void StartFall() {
             render.enabled = false;
             rbObject.SetActive(true);
         }

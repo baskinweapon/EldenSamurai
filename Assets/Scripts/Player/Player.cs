@@ -1,5 +1,3 @@
-using System;
-using Saver;
 using UnityEngine;
 
 public class Player : Singleton<Player> {
@@ -14,6 +12,10 @@ public class Player : Singleton<Player> {
     
     public SpriteRenderer playerSpriteRenderer;
 
+    private bool isCastingAbility;
+    public bool IsCastingAbility() => isCastingAbility;
+    public void SetCastingState(bool _state) => isCastingAbility = _state;
+    
 
     public void ResetPlayer() {
         health.Heal(100);
