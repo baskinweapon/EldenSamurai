@@ -12,7 +12,7 @@ namespace VFX {
         public UnityEvent OnPlay;
         public UnityEvent OnStop;
 
-        private float time = 0;
+        private float time;
         protected virtual void Start() {
             effect.Stop();
         }
@@ -30,13 +30,14 @@ namespace VFX {
         }
         
         protected bool isPlaying;
-        public virtual void Play() {
+
+        protected virtual void Play() {
             effect.Play();
             OnPlay?.Invoke();
             isPlaying = true;
         }
 
-        public virtual void Stop() {
+        protected virtual void Stop() {
             effect.SendEvent("OnStop");
             effect.Stop();
             OnStop?.Invoke();

@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 5578114616576684596}
   - component: {fileID: 5578114616576684597}
   - component: {fileID: 5578114616576684601}
-  - component: {fileID: 5578114616576684602}
   - component: {fileID: 5578114616576684600}
+  - component: {fileID: 337480764424441412}
   m_Layer: 0
   m_Name: FireObstacle
   m_TagString: Untagged
@@ -142,21 +142,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.98196816, y: 4.547511}
   m_EdgeRadius: 0
---- !u!114 &5578114616576684602
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5578114616576684598}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc4f2880c2df460b92a6638dbfbdf299, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  permanent: 1
-  damageValue: 10
-  duration: 1
 --- !u!114 &5578114616576684600
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,8 +155,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   effect: {fileID: 5578114616576684596}
-  col: {fileID: 5578114616576684601}
-  speedColSize: 10
+  cooldown: 1
+  duration: 2
   OnPlay:
     m_PersistentCalls:
       m_Calls:
@@ -202,6 +187,26 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  cooldown: 1
-  duration: 2
+  col: {fileID: 5578114616576684601}
+  speedColSize: 10
   maxSizeCol: {x: 1, y: 4}
+--- !u!114 &337480764424441412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5578114616576684598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88aae687c56f42728b14d39ae2380897, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnTriggered:
+    m_PersistentCalls:
+      m_Calls: []
+  damageValue: 10
+  duration: 1

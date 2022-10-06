@@ -1,7 +1,6 @@
-using Cinemachine;
 using UnityEngine;
 
 public class CameraController : Singleton<CameraController> {
     public Camera mainCamera;
-    [SerializeField] private CinemachineVirtualCamera virtualCamera;
+    // [SerializeField] private CinemachineVirtualCamera virtualCamera;
 }

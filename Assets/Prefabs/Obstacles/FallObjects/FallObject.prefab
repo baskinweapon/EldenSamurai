@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4061096093221634737}
   - component: {fileID: 4061096093221634738}
   - component: {fileID: 4061096093221634739}
-  - component: {fileID: 4061096093221634740}
+  - component: {fileID: 6022612610871237249}
   m_Layer: 0
   m_Name: RigidBody
   m_TagString: Untagged
@@ -134,7 +134,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.47, y: 1.78}
   m_EdgeRadius: 0
---- !u!114 &4061096093221634740
+--- !u!114 &6022612610871237249
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,7 +143,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4061096093221634741}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc4f2880c2df460b92a6638dbfbdf299, type: 3}
+  m_Script: {fileID: 11500000, guid: 88aae687c56f42728b14d39ae2380897, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   OnDamaged:
@@ -176,23 +176,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  OnEnd:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4061096093465138733}
-        m_TargetAssemblyTypeName: Environment.EnvironmentBehavior.FallObject, Assembly-CSharp
-        m_MethodName: ResetObj
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  damageValue: 50
-  duration: 2
+  damageValue: 10
+  duration: 1
 --- !u!1 &4061096093465138735
 GameObject:
   m_ObjectHideFlags: 0

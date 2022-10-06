@@ -21,14 +21,14 @@ public class SettingsAsset : ScriptableObject {
 		path = Application.streamingAssetsPath + $"/settings/{saveName}";
 #endif
 	}
-	
-	public bool FileCheck() {
+
+	private bool FileCheck() {
 		if (string.IsNullOrEmpty(path)) OnEnable();
 
 		bool b = File.Exists(path);
 		if (!b) {
 			if (!Directory.Exists(path)) {
-				Directory.CreateDirectory(Path.GetDirectoryName(path));
+				Directory.CreateDirectory(Path.GetDirectoryName(path) ?? string.Empty);
 			}
 
 			File.Create(path).Close();
@@ -36,8 +36,8 @@ public class SettingsAsset : ScriptableObject {
 
 		return b;
 	}
-	
-	public void CreateNewSave() {
+
+	private void CreateNewSave() {
 		SetDefaultSave();
 
 		string repath = path.Replace(saveName, $"broken_save_{DateTime.Now:yy_MM_dd_hhmmss}.th");
@@ -103,18 +103,18 @@ public class SettingsAssetEditor : Editor {
 
 		EditorGUILayout.BeginHorizontal();
 		if (GUILayout.Button("LoadFromFile")) {
-			me.LoadFromFile();
+			if (me != null) me.LoadFromFile();
 		}
 
 		if (GUILayout.Button("Open settings Folder")) {
-			EditorUtility.RevealInFinder(me.path);
+			if (me != null) EditorUtility.RevealInFinder(me.path);
 		}
 
 		if (GUILayout.Button("SaveToFile")) {
 			AssetDatabase.Refresh();
 			EditorUtility.SetDirty(target);
 			AssetDatabase.SaveAssets();
-			me.ApplyAssetToFile();
+			if (me != null) me.ApplyAssetToFile();
 		}
 
 		EditorGUILayout.EndHorizontal();
@@ -127,7 +127,7 @@ public class SettingsAssetEditor : Editor {
 
 
 		if (GUILayout.Button("ClearAll")) {
-			me.SetDefaultSave();
+			if (me != null) me.SetDefaultSave();
 		}
 		
 		EditorGUILayout.Space();

@@ -1,10 +1,10 @@
-
 using UnityEngine;
+// ReSharper disable Unity.InefficientPropertyAccess
 
 public class Parallax : MonoBehaviour {
     private float lenght, startPos;
     
-    public Transform cam;
+    private Transform cam;
 
     public float parallaxEffect;
 

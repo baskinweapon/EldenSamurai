@@ -32,10 +32,10 @@ public class SceneLoaderEditor : Editor {
         var me = target as SceneController;
         
         if (GUILayout.Button("Load Test scene")) {
-            me.LoadScene(Scenes.TEST);
+            if (me != null) me.LoadScene(Scenes.TEST);
         } 
         if (GUILayout.Button("Load Hell scene")) {
-            me.LoadScene(Scenes.HELL);
+            if (me != null) me.LoadScene(Scenes.HELL);
         }
     }
 }

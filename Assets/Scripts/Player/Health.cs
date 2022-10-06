@@ -19,7 +19,9 @@ public class Health : MonoBehaviour {
     public Action OnChangeMaxHealth;
 
     public float GetCurrentHealth() => curHealth;
+    public float GetCurrentHPPercent() => Mathf.InverseLerp(0, maxHealth, curHealth);
     public float GetMaxHealth() => maxHealth;
+    public float GetPersistantValue() => persistantHealValue;
     
     public void Damage(float value) {
         if (curHealth == 0) return;
@@ -47,7 +49,7 @@ public class Health : MonoBehaviour {
         if (persistantHealValue == 0) yield break;
         while (curHealth <= maxHealth) {
             yield return new WaitForSeconds(1f);
-            curHealth += persistantHealValue;
+            curHealth = Mathf.Clamp(curHealth + persistantHealValue, 0, maxHealth);
             OnHeal?.Invoke(persistantHealValue);
         }
     }
@@ -69,26 +71,25 @@ public class HealthEditor : Editor {
 
         EditorGUILayout.BeginHorizontal();
         if (GUILayout.Button("Damage")) {
-            me.Damage(10f);
+            if (me != null) me.Damage(10f);
         }
 
         if (GUILayout.Button("Heal")) {
-            me.Heal(10f);
+            if (me != null) me.Heal(10f);
         }
-
-
+        
         EditorGUILayout.EndHorizontal();
 
         EditorGUILayout.Space();
         
         if (GUILayout.Button("Up max Health")) {
-            me.ChangeMaxHealth(100f);
+            if (me != null) me.ChangeMaxHealth(100f);
         }
         
         EditorGUILayout.Space();
         
         if (GUILayout.Button("Death")) {
-            me.Death();
+            if (me != null) me.Death();
         }
         
     }

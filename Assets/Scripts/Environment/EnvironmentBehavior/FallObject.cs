@@ -1,4 +1,3 @@
-using Architecture.Interfaces;
 using UnityEngine;
 
 namespace Environment.EnvironmentBehavior {

@@ -1,5 +1,4 @@
 using System.Collections;
-using UnityEditor;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -34,21 +33,21 @@ public class DropObject : MonoBehaviour {
     }
 }
 
-#if UNITY_EDITOR
-[CustomEditor(typeof(DropObject))]
-public class DropObjectEditor : Editor {
-    public override void OnInspectorGUI() {
-        var me = target as DropObject;
-        base.OnInspectorGUI();
-
-        // if (GUILayout.Button("Set random drop type")) {
-        //     // me.SetDropType();
-        // }
-        
-        
-    }
-}
-
-#endif
+// #if UNITY_EDITOR
+// [CustomEditor(typeof(DropObject))]
+// public class DropObjectEditor : Editor {
+//     public override void OnInspectorGUI() {
+//         var me = target as DropObject;
+//         base.OnInspectorGUI();
+//
+//         // if (GUILayout.Button("Set random drop type")) {
+//         //     // me.SetDropType();
+//         // }
+//         
+//         
+//     }
+// }
+//
+// #endif
 
 

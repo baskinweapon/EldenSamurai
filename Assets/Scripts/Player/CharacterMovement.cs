@@ -1,4 +1,3 @@
-using Abilities;
 using Architecture.Interfaces;
 using UnityEngine;
 
@@ -29,7 +28,7 @@ public class CharacterMovement : MonoBehaviour, ICastAbility {
 
     private void Jump() {
         if (!isGrounded) return;
-        animator.SetTrigger("Jump");
+        animator.SetTrigger(JumpString);
         SpawnDustEffect(m_LandingDust, 1);
         rb.velocity += Vector2.up * jumpMultiplier;
     }
@@ -41,7 +40,7 @@ public class CharacterMovement : MonoBehaviour, ICastAbility {
     private bool isMove;
     private void FixedUpdate() {
         if (isCasting) {
-            animator.SetInteger("AnimState", 0);
+            animator.SetInteger(AnimState, 0);
             rb.velocity = new Vector2(0f, 0f);
             return;
         }
@@ -52,16 +51,16 @@ public class CharacterMovement : MonoBehaviour, ICastAbility {
         }
         
         // Anim
-        animator.SetFloat("AirSpeedY", rb.velocity.y);
+        animator.SetFloat(AirSpeedY, rb.velocity.y);
         float move = InputSystem.instance.GetMoveVector().x;
         if (move != 0f) {
             if (!isMove)
                 SpawnDustEffect(m_RunStopDust, move < 0 ? -1 : 1);
-            animator.SetInteger("AnimState", 1);
+            animator.SetInteger(AnimState, 1);
             isMove = true;
         } else {
             isMove = false;
-            animator.SetInteger("AnimState", 0);
+            animator.SetInteger(AnimState, 0);
         }
 
         if (move > 0) spriteRenderer.flipX = true;
@@ -71,17 +70,16 @@ public class CharacterMovement : MonoBehaviour, ICastAbility {
         rb.velocity = velocity;
     }
 
-    private float extraHeight = .05f;
+    private const float extraHeight = .05f;
+
     private bool IsGrounded() {
-        RaycastHit2D hit = Physics2D.Raycast(col.bounds.center, Vector2.down, col.bounds.extents.y + extraHeight, LayerMask.GetMask("Obstacle"));
-        Color rayColor;
+        var bound = col.bounds;
+        RaycastHit2D hit = Physics2D.Raycast(bound.center, Vector2.down, bound.extents.y + extraHeight, LayerMask.GetMask("Obstacle"));
         var isGround = hit.collider != null;
-        
+
         // Debug
-        if (isGround) {
-            rayColor = Color.green;
-        } else rayColor = Color.red;
-        Debug.DrawRay(col.bounds.center, Vector2.down * (col.bounds.extents.y + extraHeight), rayColor);
+        var rayColor = isGround ? Color.green : Color.red;
+        Debug.DrawRay(bound.center, Vector2.down * (bound.extents.y + extraHeight), rayColor);
         
         return isGround;
     }
@@ -99,6 +97,10 @@ public class CharacterMovement : MonoBehaviour, ICastAbility {
     }
 
     private bool isCasting;
+    private static readonly int JumpString = Animator.StringToHash("Jump");
+    private static readonly int AnimState = Animator.StringToHash("AnimState");
+    private static readonly int AirSpeedY = Animator.StringToHash("AirSpeedY");
+
     public void StartCasting() {
         isCasting = true;
     }

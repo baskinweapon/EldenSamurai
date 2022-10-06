@@ -1,10 +1,10 @@
 using System;
-using Abilities;
 using Architecture.Interfaces;
 using Pathfinding;
 using UnityEngine;
 
 public class EnemyAI : MonoBehaviour, ICastAbility {
+    public Transform lookTransform;
     public SpriteRenderer enemyGFX;
 
     public Transform fallChecker;
@@ -27,9 +27,9 @@ public class EnemyAI : MonoBehaviour, ICastAbility {
     public bool directionLookEnabled = true;
     
     private Path path;
-    private int currentWapoint = 0;
-    private bool isGrounded = false;
-    private bool isGroundedNextWayport = false;
+    private int currentWapoint;
+    private bool isGrounded;
+    private bool isGroundedNextWayport;
     
     private Seeker seeker;
     private Rigidbody2D rb;
@@ -50,6 +50,9 @@ public class EnemyAI : MonoBehaviour, ICastAbility {
     private Vector3 spawnedPosition;
     
     private void Start() {
+        // Set Anim To Hash
+        SetAnimToHash();
+        
         target = Player.instance.bodyTransform;
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
@@ -61,17 +64,50 @@ public class EnemyAI : MonoBehaviour, ICastAbility {
     }
 
     #region Animation
+    
+    private static int DamageString;
+    private static int DieString;
+    private static int AnimState;
+    private static int AttackString;
+    
+    [Header("Animation Name")]
+    [SerializeField, TextArea]
+    private string damageString;
+    [SerializeField, TextArea]
+    private string dieString;
+    [SerializeField, TextArea]
+    private string animState;
+    [SerializeField, TextArea]
+    private string attackString;
+    
+    void SetAnimToHash() {
+        DamageString = Animator.StringToHash(damageString);
+        DieString = Animator.StringToHash(dieString);
+        AnimState = Animator.StringToHash(animState);
+        AttackString = Animator.StringToHash(attackString);
+    }
 
+    private void StateAnim(int _state) {
+        animator.SetInteger(AnimState, _state);
+    }
+
+    private void AttackAnim() {
+        Debug.Log("Attack");
+        animator.SetTrigger(AttackString);
+    }
+    
     public void DamageAnim() {
-        animator.SetTrigger("Damage");
+        Debug.Log(damageString);
+        animator.SetTrigger(DamageString);
     }
 
     public void DieAnim() {
-        animator.SetTrigger("Die");
+        animator.SetTrigger(DieString);
         Invoke(nameof(OnDestroy), 0.5f);
     }
 
     #endregion
+
 
     void UpdatePath() {
         if (followEnable && TargetInDistance() && seeker.IsDone())
@@ -91,26 +127,18 @@ public class EnemyAI : MonoBehaviour, ICastAbility {
     private void FixedUpdate() {
         if (isCasting) {
             rb.velocity = new Vector2(0f, 0f);
-            animator.SetInteger("AnimState", 0);
+            StateAnim(0);
             return;
         }
         
         //anim
-        if (rb.velocity.x != 0) {
-            animator.SetInteger("AnimState", 1);
-        } else {
-            animator.SetInteger("AnimState", 0);
-        }
+        StateAnim(rb.velocity.x != 0 ? 1 : 0);
         
         if (TargetInDistance() && followEnable) {
             PathFollow();
         } else if (mustPatrol) {
-            Patrol();
+            PathFollow();
         }
-    }
-
-    private void Patrol() {
-        PathFollow();
     }
     
     void PathFollow() {
@@ -119,20 +147,12 @@ public class EnemyAI : MonoBehaviour, ICastAbility {
         
         isGrounded = IsGrounded();
         isGroundedNextWayport = IsGroundedNextWayport();
-        
-        
-        
+
         if (!isGrounded) return;
+        SetDirection();
         
-        if (directionLookEnabled) {
-            if (rb.velocity.x >= 0.01f || Player.instance.bodyTransform.position.x > rb.position.x) {
-                enemyGFX.flipX = false;
-            } else if (rb.velocity.x <= -0.01f || Player.instance.bodyTransform.position.x < rb.position.x) {
-                enemyGFX.flipX = true;
-            }
-        }
         
-        if (Vector2.Distance(rb.position, target.position) < distanceToAttack) {
+        if (Vector2.Distance(rb.position, target.position) < distanceToAttack && !isAttack) {
             Attack();
             return;
         } 
@@ -159,9 +179,27 @@ public class EnemyAI : MonoBehaviour, ICastAbility {
             currentWapoint++;
         }
     }
-    
+
+    private bool isAttack;
     private void Attack() {
+        isAttack = true;
+        AttackAnim();
         OnAttack?.Invoke();
+    }
+
+    private void SetDirection() {
+        if (!directionLookEnabled) return;
+        if (rb.velocity.x >= 0.01f || Player.instance.bodyTransform.position.x > rb.position.x) {
+            lookTransform.localScale = new Vector3(
+                1f,
+                lookTransform.localScale.y,
+                lookTransform.localScale.z);
+        } else if (rb.velocity.x <= -0.01f || Player.instance.bodyTransform.position.x < rb.position.x) {
+            lookTransform.localScale = new Vector3(
+                -1f,
+                lookTransform.localScale.y,
+                lookTransform.localScale.z);
+        }
     }
 
     private void OnDestroy() {
@@ -178,14 +216,18 @@ public class EnemyAI : MonoBehaviour, ICastAbility {
     }
 
     bool IsGroundedNextWayport() {
-        fallChecker.localPosition = enemyGFX.flipX ? new Vector3(-1, -1f, 0f) : new Vector3(1, -1f, 0f);
+        fallChecker.localPosition = lookTransform.localScale.x < 0 ? new Vector3(-1, -1f, 0f) : new Vector3(1, -1f, 0f);
         return Physics2D.Raycast(fallChecker.position, Vector2.down, 0.5f, LayerMask.GetMask("Obstacle"));
     }
 
+#if UNITY_EDITOR
     private void OnDrawGizmos() {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, activateDistance);
     }
+    
+#endif
+   
 
     private bool isCasting;
     public void StartCasting() {

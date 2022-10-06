@@ -25,7 +25,8 @@ public class AudioManager : Singleton<AudioManager> {
     
     private AudioSource backgroundSource;
     private AudioSource secondBackSource;
-    public void SetBackgroundSource() {
+
+    private void SetBackgroundSource() {
         GameObject bgo = new GameObject(backgroundSounds.name);
         bgo.transform.SetParent(transform);
         GameObject mixgo = new GameObject(backgroundSounds.name);
@@ -35,25 +36,24 @@ public class AudioManager : Singleton<AudioManager> {
         secondBackSource = mixgo.AddComponent<AudioSource>();
     }
     
-    public void PlaySound(string name)
-    {
-        for(int i = 0; i < characterSounds.Length; i++)
-        {
-            if(characterSounds[i].m_name == name)
+    public void PlaySound(string _name) {
+        foreach (var t in characterSounds) {
+            if(t.m_name == _name)
             {
-                characterSounds[i].Play();
+                t.Play();
                 return;
             }
         }
-        Debug.LogWarning("AudioManager: Sound name not found in list: " + name);
+
+        Debug.LogWarning("AudioManager: Sound name not found in list: " + _name);
     }
 
-    private int count = 0;
+    private int count;
     private void PlayBackgroundMusic() {
         StartCoroutine(PlayOrder());
     }
 
-    private float mixTime = 50f;
+    private const float mixTime = 50f;
     IEnumerator PlayOrder() {
         var currentSource = backgroundSource;
         backgroundSounds.backgroundMusic.Play(count, currentSource);
@@ -77,6 +77,7 @@ public class AudioManager : Singleton<AudioManager> {
 
             currentSource = secondSource;
         }
+        // ReSharper disable once IteratorNeverReturns
     }
 }
 

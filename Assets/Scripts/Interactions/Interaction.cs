@@ -5,7 +5,7 @@ public abstract class Interaction: MonoBehaviour {
     public SpriteRenderer keySprite;
     
     private InteractionAsset interactionAsset;
-    protected bool isStay;
+    private bool isStay;
 
     private void OnEnable() {
         InputSystem.OnInteraction += InteractionInput;

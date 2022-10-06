@@ -7,9 +7,9 @@ namespace Abilities {
     [CreateAssetMenu(fileName = "FireBreath", menuName = "Ability/FireBreath", order = 0)]
     public class FireBreathAbility : Ability {
         private PlayEffects _playEffects;
-        private BaseDamager _damager;
+        private Damager _damager;
         
-        public override BaseDamager Initiliaze(GameObject obj, Transform parent) {
+        public override Damager Initiliaze(GameObject obj, Transform parent) {
             var inst = Instantiate(obj, parent);
             _playEffects = inst.GetComponent<PlayEffects>();
             _damager = inst.GetComponentInChildren<Damager>();
@@ -20,7 +20,7 @@ namespace Abilities {
             return _damager;
         }
 
-        public override void TriggerAbility(BaseDamager damager = null) {
+        public override void TriggerAbility(Damager damager = null) {
             var tr = _playEffects.transform;
             var prevParent = tr.parent;
             

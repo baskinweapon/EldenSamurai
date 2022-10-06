@@ -851,6 +851,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cefad79f625964491a1c097df8b2402e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lookTransform: {fileID: 4239060041271513866}
   enemyGFX: {fileID: 4239060041271513908}
   fallChecker: {fileID: 6832554965866452033}
   distanceToAttack: 4
@@ -866,6 +867,10 @@ MonoBehaviour:
   animator: {fileID: 4239060041271513867}
   mustPatrol: 0
   distanceToReturn: 3
+  damageString: Damage
+  dieString: Die
+  animState: AnimState
+  attackString: Attack
 --- !u!1 &4239060041286037318
 GameObject:
   m_ObjectHideFlags: 0

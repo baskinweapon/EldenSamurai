@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -31,18 +32,20 @@ public class HealthBar : MonoBehaviour {
     }
     
     private Coroutine fadeCoroutine;
-    public void Fade(float value) {
+
+    private void Fade(float value) {
         if (fadeCoroutine != null) return;
         fadeCoroutine = StartCoroutine(FadeProcess());
     }
     
     IEnumerator FadeProcess() {
-        while (sliderBar.value != health.GetCurrentHealth()) {
+        while (Math.Abs(sliderBar.value - health.GetCurrentHealth()) > 0.001f) {
             sliderBar.value = Mathf.Lerp(sliderBar.value, health.GetCurrentHealth(), Time.deltaTime * speed);
             fill.color = gradient.Evaluate(sliderBar.value / sliderBar.maxValue);
             yield return null;
         }
 
+        sliderBar.value = health.GetCurrentHealth();
         fadeCoroutine = null;
     }
 

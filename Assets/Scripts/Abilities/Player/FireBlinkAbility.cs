@@ -10,7 +10,7 @@ namespace Abilities {
         
         private PlayEffects _playEffects;
         
-        public override BaseDamager Initiliaze(GameObject obj, Transform parent) {
+        public override Damager Initiliaze(GameObject obj, Transform parent) {
             var inst = Instantiate(obj, parent);
             _playEffects = inst.GetComponent<PlayEffects>();
             _playEffects.Stop();
@@ -18,7 +18,7 @@ namespace Abilities {
             return null;
         }
 
-        public override void TriggerAbility(BaseDamager _damager = null) {
+        public override void TriggerAbility(Damager _damager = null) {
             var tr = _playEffects.transform;
             var prevParent = tr.parent;
 

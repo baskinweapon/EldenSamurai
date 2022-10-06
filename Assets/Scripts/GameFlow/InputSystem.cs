@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class InputSystem : Singleton<InputSystem> {
-    public EldenSamurai playerInput;
+    private EldenSamurai playerInput;
 
     public static Action OnJump;
     public static Action OnInteraction;

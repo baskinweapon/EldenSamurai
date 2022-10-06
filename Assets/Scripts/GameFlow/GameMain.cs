@@ -1,7 +1,3 @@
-
-using System;
-using UnityEngine;
-
 public class GameMain : Singleton<GameMain> {
     public SettingsAsset settingsAsset;
     public InteractionAsset interactionAsset;
@@ -18,7 +14,7 @@ public class GameMain : Singleton<GameMain> {
         Player.instance.health.OnDeath.AddListener(FinishGame);
     }
 
-    public void FinishGame() {
+    private void FinishGame() {
         SceneController.instance.LoadScene(sceneId);
         Player.instance.ResetPlayer();
     }

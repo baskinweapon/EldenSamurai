@@ -12,7 +12,7 @@ public class Menu : MonoBehaviour {
         InputSystem.instance.MenuPressed();
     }
 
-    public void Pause(bool _state) {
+    private void Pause(bool _state) {
         menuPanel.gameObject.SetActive(_state);
     }
 

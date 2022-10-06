@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
@@ -19,27 +20,34 @@ public class Expirience : MonoBehaviour {
     public UnityEvent<int> OnLevelUp;
     
     public float GetCurrentExpirience() => curExpirience;
+    public float GetCurrentExpProcent() => Mathf.InverseLerp(0, needExpToLevel, curExpirience);
     public float GetCurrentLevel() => currentLevel;
     public float GetNeddedExpirience() => needExpToLevel;
 
+
+    private float ostExp;
     public void ExirienceUp(float value) {
-        if (curExpirience + value >= needExpToLevel) {
-            var ost = curExpirience + value - needExpToLevel;
+        curExpirience += value;
+        if (curExpirience >= needExpToLevel) {
+            ostExp = needExpToLevel - curExpirience;
             LevelUp();
-            curExpirience = ost;
         } else {
-            curExpirience += value;
             OnUpExpirence?.Invoke(value);
         }
     }
 
     public void LevelUp() {
         currentLevel++;
-        curExpirience = 0;
-        
+
+        StartCoroutine(CalcExp());
         //up needed next lvl exp
         needExpToLevel += multiplyExp;
         OnLevelUp?.Invoke(currentLevel);
+    }
+
+    IEnumerator CalcExp() {
+        yield return new WaitForSeconds(1f);
+        curExpirience = ostExp;
     }
 }
 
@@ -52,11 +60,11 @@ public class ExpirienceEditor : Editor {
 
         EditorGUILayout.BeginHorizontal();
         if (GUILayout.Button("Up 100 xp")) {
-            me.ExirienceUp(100f);
+            if (me != null) me.ExirienceUp(100f);
         }
 
         if (GUILayout.Button("Level Up")) {
-            me.LevelUp();
+            if (me != null) me.LevelUp();
         }
         
         EditorGUILayout.EndHorizontal();

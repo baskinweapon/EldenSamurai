@@ -29,7 +29,7 @@ namespace Abilities {
         // for chose button position on UI, only Player
         public AbilityButton buttonPosition;
         
-        public abstract BaseDamager Initiliaze(GameObject obj, Transform parent);
-        public abstract void TriggerAbility(BaseDamager _damager = null);
+        public abstract Damager Initiliaze(GameObject obj, Transform parent);
+        public abstract void TriggerAbility(Damager _damager = null);
     }
 }

@@ -26,7 +26,7 @@ namespace Abilities.Enemies {
         private float nextReadyTime;
         private float coolDownTimeLeft;
 
-        private BaseDamager damager;
+        private Damager damager;
         private ICastAbility castAbility;
 
         private void OnEnable() {

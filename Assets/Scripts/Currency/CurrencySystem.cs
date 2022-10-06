@@ -47,11 +47,11 @@ public class CurrencySystemEditor : Editor {
 
         EditorGUILayout.BeginHorizontal();
         if (GUILayout.Button("Add Money")) {
-            me.AddMoney(10);
+            if (me != null) me.AddMoney(10);
         }
 
         if (GUILayout.Button("Spend Money")) {
-            me.TrySpendMoney(10);
+            if (me != null) me.TrySpendMoney(10);
         }
         
         EditorGUILayout.EndHorizontal();

@@ -16,8 +16,8 @@ namespace VFX {
                 col.size = Vector2.Lerp(col.size, maxSizeCol, Time.deltaTime * speedColSize);
             }
         }
-        
-        public override void Stop() {
+
+        protected override void Stop() {
             base.Stop();
             col.offset = Vector2.zero;
             col.size = Vector2.zero;

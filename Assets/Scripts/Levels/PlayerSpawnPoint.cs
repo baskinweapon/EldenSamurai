@@ -19,7 +19,7 @@ public class PlayerSpawnPointEditor : Editor {
         base.OnInspectorGUI();
         
         if (GUILayout.Button("Teleport")) {
-            me.TeleportToSpawnPoint();
+            if (me != null) me.TeleportToSpawnPoint();
         }
     }
 }

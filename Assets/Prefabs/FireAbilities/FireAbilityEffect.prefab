@@ -125,7 +125,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vfx: {fileID: 6041993467064713545}
-  damager: {fileID: 9086875093513521314}
 --- !u!1 &9208733845428545648
 GameObject:
   m_ObjectHideFlags: 0
@@ -136,7 +135,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6723133140692425740}
   - component: {fileID: 3999086755031140743}
-  - component: {fileID: 9086875093513521314}
+  - component: {fileID: 5119218997436889437}
   m_Layer: 10
   m_Name: FireAbilityEffect
   m_TagString: Untagged
@@ -185,7 +184,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.8872716, y: 0.9014359}
   m_EdgeRadius: 0
---- !u!114 &9086875093513521314
+--- !u!114 &5119218997436889437
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -194,9 +193,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 9208733845428545648}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc4f2880c2df460b92a6638dbfbdf299, type: 3}
+  m_Script: {fileID: 11500000, guid: 88aae687c56f42728b14d39ae2380897, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  permanent: 0
-  damageValue: 100
+  OnDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnTriggered:
+    m_PersistentCalls:
+      m_Calls: []
+  damageValue: 10
   duration: 1

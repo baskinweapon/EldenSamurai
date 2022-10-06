@@ -1,8 +1,6 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEditor;
-using UnityEditor.ShortcutManagement;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -23,7 +21,9 @@ public class Mana : MonoBehaviour
     public Action OnChangeMaxMana;
     
     public float GetCurrentMana() => curMana;
+    public float GetCurrentManaPercant() => Mathf.InverseLerp(0, maxMana, curMana);
     public float GetMaxMana() => maxMana;
+    public float GetPersistantValue() => persistantRestValue;
 
     public bool SpendMana(float value) {
         if (curMana - value < 0) {
@@ -45,7 +45,7 @@ public class Mana : MonoBehaviour
     IEnumerator PersistandRest() {
         while (curMana <= maxMana) {
             yield return new WaitForSeconds(1f);
-            curMana += persistantRestValue;
+            curMana = Mathf.Clamp(curMana + persistantRestValue, 0, maxMana);
             OnRest?.Invoke(persistantRestValue);
         }
     }
@@ -67,11 +67,11 @@ public class ManaEditor : Editor {
 
         EditorGUILayout.BeginHorizontal();
         if (GUILayout.Button("Spend")) {
-            me.SpendMana(10f);
+            if (me != null) me.SpendMana(10f);
         }
 
         if (GUILayout.Button("Rest")) {
-            me.RestMana(10f);
+            if (me != null) me.RestMana(10f);
         }
         
 
@@ -80,7 +80,7 @@ public class ManaEditor : Editor {
         EditorGUILayout.Space();
         
         if (GUILayout.Button("Up max Health")) {
-            me.ChangeMaxMana(100f);
+            if (me != null) me.ChangeMaxMana(100f);
         }
     }
 }

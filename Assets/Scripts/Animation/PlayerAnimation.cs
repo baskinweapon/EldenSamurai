@@ -1,5 +1,7 @@
+using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
 
+[SuppressMessage("ReSharper", "UnusedMember.Local")]
 public class PlayerAnimation : MonoBehaviour
 {
     //For animation

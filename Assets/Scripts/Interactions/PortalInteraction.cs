@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class PortalInteraction : Interaction {
     public int scene_id;
     

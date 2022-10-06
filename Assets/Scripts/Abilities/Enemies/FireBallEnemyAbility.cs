@@ -7,9 +7,9 @@ namespace Abilities {
     public class FireBallEnemyAbility : Ability {
         public GameObject prefab;
         
-        public override BaseDamager Initiliaze(GameObject obj, Transform parent) {
+        public override Damager Initiliaze(GameObject obj, Transform parent) {
             var inst = Instantiate(obj, parent);
-            var _damager = inst.GetComponent<Fireball>().damager.GetComponent<BaseDamager>();
+            var _damager = inst.GetComponent<BalisticProjectile>().damager.GetComponent<Damager>();
             _damager.damageValue = damage;
             _damager.duration = duration;
             _damager.gameObject.SetActive(false);
@@ -17,8 +17,8 @@ namespace Abilities {
             return _damager;
         }
         
-        public override void TriggerAbility(BaseDamager _damager = null) {
-            if (_damager != null) _damager.GetComponentInParent<Fireball>().StartCast(duration);
+        public override void TriggerAbility(Damager _damager = null) {
+            if (_damager != null) _damager.GetComponentInParent<BalisticProjectile>().StartCast(duration);
         }
     }
 }
