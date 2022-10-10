@@ -2,11 +2,11 @@ using System;
 using Architecture.Interfaces;
 using Pathfinding;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class EnemyAI : MonoBehaviour, ICastAbility {
     public Transform lookTransform;
-    public SpriteRenderer enemyGFX;
-
+    
     public Transform fallChecker;
     private Transform target;
     
@@ -25,6 +25,8 @@ public class EnemyAI : MonoBehaviour, ICastAbility {
     public bool followEnable = true;
     public bool jumpEnable = true;
     public bool directionLookEnabled = true;
+
+    public PlayableDirector playableDirector;
     
     private Path path;
     private int currentWapoint;
@@ -42,12 +44,6 @@ public class EnemyAI : MonoBehaviour, ICastAbility {
     public Action OnFindTarget;
     public Action OnLostTarget;
     public Action OnAttack;
-
-    [Header("Patrol")]
-    public bool mustPatrol;
-    public float distanceToReturn = 3f;
-
-    private Vector3 spawnedPosition;
     
     private void Start() {
         // Set Anim To Hash
@@ -58,8 +54,9 @@ public class EnemyAI : MonoBehaviour, ICastAbility {
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<Collider2D>();
         owner = GetComponentInParent<Owner>();
-
-        spawnedPosition = rb.position;
+        
+        attackTime = (float)playableDirector.duration;
+        
         InvokeRepeating(nameof(UpdatePath), 0, .5f);
     }
 
@@ -92,7 +89,6 @@ public class EnemyAI : MonoBehaviour, ICastAbility {
     }
 
     private void AttackAnim() {
-        Debug.Log("Attack");
         animator.SetTrigger(AttackString);
     }
     
@@ -112,9 +108,9 @@ public class EnemyAI : MonoBehaviour, ICastAbility {
     void UpdatePath() {
         if (followEnable && TargetInDistance() && seeker.IsDone())
             seeker.StartPath(rb.position, target.position, OnPathComplete);
-        else if (mustPatrol && Vector2.Distance(rb.position, spawnedPosition) >= distanceToReturn && seeker.IsDone()) {
-            seeker.StartPath(rb.position, spawnedPosition, OnPathComplete);
-        }
+        // else if (mustPatrol && Vector2.Distance(rb.position, spawnedPosition) >= distanceToReturn && seeker.IsDone()) {
+        //     seeker.StartPath(rb.position, spawnedPosition, OnPathComplete);
+        // }
     }
 
     void OnPathComplete(Path p) {
@@ -127,7 +123,6 @@ public class EnemyAI : MonoBehaviour, ICastAbility {
     private void FixedUpdate() {
         if (isCasting) {
             rb.velocity = new Vector2(0f, 0f);
-            StateAnim(0);
             return;
         }
         
@@ -136,11 +131,10 @@ public class EnemyAI : MonoBehaviour, ICastAbility {
         
         if (TargetInDistance() && followEnable) {
             PathFollow();
-        } else if (mustPatrol) {
-            PathFollow();
-        }
+        } 
     }
-    
+
+    private float attackTime;
     void PathFollow() {
         if (path == null) return;
         if (currentWapoint >= path.vectorPath.Count) return;
@@ -148,15 +142,23 @@ public class EnemyAI : MonoBehaviour, ICastAbility {
         isGrounded = IsGrounded();
         isGroundedNextWayport = IsGroundedNextWayport();
 
-        if (!isGrounded) return;
+        // if (!isGrounded) return;
+
+        if (isAttack) {
+            attackTime -= Time.deltaTime;
+            if (attackTime < 0) {
+                attackTime = (float)playableDirector.duration;
+                isAttack = false;
+            }
+            return;
+        }
+        
         SetDirection();
-        
-        
-        if (Vector2.Distance(rb.position, target.position) < distanceToAttack && !isAttack) {
+        if (Vector2.Distance(rb.position, target.position) < distanceToAttack) {
             Attack();
             return;
-        } 
-        
+        }
+
         Vector2 direction = ((Vector2)path.vectorPath[currentWapoint] - rb.position).normalized;
         Vector2 force = speed * Time.deltaTime * direction;
         force.y = 0f;
@@ -182,9 +184,11 @@ public class EnemyAI : MonoBehaviour, ICastAbility {
 
     private bool isAttack;
     private void Attack() {
+        rb.velocity = Vector2.zero;
+        playableDirector.Play();
         isAttack = true;
-        AttackAnim();
-        OnAttack?.Invoke();
+        // AttackAnim();
+        // OnAttack?.Invoke();
     }
 
     private void SetDirection() {

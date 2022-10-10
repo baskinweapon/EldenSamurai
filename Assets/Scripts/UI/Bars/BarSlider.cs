@@ -33,15 +33,10 @@ public class BarSlider : MonoBehaviour {
         var end = currentValuePercent;
         var dist = end - sliderValue;
         if (Mathf.Abs(dist) >= 0.001f) {
-            if (dist < 0) {
-                sliderValue = Mathf.Lerp(mat.GetFloat(_HealthStr), end, Time.deltaTime * speed);
-            } else {
-                sliderValue = Mathf.Lerp(mat.GetFloat(_HealthStr), end, Time.deltaTime * speed);
-            }
-
-            if (dist <= 0.01f) {
-                sliderValue = end;
-            }
+            sliderValue = Mathf.Lerp(mat.GetFloat(_HealthStr), end, Time.deltaTime * speed);
+            
+            if (dist <= 0.01f) sliderValue = end;
+            
             mat.SetFloat(_HealthStr, sliderValue);
             SetText(sliderValue * maxValue);
         }

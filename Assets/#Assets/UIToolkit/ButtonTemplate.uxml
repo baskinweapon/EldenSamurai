@@ -1,0 +1,7 @@
+<UXML xmlns="UnityEngine.UIElements">
+    <!-- Creates the button. -->
+    <VisualElement class="quicktool-button unity-button">
+        <!-- Adds a VisualElement child (corresponding to the button's icon). -->
+        <VisualElement class="quicktool-button-icon"/>
+    </VisualElement>
+</UXML>

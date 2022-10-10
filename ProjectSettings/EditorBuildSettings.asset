@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/Scenes/TestScene.unity
     guid: d66c5d3ffca9e42ef9c54e1ff32e2d7c
   - enabled: 1
+    path: Assets/Scenes/TestScene/EnemyTestScene.unity
+    guid: afa1281d2bc074dd0a90e7bb1ffa561f
+  - enabled: 1
     path: Assets/Scenes/DeathScene.unity
     guid: 946e4662e665b44e8add5b461a6da89b
   m_configObjects:

@@ -1,0 +1,21 @@
+.menu-button {
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    transition-duration: 0.3s;
+    font-size: 10px;
+    opacity: 0.5;
+    -unity-text-align: middle-center;
+}
+
+.menu-button:hover {
+    border-left-width: 2px;
+    border-right-width: 2px;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
+    rotate: 0;
+    transition-duration: 0.2s;
+    opacity: 1;
+    transition-timing-function: ease-in-bounce;
+}

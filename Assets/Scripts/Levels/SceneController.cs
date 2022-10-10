@@ -6,7 +6,8 @@ public enum Scenes {
     MAIN,
     HELL,
     TEAHOUSE,
-    TEST
+    TEST,
+    ANOUNIMUS
 }
 
 public class SceneController : Singleton<SceneController> {
