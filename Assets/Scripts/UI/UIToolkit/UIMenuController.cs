@@ -1,11 +1,9 @@
-using System;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace UI.UIToolkit {
     public class UIMenuController : MonoBehaviour {
         private UIDocument doc;
-        
         
         private Button menuButton;
         private VisualElement elem;
