@@ -23,7 +23,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 200}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 45397
+  controlID: 50340
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -85,7 +85,7 @@ MonoBehaviour:
     m_VAllowExceedBaseRangeMax: 1
     m_ScaleWithWindow: 0
     m_HSlider: 0
-    m_VSlider: 0
+    m_VSlider: 1
     m_IgnoreScrollWheelUntilClicked: 0
     m_EnableMouseInput: 1
     m_EnableSliderZoomHorizontal: 0
@@ -142,7 +142,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 200}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 1
-  controlID: 45398
+  controlID: 50341
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -169,7 +169,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 100}
   m_MaxSize: {x: 32384, y: 8096}
   vertical: 0
-  controlID: 45080
+  controlID: 50451
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -229,7 +229,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: f424f9ff124af9ff0856f9ffaedcfbff08ddfbfff2dffbffa4effbff943dfcff984bfcff7c58fcffdc64fcffde71fcffa481fcff88e3fcff7a8bfdff42a8fdff8ab2fdffa695feff0204ffffa2b5fffffefaffff08fbfffff4ffffff4e7e0000bed00000f8d000005ed100005c38010072380100443c0100523c01005a3c0100723c0100727a01008a7a010080910100a2950100aa990100b29d0100baa10100aaa50100c2a5010024ae01003cae0100
+      m_ExpandedIDs: f424f9ff124af9ff0856f9ffaedcfbff08ddfbfff2dffbffa4effbff943dfcff984bfcff7c58fcffdc64fcffde71fcffa481fcff88e3fcff7a8bfdff42a8fdff8ab2fdffa695feff58b4feff30bafeff0204ffffa2b5fffffefaffff08fbfffff4ffffff4e7e0000bed00000f8d000005ed100005c38010072380100443c0100523c01005a3c0100723c0100727a01008a7a010080910100a2950100aa990100b29d0100baa10100aaa50100c2a5010024ae01003cae0100
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -272,8 +272,8 @@ MonoBehaviour:
     y: 0
     width: 561
     height: 639.5
-  m_MinSize: {x: 202, y: 221}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 8}
   m_Panes:
   - {fileID: 8}
@@ -560,9 +560,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -0.45621008, y: 0.6671887, z: -0.023261439}
+    m_Target: {x: -0.9211781, y: 1.2465844, z: -0.018569393}
     speed: 2
-    m_Value: {x: -0.45621008, y: 0.6671887, z: -0.023261439}
+    m_Value: {x: -0.9211781, y: 1.2465844, z: -0.018569393}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -613,9 +613,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 2.6983302
+    m_Target: 2.314549
     speed: 2
-    m_Value: 2.6983302
+    m_Value: 2.314549
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -2345,8 +2345,8 @@ MonoBehaviour:
     y: 0
     width: 636.5
     height: 639.5
-  m_MinSize: {x: 102, y: 121}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 100, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 12}
   m_Panes:
   - {fileID: 11}
@@ -2717,7 +2717,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 45399
+  controlID: 50342
 --- !u!114 &17
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -2728,7 +2728,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: ProjectBrowser
+  m_Name: ConsoleWindow
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -2737,14 +2737,14 @@ MonoBehaviour:
     y: 0
     width: 892.5
     height: 390.5
-  m_MinSize: {x: 231, y: 271}
-  m_MaxSize: {x: 10001, y: 10021}
-  m_ActualView: {fileID: 18}
+  m_MinSize: {x: 101, y: 121}
+  m_MaxSize: {x: 4001, y: 4021}
+  m_ActualView: {fileID: 19}
   m_Panes:
   - {fileID: 18}
   - {fileID: 19}
-  m_Selected: 0
-  m_LastSelected: 1
+  m_Selected: 1
+  m_LastSelected: 0
 --- !u!114 &18
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -2786,22 +2786,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefabs/Environment/Treasures
+    - Assets/Scripts/Environment/Treasures
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 86
   m_LastFolders:
-  - Assets/Prefabs/Environment/Treasures
+  - Assets/Scripts/Environment/Treasures
   m_LastFoldersGridSize: 86
   m_LastProjectPath: /Users/aleksandrbaskin/Documents/Unity/UnityProjects/EldenSamurai
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 85.99963}
-    m_SelectedIDs: 40890000
-    m_LastClickedID: 35136
-    m_ExpandedIDs: 000000008a8000008c8000008e8000009080000092800000948000009680000098800000388c0000aa8e000096930000349e0000daaa000000ca9a3b
+    scrollPos: {x: 0, y: 466.5}
+    m_SelectedIDs: 0efb0100
+    m_LastClickedID: 129806
+    m_ExpandedIDs: 000000008a8000008c8000008e8000009080000092800000948000009680000098800000daaa000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -2854,9 +2854,9 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 
-    m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 1
+    m_SelectedInstanceIDs: 0856f9ff
+    m_LastClickedInstanceID: -436728
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c62300006a9f0000e0cb0000c8cb000068df0000d4df00009c740000bc71000078f70000c27100001caf00002e7d0000369d05003c9d0500429d0500309d0500ca9f0500d09f0500847e00006e940000709f00008ede0000d87b0000a6370000c87a0000427c0000847d00002cdd08008e120200bc8a0500c4b8000024160a00180201002e5e0100668f00000000000064a60100
     m_RenameOverlay:
       m_UserAcceptedRename: 0
