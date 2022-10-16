@@ -15,7 +15,7 @@ public class BaseTreasure : MonoBehaviour {
     }
 
     IEnumerator WaitDisactivated() {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.4f);
         
         gameObject.SetActive(false);
     }
