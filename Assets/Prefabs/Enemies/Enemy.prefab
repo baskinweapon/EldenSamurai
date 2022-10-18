@@ -28,8 +28,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4239060041271513866}
-  m_RootOrder: 4
+  m_Father: {fileID: 8255887212304119934}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4239060040130435868
 GameObject:
@@ -411,7 +411,6 @@ Transform:
   - {fileID: 4239060040413842594}
   - {fileID: 4239060041524431830}
   - {fileID: 4239060040528800597}
-  - {fileID: 6832554965866452033}
   m_Father: {fileID: 4239060040130435865}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -497,7 +496,7 @@ MonoBehaviour:
   distanceToAttack: 4
   activateDistance: 7
   speed: 10
-  nextWaypointDistance: 0.5
+  nextWaypointDistance: 0.3
   jumpNodeHeightRequirement: 0.5
   jumpModifier: 0.5
   jumpCheckOffset: 0.1
@@ -565,7 +564,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 6832554965866452033}
   m_Father: {fileID: 4239060041271513866}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

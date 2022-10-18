@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Architecture.Interfaces;
 using Pathfinding;
 using UnityEngine;
@@ -55,8 +56,6 @@ public class EnemyAI : MonoBehaviour, ICastAbility {
         col = GetComponent<Collider2D>();
         owner = GetComponentInParent<Owner>();
         
-        attackTime = (float)playableDirector.duration;
-        
         InvokeRepeating(nameof(UpdatePath), 0, .5f);
     }
 
@@ -108,9 +107,6 @@ public class EnemyAI : MonoBehaviour, ICastAbility {
     void UpdatePath() {
         if (followEnable && TargetInDistance() && seeker.IsDone())
             seeker.StartPath(rb.position, target.position, OnPathComplete);
-        // else if (mustPatrol && Vector2.Distance(rb.position, spawnedPosition) >= distanceToReturn && seeker.IsDone()) {
-        //     seeker.StartPath(rb.position, spawnedPosition, OnPathComplete);
-        // }
     }
 
     void OnPathComplete(Path p) {
@@ -120,90 +116,105 @@ public class EnemyAI : MonoBehaviour, ICastAbility {
         }
     }
 
-    private void FixedUpdate() {
-        if (isCasting) {
-            rb.velocity = new Vector2(0f, 0f);
-            return;
-        }
-        
-        //anim
-        StateAnim(rb.velocity.x != 0 ? 1 : 0);
-        
-        if (TargetInDistance() && followEnable) {
-            PathFollow();
-        } 
+    enum Stage {
+        sleep,
+        patrol,
+        casting,
+        findPath,
+        jump,
+        attack,
     }
 
-    private float attackTime;
-    void PathFollow() {
-        if (path == null) return;
-        if (currentWapoint >= path.vectorPath.Count) return;
-        
+    private Stage s = Stage.sleep;
+    private Vector2 force;
+    private void FixedUpdate() {
         isGrounded = IsGrounded();
         isGroundedNextWayport = IsGroundedNextWayport();
-
-        // if (!isGrounded) return;
-
-        if (isAttack) {
-            attackTime -= Time.deltaTime;
-            if (attackTime < 0) {
-                attackTime = (float)playableDirector.duration;
-                isAttack = false;
-            }
-            return;
-        }
         
-        SetDirection();
-        if (Vector2.Distance(rb.position, target.position) < distanceToAttack) {
-            Attack();
-            return;
-        }
-
-        Vector2 direction = ((Vector2)path.vectorPath[currentWapoint] - rb.position).normalized;
-        Vector2 force = speed * Time.deltaTime * direction;
-        force.y = 0f;
+        //anim
+        // StateAnim(rb.velocity.x != 0 ? 1 : 0);
         
-        //Jump
-        if (jumpEnable && isGrounded) {
-            if (direction.y > jumpNodeHeightRequirement) 
-                rb.velocity += speed * jumpModifier * Vector2.up;
+        force = Vector2.zero;
+        switch (s) {
+            case Stage.sleep:
+                Debug.Log("Sleep stage");
+                s = Stage.findPath;
+                break;
+            case Stage.patrol:
+                Debug.Log("Patrol stage");
+                if (TargetInDistance() && followEnable)
+                    s = Stage.findPath;
+                break;
+            case Stage.casting:
+                Debug.Log("Casting stage");
+                break;
+            case Stage.findPath:
+                Debug.Log("Find Path stage");
+                PathFollow();
+                break;
+            case Stage.attack:
+                Debug.Log("Attack stage");
+                break;
+            case Stage.jump:
+                Debug.Log("Jump stage");
+                break;
         }
 
-        if (isGrounded)
-            rb.velocity += force;
-
-        if (!isGroundedNextWayport) {
-            rb.velocity = new Vector2(0f, rb.velocity.y);
+        if (isGrounded) {
+            Debug.DrawRay(rb.position, rb.position + force);
+            rb.AddForce(force);
         }
-        
+    }
+    
+    private void LateUpdate() {
+        if (path == null) return;
+        if (currentWapoint >= path.vectorPath.Count) return;
         float distance = Vector2.Distance(rb.position, path.vectorPath[currentWapoint]);
         if (distance < nextWaypointDistance) {
             currentWapoint++;
         }
     }
+    
+    void PathFollow() {
+        if (path == null) return;
+        if (currentWapoint >= path.vectorPath.Count) return;
+        
+        if (Vector2.Distance(rb.position, target.position) < distanceToAttack) {
+            Attack();
+            s = Stage.attack;
+        }
+        
+        SetLookSide();
+        
+        Vector2 direction = ((Vector2)path.vectorPath[currentWapoint] - rb.position).normalized;
 
-    private bool isAttack;
+        
+        force = speed * direction;
+        
+        if (jumpEnable && isGrounded) {
+            if (direction.y > jumpNodeHeightRequirement) {
+                force += speed * jumpModifier * Vector2.up;
+            }
+        }
+    }
+    
     private void Attack() {
-        rb.velocity = Vector2.zero;
         playableDirector.Play();
-        isAttack = true;
-        // AttackAnim();
-        // OnAttack?.Invoke();
+        StartCoroutine(AttackCoroutine());
     }
 
-    private void SetDirection() {
+    IEnumerator AttackCoroutine() {
+        yield return new WaitForSeconds((float)playableDirector.duration);
+        s = Stage.patrol;
+    }
+
+    private void SetLookSide() {
         if (!directionLookEnabled) return;
-        if (rb.velocity.x >= 0.01f || Player.instance.bodyTransform.position.x > rb.position.x) {
-            lookTransform.localScale = new Vector3(
-                1f,
-                lookTransform.localScale.y,
-                lookTransform.localScale.z);
-        } else if (rb.velocity.x <= -0.01f || Player.instance.bodyTransform.position.x < rb.position.x) {
-            lookTransform.localScale = new Vector3(
-                -1f,
-                lookTransform.localScale.y,
-                lookTransform.localScale.z);
-        }
+        var distanceToPlayer = Player.instance.bodyTransform.position.x > rb.position.x;
+        if (rb.velocity.x >= 0.01f || distanceToPlayer)
+            lookTransform.ChangeScale(x: 1f);
+        if (rb.velocity.x <= -0.01f || !distanceToPlayer)
+            lookTransform.ChangeScale(x: -1f);
     }
 
     private void OnDestroy() {
@@ -211,7 +222,7 @@ public class EnemyAI : MonoBehaviour, ICastAbility {
     }
     
     bool TargetInDistance() {
-        return Vector2.Distance(transform.position, target.transform.position) < activateDistance;
+        return Vector2.Distance(rb.position, target.transform.position) < activateDistance;
     }
 
     bool IsGrounded() {
@@ -220,7 +231,8 @@ public class EnemyAI : MonoBehaviour, ICastAbility {
     }
 
     bool IsGroundedNextWayport() {
-        fallChecker.localPosition = lookTransform.localScale.x < 0 ? new Vector3(-1, -1f, 0f) : new Vector3(1, -1f, 0f);
+        var rayColor = Color.yellow;
+        Debug.DrawRay(fallChecker.position, Vector2.down, rayColor);
         return Physics2D.Raycast(fallChecker.position, Vector2.down, 0.5f, LayerMask.GetMask("Obstacle"));
     }
 
@@ -228,17 +240,17 @@ public class EnemyAI : MonoBehaviour, ICastAbility {
     private void OnDrawGizmos() {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, activateDistance);
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawWireSphere(transform.position, distanceToAttack);
     }
     
 #endif
-   
-
-    private bool isCasting;
+    
     public void StartCasting() {
-        isCasting = true;
+        s = Stage.casting;
     }
 
     public void EndCasting() {
-        isCasting = false;
+        s = Stage.patrol;
     }
 }
