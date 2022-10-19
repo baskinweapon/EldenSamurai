@@ -306,17 +306,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &120705691 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3064403374756844531, guid: d802c6296442840268bf5e254e301122, type: 3}
-  m_PrefabInstance: {fileID: 3064403374873117032}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a93161e91b2c4e338cacf94422be36d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &122953725
 GameObject:
   m_ObjectHideFlags: 3
@@ -4591,6 +4580,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Clouds
       objectReference: {fileID: 0}
+    - target: {fileID: 1412741901060385571, guid: 87e435ad41ea94276b02112856d61ee4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1412741901060385572, guid: 87e435ad41ea94276b02112856d61ee4, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -4644,6 +4637,38 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1530782142}
     m_Modifications:
+    - target: {fileID: 2956803726753795093, guid: 15614de5ac91e4acfba6a21c38c3e75d, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2956803726753795093, guid: 15614de5ac91e4acfba6a21c38c3e75d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2956803726753795093, guid: 15614de5ac91e4acfba6a21c38c3e75d, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2956803726753795093, guid: 15614de5ac91e4acfba6a21c38c3e75d, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2956803726753795093, guid: 15614de5ac91e4acfba6a21c38c3e75d, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2956803726753795093, guid: 15614de5ac91e4acfba6a21c38c3e75d, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2956803726753795093, guid: 15614de5ac91e4acfba6a21c38c3e75d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2956803726753795093, guid: 15614de5ac91e4acfba6a21c38c3e75d, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6691940433296123634, guid: 15614de5ac91e4acfba6a21c38c3e75d, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -4679,18 +4704,6 @@ PrefabInstance:
     - target: {fileID: 6691940433296123634, guid: 15614de5ac91e4acfba6a21c38c3e75d, type: 3}
       propertyPath: m_SizeDelta.y
       value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 6691940433296123634, guid: 15614de5ac91e4acfba6a21c38c3e75d, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6691940433296123634, guid: 15614de5ac91e4acfba6a21c38c3e75d, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6691940433296123634, guid: 15614de5ac91e4acfba6a21c38c3e75d, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6691940433296123634, guid: 15614de5ac91e4acfba6a21c38c3e75d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4744,10 +4757,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: HealthBar
       objectReference: {fileID: 0}
-    - target: {fileID: 8673476557629617329, guid: 15614de5ac91e4acfba6a21c38c3e75d, type: 3}
-      propertyPath: health
-      value: 
-      objectReference: {fileID: 120705691}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15614de5ac91e4acfba6a21c38c3e75d, type: 3}
 --- !u!1001 &3064403374873117032
