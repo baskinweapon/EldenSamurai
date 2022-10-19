@@ -83,8 +83,11 @@ public class EnemyAI : MonoBehaviour, ICastAbility {
         AttackString = Animator.StringToHash(attackString);
     }
 
+    private int _prevState;
     private void StateAnim(int _state) {
+        if (_state == _prevState) return;
         animator.SetInteger(AnimState, _state);
+        _prevState = _state;
     }
 
     private void AttackAnim() {
@@ -131,9 +134,6 @@ public class EnemyAI : MonoBehaviour, ICastAbility {
         isGrounded = IsGrounded();
         isGroundedNextWayport = IsGroundedNextWayport();
         
-        //anim
-        // StateAnim(rb.velocity.x != 0 ? 1 : 0);
-        
         force = Vector2.zero;
         switch (s) {
             case Stage.sleep:
@@ -161,9 +161,13 @@ public class EnemyAI : MonoBehaviour, ICastAbility {
         }
 
         if (isGrounded) {
-            Debug.DrawRay(rb.position, rb.position + force);
+            Debug.DrawRay(rb.position, rb.position + force.normalized);
             rb.AddForce(force);
         }
+        
+        
+        //anim
+        StateAnim(rb.velocity.x != 0 ? 1 : 0);
     }
     
     private void LateUpdate() {
@@ -187,7 +191,6 @@ public class EnemyAI : MonoBehaviour, ICastAbility {
         SetLookSide();
         
         Vector2 direction = ((Vector2)path.vectorPath[currentWapoint] - rb.position).normalized;
-
         
         force = speed * direction;
         

@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.VFX;
 
@@ -11,8 +12,7 @@ public class BalisticProjectile : MonoBehaviour {
     public GameObject damager;
     public Rigidbody2D rb;
     
-    
-    private float speed;
+    public float speed;
     private Vector3 startPos;
     
     private void Awake() {
@@ -24,16 +24,16 @@ public class BalisticProjectile : MonoBehaviour {
 
     private void OnEnable() {
         transform.localPosition = startPos;
+        StartCast(3f);
     }
 
     public void StartCast(float _duration) {
         ResetObj();
         
         duration = _duration;
-        // effect.gameObject.SetActive(true);
+        damager.SetActive(true);
         
         target = Player.instance.bodyTransform.position;
-        speed = 50f;
         isCasting = true;
     }
     
@@ -42,13 +42,14 @@ public class BalisticProjectile : MonoBehaviour {
     
     private bool isCasting;
     private void FixedUpdate() {
+        Calculate();
+        return;
         if (!isCasting) return;
         if (IsGroundNearest()) {
             isCasting = false;
             StartCoroutine(SecondStage());
         }
         
-        Calculate();
     }
 
     private void Calculate() {
@@ -62,6 +63,10 @@ public class BalisticProjectile : MonoBehaviour {
         Vector3 movePosition = new Vector3(nextX, baseY + h, tr.position.z);
         tr.rotation = LookAtTarget(movePosition - tr.position);
         tr.position = movePosition;
+
+        if (Vector2.Distance(tr.position, target) <= 0.02f) {
+            
+        }
     }
 
     private bool IsGroundNearest() {
@@ -83,6 +88,7 @@ public class BalisticProjectile : MonoBehaviour {
     private float duration;
     IEnumerator SecondStage() {
         col.enabled = true;
+        rb.bodyType = RigidbodyType2D.Dynamic;
         yield return new WaitForSeconds(duration / 3);
         
         effect.SendEvent("OnExplode");
@@ -92,8 +98,6 @@ public class BalisticProjectile : MonoBehaviour {
     
     public void ResetObj() {
         StopAllCoroutines();
-        rb.velocity = Vector2.zero;
-        // effect.gameObject.SetActive(false);
         damager.SetActive(false);
         col.enabled = false;
         transform.localPosition = startPos;

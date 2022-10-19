@@ -247,6 +247,7 @@ MonoBehaviour:
   col: {fileID: 6035540421762238491}
   damager: {fileID: 6328503005681500387}
   rb: {fileID: 8239728262474085130}
+  speed: 2
 --- !u!50 &8239728262474085130
 Rigidbody2D:
   serializedVersion: 4
