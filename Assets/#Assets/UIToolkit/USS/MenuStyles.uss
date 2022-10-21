@@ -19,3 +19,7 @@
     opacity: 1;
     transition-timing-function: ease-in-bounce;
 }
+
+.cell {
+    opacity: 1;
+}

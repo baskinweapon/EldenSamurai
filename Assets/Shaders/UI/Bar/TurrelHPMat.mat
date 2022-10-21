@@ -39,10 +39,11 @@ Material:
     m_Ints: []
     m_Floats:
     - _BorderSize: 0.3
-    - _Health: 1
+    - _Health: 0
     - _QueueControl: 0
     - _QueueOffset: 0
     - _RounedRadius: 0
+    - _Speed: 2
     m_Colors: []
   m_BuildTextureStacks: []
 --- !u!114 &5360965134844618656

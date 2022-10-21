@@ -1,0 +1,10 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xmlns="UnityEngine.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/%23Assets/UIToolkit/USS/MenuStyles.uss?fileID=7433441132597879392&amp;guid=339ae89bf08a64e4ab62dc914446a79c&amp;type=3#MenuStyles" />
+    <ui:Button text="Menu" display-tooltip-when-elided="true" name="OpenMenuButton" class="menu-button" style="height: 100px; width: 100px; overflow: visible; visibility: visible; display: flex; justify-content: center; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; -unity-text-align: middle-center; white-space: nowrap;" />
+    <ui:ScrollView name="EnemyScroll" style="width: 30%; height: 60%;">
+        <ui:GroupBox name="GroupBox" class="cell" style="height: 200px; width: 100%; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; flex-direction: row; align-items: stretch; justify-content: center;">
+            <ui:VisualElement style="width: 80%; left: auto; padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px; background-color: rgba(255, 255, 255, 0.39); background-image: url(&apos;project://database/Assets/Sprites/UIGarbage/images-2.jpeg?fileID=21300000&amp;guid=1ad56c61b2ba64bb9a765ab894ae49a0&amp;type=3#images-2&apos;); -unity-background-scale-mode: scale-to-fit; height: 100%;" />
+            <ui:Button text="Button" display-tooltip-when-elided="true" style="width: 30%; height: 100%;" />
+        </ui:GroupBox>
+    </ui:ScrollView>
+</ui:UXML>

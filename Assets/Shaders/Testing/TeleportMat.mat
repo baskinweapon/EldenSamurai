@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs_TestShaderGraph
+  m_Name: TeleportMat
   m_Shader: {fileID: -6465566751694194690, guid: 74fb3af46cc4343df8cfc7b433d8f697, type: 3}
   m_ValidKeywords:
   - _SURFACE_TYPE_TRANSPARENT

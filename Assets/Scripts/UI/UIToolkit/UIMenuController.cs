@@ -12,7 +12,7 @@ namespace UI.UIToolkit {
             doc = GetComponent<UIDocument>();
 
             menuButton = doc.rootVisualElement.Q<Button>("OpenMenuButton");
-            elem = doc.rootVisualElement.Q<VisualElement>("MenuPanel");
+            elem = doc.rootVisualElement.Q<ScrollView>("EnemyScroll");
             menuButton.clicked += MenuMenuButtonClick;
         }
 
