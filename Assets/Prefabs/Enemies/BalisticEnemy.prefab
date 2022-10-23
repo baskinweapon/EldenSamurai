@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 8122622387232438446}
   - component: {fileID: 7764676649895106731}
   m_Layer: 13
-  m_Name: Enemy
+  m_Name: BalisticEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -195,7 +195,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4239060040413842594}
-  - component: {fileID: 4239060040413842595}
   m_Layer: 0
   m_Name: Abilities
   m_TagString: Untagged
@@ -211,7 +210,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4239060040413842593}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.48, y: -0.53, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -219,24 +218,6 @@ Transform:
   m_Father: {fileID: 4239060041271513866}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4239060040413842595
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4239060040413842593}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a51f0ead652b4009a4b1dc039e89ed4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemy: {fileID: 7764676649895106731}
-  castObject: {fileID: 4239060041271513865}
-  parent: {fileID: 4239060040413842594}
-  ability: {fileID: 11400000, guid: 59bc919ac6b8d4170ac3f4d2db16899b, type: 2}
-  abilityHolder: {fileID: 7506262354835907958, guid: 4a63e6fe31f444219941408d03d0e54b, type: 3}
-  abilitySource: {fileID: 4239060040528800598}
 --- !u!1 &4239060040528800596
 GameObject:
   m_ObjectHideFlags: 0
@@ -455,7 +436,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 100
-  m_LinearDrag: 0.1
+  m_LinearDrag: 5
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 6200000, guid: 8001ba1af990e475dabef6ed23922d82, type: 2}
@@ -764,11 +745,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7506262354835907955, guid: 4a63e6fe31f444219941408d03d0e54b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.76
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7506262354835907955, guid: 4a63e6fe31f444219941408d03d0e54b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.59
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7506262354835907955, guid: 4a63e6fe31f444219941408d03d0e54b, type: 3}
       propertyPath: m_LocalPosition.z

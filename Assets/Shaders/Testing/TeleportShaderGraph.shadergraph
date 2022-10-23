@@ -2693,7 +2693,7 @@
     "m_Hidden": false,
     "m_ShaderOutputName": "Sides",
     "m_StageCapability": 3,
-    "m_Value": 7.0,
+    "m_Value": 100.0,
     "m_DefaultValue": 5.0,
     "m_Labels": []
 }

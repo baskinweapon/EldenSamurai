@@ -23,8 +23,7 @@ public class BalisticProjectile : MonoBehaviour {
     }
 
     private void OnEnable() {
-        transform.localPosition = startPos;
-        StartCast(3f);
+        StartCast(2f);
     }
 
     public void StartCast(float _duration) {
@@ -42,14 +41,8 @@ public class BalisticProjectile : MonoBehaviour {
     
     private bool isCasting;
     private void FixedUpdate() {
-        Calculate();
-        return;
         if (!isCasting) return;
-        if (IsGroundNearest()) {
-            isCasting = false;
-            StartCoroutine(SecondStage());
-        }
-        
+        Calculate();
     }
 
     private void Calculate() {

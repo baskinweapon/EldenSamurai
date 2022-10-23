@@ -165,7 +165,6 @@ public class EnemyAI : MonoBehaviour, ICastAbility {
             rb.AddForce(force);
         }
         
-        
         //anim
         StateAnim(rb.velocity.x != 0 ? 1 : 0);
     }
@@ -215,9 +214,9 @@ public class EnemyAI : MonoBehaviour, ICastAbility {
         if (!directionLookEnabled) return;
         var distanceToPlayer = Player.instance.bodyTransform.position.x > rb.position.x;
         if (rb.velocity.x >= 0.01f || distanceToPlayer)
-            lookTransform.ChangeScale(x: 1f);
+            lookTransform.ChangeScale(x: Mathf.Abs(lookTransform.localScale.x));
         if (rb.velocity.x <= -0.01f || !distanceToPlayer)
-            lookTransform.ChangeScale(x: -1f);
+            lookTransform.ChangeScale(x: -Mathf.Abs(lookTransform.localScale.x));
     }
 
     private void OnDestroy() {
