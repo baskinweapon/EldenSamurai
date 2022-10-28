@@ -15,6 +15,7 @@ MonoBehaviour:
   backgroundMusic:
     clips:
     - {fileID: 8300000, guid: eb2dc5ac1b7fe4ee1afaf0ccbc73af60, type: 3}
+    - {fileID: 8300000, guid: 702b6ed22d5cd421e9d25b50d3b4dcf9, type: 3}
     - {fileID: 8300000, guid: 251024511fad64e128930a2667bd9316, type: 3}
     volume: 0.2
     pitch: 1

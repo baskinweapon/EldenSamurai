@@ -21,11 +21,13 @@ public class EnemyAI : MonoBehaviour, ICastAbility {
     public float jumpNodeHeightRequirement = 0.8f;
     public float jumpModifier = 0.3f;
     public float jumpCheckOffset = 0.1f;
-
+    
     [Header("Custom Behavior")]
     public bool followEnable = true;
     public bool jumpEnable = true;
     public bool directionLookEnabled = true;
+    public bool checkGround = true;
+    public bool flyEnemy = false;
 
     public PlayableDirector playableDirector;
     
@@ -160,7 +162,10 @@ public class EnemyAI : MonoBehaviour, ICastAbility {
                 break;
         }
 
-        if (isGrounded) {
+        if (flyEnemy) {
+            Debug.DrawRay(rb.position, rb.position + force.normalized);
+            rb.AddForce(force);
+        } else if (isGrounded) {
             Debug.DrawRay(rb.position, rb.position + force.normalized);
             rb.AddForce(force);
         }
@@ -181,17 +186,22 @@ public class EnemyAI : MonoBehaviour, ICastAbility {
     void PathFollow() {
         if (path == null) return;
         if (currentWapoint >= path.vectorPath.Count) return;
+
+        SetLookSide();
         
         if (Vector2.Distance(rb.position, target.position) < distanceToAttack) {
             Attack();
             s = Stage.attack;
+            return;
         }
-        
-        SetLookSide();
-        
+
         Vector2 direction = ((Vector2)path.vectorPath[currentWapoint] - rb.position).normalized;
         
         force = speed * direction;
+
+        if (checkGround && !isGroundedNextWayport) {
+            force = Vector2.zero;
+        }
         
         if (jumpEnable && isGrounded) {
             if (direction.y > jumpNodeHeightRequirement) {

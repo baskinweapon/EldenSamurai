@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63072e2d45474ce2bc7a00680ae1d360, type: 3}
+  m_Name: BristlebackInfo
+  m_EditorClassIdentifier: 
+  image: {fileID: 21300000, guid: 1ddd55f48ddbe4644aa3520d03d0fb75, type: 3}
+  description: have a back shield, attack bristle
+  prefab: {fileID: 8430589756996687405, guid: a75c1fb98a6094ec9b3d0d7e84719070, type: 3}

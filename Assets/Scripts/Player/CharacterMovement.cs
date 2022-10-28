@@ -63,8 +63,8 @@ public class CharacterMovement : MonoBehaviour, ICastAbility {
             animator.SetInteger(AnimState, 0);
         }
 
-        if (move > 0) spriteRenderer.flipX = true;
-        else if (move < 0) spriteRenderer.flipX = false;
+        if (move > 0) spriteRenderer.flipX = false;
+        else if (move < 0) spriteRenderer.flipX = true;
         
         Vector2 velocity = new Vector2(move * playerSpeed * Time.deltaTime, rb.velocity.y);
         rb.velocity = velocity;

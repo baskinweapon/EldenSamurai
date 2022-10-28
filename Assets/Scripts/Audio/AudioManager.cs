@@ -52,11 +52,13 @@ public class AudioManager : Singleton<AudioManager> {
     private void PlayBackgroundMusic() {
         StartCoroutine(PlayOrder());
     }
-
+    
     private const float mixTime = 50f;
+    private AudioSource currentSource;
     IEnumerator PlayOrder() {
-        var currentSource = backgroundSource;
+        currentSource = backgroundSource;
         backgroundSounds.backgroundMusic.Play(count, currentSource);
+        currentSource.time = currentSourceTime;
         count++; 
         while (true) {
             yield return new WaitForSeconds(currentSource.clip.length - mixTime);
@@ -78,7 +80,27 @@ public class AudioManager : Singleton<AudioManager> {
             currentSource = secondSource;
         }
         // ReSharper disable once IteratorNeverReturns
+        
     }
+    
+    
+    #region Effects
+
+    private float currentSourceTime;
+    public void StopEffect() {
+        StopAllCoroutines();
+        currentSourceTime = currentSource.time;
+        StartCoroutine(StopEffectCoroutine());
+
+    }
+
+    private IEnumerator StopEffectCoroutine() {
+        currentSource.Pause();
+        yield return new WaitForSeconds(5f);
+        PlayBackgroundMusic();
+    }
+
+    #endregion
 }
 
 [Serializable]

@@ -4,15 +4,8 @@ using UnityEngine;
 public class ObjectPool : MonoBehaviour {
     public GameObject objectToPool;
     public int amountToPool;
-    
-    public static ObjectPool SharedInstance;
-    
     private List<GameObject> pooledObjects;
-
-    void Awake() {
-        SharedInstance = this;
-    }
-
+    
     void Start() {
         pooledObjects = new List<GameObject>();
         GameObject tmp;
@@ -30,6 +23,10 @@ public class ObjectPool : MonoBehaviour {
                 return pooledObjects[i];
             }
         }
-        return null;
+        var tmp = Instantiate(objectToPool);
+        tmp.transform.parent = transform;
+        tmp.SetActive(false);
+        pooledObjects.Add(tmp);
+        return tmp;
     }
 }

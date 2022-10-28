@@ -9,7 +9,7 @@ public class Bullet : MonoBehaviour {
         damager.OnDamaged.AddListener(Damage);
     }
 
-    private void Damage() {
+    protected virtual void Damage() {
         gameObject.SetActive(false);
     }
 

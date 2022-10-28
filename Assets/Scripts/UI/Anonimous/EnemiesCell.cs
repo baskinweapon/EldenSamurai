@@ -19,7 +19,7 @@ namespace UI.Anonimous {
         public void Spawn() {
             if (!prefab) return;
             var obj = Instantiate(prefab);
-            obj.transform.position = Player.instance.rb.position + Vector2.left * 3;
+            obj.transform.position = Player.instance.rb.position + Vector2.one * 3;
         }
     }
 }

@@ -31,6 +31,7 @@ namespace Damage {
         
         private bool CheckOwners(Collider2D col) {
             var damager = transform.parent;
+            if (damager == null) return false;
             var owner = damager.GetComponent<Owner>();
             if (owner == null) {
                 while (owner == null) {
@@ -41,6 +42,7 @@ namespace Damage {
                 }
             }
             var victim = col.transform.parent;
+            if (victim == null) return false;
             var victimOwner = victim.GetComponent<Owner>();
             if (victimOwner != null) return owner && victimOwner && owner == victimOwner;
             while (victimOwner == null) {
