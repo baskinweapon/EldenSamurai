@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 
 public class InputSystem : Singleton<InputSystem> {
     private EldenSamurai playerInput;
@@ -15,7 +16,6 @@ public class InputSystem : Singleton<InputSystem> {
     public static Action OnThirdAbility;
     public static Action OnFourthAbility;
     
-    private Vector2 moveVector;
     protected override void Awake() {
         base.Awake();
         
@@ -25,18 +25,14 @@ public class InputSystem : Singleton<InputSystem> {
         playerInput.Player.Jump.performed += Jump;
         playerInput.Player.Interaction.performed += InteractionInput;
         playerInput.Player.Menu.performed += MenuPressed;
-
+        
         playerInput.Player.FirstAbility.performed += FirstAbilityPress;
         playerInput.Player.SecondAbility.performed += SecondAbilityPress;
         playerInput.Player.ThirdAbility.performed += ThirdAbilityPress;
         playerInput.Player.FourthAbility.performed += FourthAbilityPress;
     }
 
-    private void FixedUpdate() {
-        moveVector = playerInput.Player.Move.ReadValue<Vector2>();
-    }
-    
-#region CallbackFunctions
+    #region CallbackFunctions
 
     private void Jump(InputAction.CallbackContext ctx) {
         OnJump?.Invoke();
@@ -71,7 +67,11 @@ public class InputSystem : Singleton<InputSystem> {
 #endregion
 
     public Vector2 GetMoveVector() {
-        return moveVector;
+        return playerInput.Player.Move.ReadValue<Vector2>();;
+    }
+
+    public Vector2 GetMousePosition() {
+        return playerInput.UI.Point.ReadValue<Vector2>();
     }
         
     public bool IsJumping() {
