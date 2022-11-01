@@ -88,6 +88,7 @@ public class EnemyAI : MonoBehaviour, ICastAbility {
     private int _prevState;
     private void StateAnim(int _state) {
         if (_state == _prevState) return;
+        Debug.Log("Change state = " + _state);
         animator.SetInteger(AnimState, _state);
         _prevState = _state;
     }
