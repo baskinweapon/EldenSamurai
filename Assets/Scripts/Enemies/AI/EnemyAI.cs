@@ -231,7 +231,8 @@ public class EnemyAI : MonoBehaviour, ICastAbility {
     }
 
     private void OnDestroy() {
-        Destroy(owner.gameObject);
+        if (owner)
+            Destroy(owner.gameObject);
     }
     
     bool TargetInDistance() {

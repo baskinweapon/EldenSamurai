@@ -7,27 +7,23 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: EnemyHealthMAt
-  m_Shader: {fileID: -6465566751694194690, guid: 75bc6912bdbf4412bae3c7b70f632755, type: 3}
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
+  m_Name: WaveMat
+  m_Shader: {fileID: -6465566751694194690, guid: 67e4dc64c0ecc4b7e811b9bdc0a15877, type: 3}
+  m_ValidKeywords:
+  - _ALPHATEST_ON
+  m_InvalidKeywords:
+  - _SURFACE_TYPE_TRANSPARENT
+  m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
+  stringTagMap:
+    RenderType: Transparent
+  disabledShaderPasses:
+  - DepthOnly
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _ColorTexture:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 6c871ac7470ba41429119073ffcef82e, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -42,15 +38,32 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _BorderSize: 0.3
-    - _Health: 0
+    - _AlphaBg: 0
+    - _AlphaClip: 1
+    - _AlphaEffect: 0.66
+    - _Blend: 0
+    - _CastShadows: 1
+    - _CellDestiny: 10
+    - _Cull: 2
+    - _DstBlend: 10
+    - _Fills: 2
+    - _Polygons: 10
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _RounedRadius: 0
-    - _Speed: 3
-    m_Colors: []
+    - _ReceiveShadows: 1
+    - _SrcBlend: 5
+    - _Surface: 1
+    - _WorkflowMode: 1
+    - _ZTest: 4
+    - _ZWrite: 0
+    - _ZWriteControl: 0
+    - _speed: 2
+    - _waveCount: 3
+    m_Colors:
+    - _BackgroundColor: {r: 1, g: 1, b: 1, a: 0}
+    - _EffectColor: {r: 0.009803922, g: 0.009803922, b: 0.15784314, a: 1}
   m_BuildTextureStacks: []
---- !u!114 &5360965134844618656
+--- !u!114 &287247764437519057
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}

@@ -11,11 +11,11 @@ namespace Enemies {
 
         public AudioSource audioSource;
         public SoundCharacterAsset soundAsset;
-
+        
         [Header("Exp for Player")]
         public float expirience = 10f;
 
-        private void OnEnable() {
+        protected virtual void OnEnable() {
             health.OnDeath.AddListener(Death);
         }
 

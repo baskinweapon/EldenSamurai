@@ -225,7 +225,7 @@ GameObject:
   - component: {fileID: 4228814007814181985}
   - component: {fileID: 2347204047316637612}
   - component: {fileID: 7710022950618018840}
-  - component: {fileID: 8180638393205085213}
+  - component: {fileID: 2404198603901112778}
   m_Layer: 13
   m_Name: SplitEnemy
   m_TagString: Untagged
@@ -291,7 +291,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 8180638393205085213}
+      - m_Target: {fileID: 2404198603901112778}
         m_TargetAssemblyTypeName: Enemies.Enemy, Assembly-CSharp
         m_MethodName: HurtAudio
         m_Mode: 1
@@ -333,7 +333,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 8180638393205085213}
+      - m_Target: {fileID: 2404198603901112778}
         m_TargetAssemblyTypeName: Enemies.Enemy, Assembly-CSharp
         m_MethodName: DeathAudio
         m_Mode: 1
@@ -360,7 +360,7 @@ MonoBehaviour:
   dropPrefab: {fileID: 1714471151194879750, guid: 28c024db15b6442bf85c11679fe33cd1, type: 3}
   minDropObject: 2
   maxDropObject: 5
---- !u!114 &8180638393205085213
+--- !u!114 &2404198603901112778
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -369,7 +369,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2347204047316637610}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4681d3dc4bf4ea6a6a858c325a59bc8, type: 3}
+  m_Script: {fileID: 11500000, guid: 258c4228ddf84bb8866f5407ac5c5f3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   owner: {fileID: 4228814007814181985}
@@ -380,6 +380,8 @@ MonoBehaviour:
   audioSource: {fileID: 2347204046909630432}
   soundAsset: {fileID: 11400000, guid: 5b5cacc08f97941d5bf168849f4f536e, type: 2}
   expirience: 50
+  wave: {fileID: 5368246034334532379}
+  stackId: 0
 --- !u!1 &2347204048323043263
 GameObject:
   m_ObjectHideFlags: 0
@@ -417,6 +419,7 @@ Transform:
   - {fileID: 2347204046991278100}
   - {fileID: 2347204048038397792}
   - {fileID: 2347204046909630435}
+  - {fileID: 4658972839824360319}
   m_Father: {fileID: 2347204047316637615}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -543,6 +546,138 @@ PlayableDirector:
     - e6039f34afab24337b99797d56c5dda5: {fileID: 2347204046991278103}
     - a0b954983a9584b638ed283b00b9f06c: {fileID: 2347204046991278103}
     - 810564b6981d34a12a77c49d273bd643: {fileID: 2347204046991278103}
+--- !u!1 &5368246034334532379
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4658972839824360319}
+  - component: {fileID: 4259570297434039549}
+  - component: {fileID: 2746849845705756906}
+  - component: {fileID: 1194711399099748042}
+  m_Layer: 0
+  m_Name: DamageWave
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &4658972839824360319
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5368246034334532379}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.024000168, y: -0.592, z: 0}
+  m_LocalScale: {x: 5, y: 0.5, z: 2}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2347204048323043260}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &4259570297434039549
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5368246034334532379}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!61 &2746849845705756906
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5368246034334532379}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!114 &1194711399099748042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5368246034334532379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5714885bd8d624a97af72f36c1c8e041, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnTriggered:
+    m_PersistentCalls:
+      m_Calls: []
+  damageValue: 10
+  duration: 1
 --- !u!1 &6492845016657601298
 GameObject:
   m_ObjectHideFlags: 0
