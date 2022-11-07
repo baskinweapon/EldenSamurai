@@ -29,7 +29,6 @@ public class CharacterMovement : MonoBehaviour, ICastAbility {
     private void Jump() {
         if (!isGrounded) return;
         animator.SetTrigger(JumpString);
-        SpawnDustEffect(m_LandingDust, 1);
         rb.velocity += Vector2.up * jumpMultiplier;
     }
     
@@ -37,7 +36,6 @@ public class CharacterMovement : MonoBehaviour, ICastAbility {
         isGrounded = IsGrounded();
     }
     
-    private bool isMove;
     private void FixedUpdate() {
         if (isCasting) {
             animator.SetInteger(AnimState, 0);
@@ -51,16 +49,15 @@ public class CharacterMovement : MonoBehaviour, ICastAbility {
         }
         
         // Anim
-        animator.SetFloat(AirSpeedY, rb.velocity.y);
+        if (rb.velocity.y > 0) {
+            animator.SetFloat(AirSpeedY, 0);
+        } else if (rb.velocity.y < -1f) {
+            animator.SetFloat(AirSpeedY, 1f);
+        }
+
         float move = InputSystem.instance.GetMoveVector().x;
-        if (move != 0f) {
-            if (!isMove)
-                SpawnDustEffect(m_RunStopDust, move < 0 ? -1 : 1);
-            animator.SetInteger(AnimState, 1);
-            isMove = true;
-        } else {
-            isMove = false;
-            animator.SetInteger(AnimState, 0);
+        if (isGrounded) {
+            animator.SetFloat(AnimState, Mathf.InverseLerp(0, 1, Mathf.Abs(move)));
         }
 
         if (move > 0) spriteRenderer.flipX = false;
@@ -81,6 +78,8 @@ public class CharacterMovement : MonoBehaviour, ICastAbility {
         var rayColor = isGround ? Color.green : Color.red;
         Debug.DrawRay(bound.center, Vector2.down * (bound.extents.y + extraHeight), rayColor);
         
+        animator.SetBool(Grounded, isGround);
+        
         return isGround;
     }
     
@@ -99,7 +98,8 @@ public class CharacterMovement : MonoBehaviour, ICastAbility {
     private bool isCasting;
     private static readonly int JumpString = Animator.StringToHash("Jump");
     private static readonly int AnimState = Animator.StringToHash("AnimState");
-    private static readonly int AirSpeedY = Animator.StringToHash("AirSpeedY");
+    private static readonly int AirSpeedY = Animator.StringToHash("VelocityY");
+    private static readonly int Grounded = Animator.StringToHash("IsGround");
 
     public void StartCasting() {
         isCasting = true;

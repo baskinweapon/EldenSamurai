@@ -4046,6 +4046,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: wave
       objectReference: {fileID: 0}
+    - target: {fileID: 6392525905299377529, guid: a4052d2691b6d43c59fb9c6abb939257, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6392525905299377531, guid: a4052d2691b6d43c59fb9c6abb939257, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -4056,7 +4060,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6392525905299377531, guid: a4052d2691b6d43c59fb9c6abb939257, type: 3}
       propertyPath: m_LocalScale.y
-      value: 5.1863775
+      value: 6.3421545
       objectReference: {fileID: 0}
     - target: {fileID: 6392525905299377531, guid: a4052d2691b6d43c59fb9c6abb939257, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4064,7 +4068,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6392525905299377531, guid: a4052d2691b6d43c59fb9c6abb939257, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.3285
+      value: 0.9058
       objectReference: {fileID: 0}
     - target: {fileID: 6392525905299377531, guid: a4052d2691b6d43c59fb9c6abb939257, type: 3}
       propertyPath: m_LocalPosition.z
