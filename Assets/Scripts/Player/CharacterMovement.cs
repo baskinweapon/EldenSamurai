@@ -16,6 +16,8 @@ public class CharacterMovement : MonoBehaviour, ICastAbility {
     [SerializeField] private CapsuleCollider2D col;
     [SerializeField] private Rigidbody2D rb;
     
+    [SerializeField] private GameObject attackColider;
+
     [Header("Effects")]
     [SerializeField] GameObject m_RunStopDust;
     [SerializeField] GameObject m_LandingDust;
@@ -24,12 +26,20 @@ public class CharacterMovement : MonoBehaviour, ICastAbility {
     
     private void Start() {
         InputSystem.OnJump += Jump;
+        InputSystem.OnFirstAbility += Attack;
     }
 
     private void Jump() {
         if (!isGrounded) return;
         animator.SetTrigger(JumpString);
         rb.velocity += Vector2.up * jumpMultiplier;
+    }
+
+    private void Attack() {
+        animator.SetTrigger("Attack");
+        isCasting = true;
+        attackColider.SetActive(true);
+        Invoke(nameof(EndCasting), 0.3f);
     }
     
     private void Update() {
@@ -38,7 +48,6 @@ public class CharacterMovement : MonoBehaviour, ICastAbility {
     
     private void FixedUpdate() {
         if (isCasting) {
-            animator.SetInteger(AnimState, 0);
             rb.velocity = new Vector2(0f, 0f);
             return;
         }
@@ -60,8 +69,8 @@ public class CharacterMovement : MonoBehaviour, ICastAbility {
             animator.SetFloat(AnimState, Mathf.InverseLerp(0, 1, Mathf.Abs(move)));
         }
 
-        if (move > 0) spriteRenderer.flipX = false;
-        else if (move < 0) spriteRenderer.flipX = true;
+        if (move > 0) spriteRenderer.transform.localScale = new Vector3(Mathf.Abs(spriteRenderer.transform.localScale.x), spriteRenderer.transform.localScale.y, spriteRenderer.transform.localScale.z);
+        else if (move < 0) spriteRenderer.transform.localScale = new Vector3(-Mathf.Abs(spriteRenderer.transform.localScale.x), spriteRenderer.transform.localScale.y, spriteRenderer.transform.localScale.z);;
         
         Vector2 velocity = new Vector2(move * playerSpeed * Time.deltaTime, rb.velocity.y);
         rb.velocity = velocity;
@@ -106,6 +115,7 @@ public class CharacterMovement : MonoBehaviour, ICastAbility {
     }
 
     public void EndCasting() {
+        attackColider.SetActive(false);
         isCasting = false;
     }
 }

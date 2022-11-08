@@ -525,7 +525,6 @@ MonoBehaviour:
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
-  m_AlphaBlendOnOverlap: 0
   m_OverlapOperation: 0
   m_NormalMapDistance: 3
   m_NormalMapQuality: 2
@@ -1342,7 +1341,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1716222045694375393, guid: 4178a7eb90283428e80090a043a630f6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.473
+      value: 4.848
       objectReference: {fileID: 0}
     - target: {fileID: 1716222045694375393, guid: 4178a7eb90283428e80090a043a630f6, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1517,6 +1516,10 @@ PrefabInstance:
     - target: {fileID: 2347204047316637615, guid: e751b53899f75439d9785b55eb572ed2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7553687408051385544, guid: e751b53899f75439d9785b55eb572ed2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.006
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e751b53899f75439d9785b55eb572ed2, type: 3}
