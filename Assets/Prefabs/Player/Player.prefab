@@ -288,6 +288,7 @@ GameObject:
   - component: {fileID: 3064403374756844531}
   - component: {fileID: 3064403374756844532}
   - component: {fileID: 4562331065543327119}
+  - component: {fileID: 8171860879277532360}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -360,7 +361,19 @@ MonoBehaviour:
   persistantHealValue: 0.5
   OnDamage:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: PlayerPassDamage, Assembly-CSharp
+        m_MethodName: PassDamage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnHeal:
     m_PersistentCalls:
       m_Calls: []
@@ -413,6 +426,20 @@ MonoBehaviour:
   OnLevelUp:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &8171860879277532360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3064403374756844528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f14feed20ab849b3b26147ef8b3bbd9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 3064403375742605895}
+  colider: {fileID: 3064403375742605912}
 --- !u!1 &3064403375742605889
 GameObject:
   m_ObjectHideFlags: 0

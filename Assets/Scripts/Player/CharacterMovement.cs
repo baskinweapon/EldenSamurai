@@ -43,10 +43,13 @@ public class CharacterMovement : MonoBehaviour, ICastAbility {
     }
     
     private void Update() {
-        isGrounded = IsGrounded();
+        
     }
     
     private void FixedUpdate() {
+        
+        isGrounded = IsGrounded();
+        
         if (isCasting) {
             rb.velocity = new Vector2(0f, 0f);
             return;
