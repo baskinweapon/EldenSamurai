@@ -94,6 +94,26 @@ PrefabInstance:
       propertyPath: m_fontSize
       value: 4.45
       objectReference: {fileID: 0}
+    - target: {fileID: 3884036626908080141, guid: 15614de5ac91e4acfba6a21c38c3e75d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5628521074130821979, guid: 15614de5ac91e4acfba6a21c38c3e75d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5844201219308605925, guid: 15614de5ac91e4acfba6a21c38c3e75d, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5844201219308605925, guid: 15614de5ac91e4acfba6a21c38c3e75d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5844201219308605925, guid: 15614de5ac91e4acfba6a21c38c3e75d, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6691940433296123634, guid: 15614de5ac91e4acfba6a21c38c3e75d, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -189,6 +209,14 @@ PrefabInstance:
     - target: {fileID: 6691940433296123635, guid: 15614de5ac91e4acfba6a21c38c3e75d, type: 3}
       propertyPath: m_Name
       value: HealthBar Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 7380854186072110101, guid: 15614de5ac91e4acfba6a21c38c3e75d, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7380854186072110101, guid: 15614de5ac91e4acfba6a21c38c3e75d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8673476557629617329, guid: 15614de5ac91e4acfba6a21c38c3e75d, type: 3}
       propertyPath: health

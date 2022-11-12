@@ -137,29 +137,31 @@ public class EnemyAI : MonoBehaviour, ICastAbility {
         isGrounded = IsGrounded();
         isGroundedNextWayport = IsGroundedNextWayport();
         
+        
+        
         force = Vector2.zero;
         switch (s) {
             case Stage.sleep:
-                Debug.Log("Sleep stage");
+               // Debug.Log("Sleep stage");
                 s = Stage.findPath;
                 break;
             case Stage.patrol:
-                Debug.Log("Patrol stage");
+                // Debug.Log("Patrol stage");
                 if (TargetInDistance() && followEnable)
                     s = Stage.findPath;
                 break;
             case Stage.casting:
-                Debug.Log("Casting stage");
+                // Debug.Log("Casting stage");
                 break;
             case Stage.findPath:
-                Debug.Log("Find Path stage");
+                // Debug.Log("Find Path stage");
                 PathFollow();
                 break;
             case Stage.attack:
-                Debug.Log("Attack stage");
+                // Debug.Log("Attack stage");
                 break;
             case Stage.jump:
-                Debug.Log("Jump stage");
+                // Debug.Log("Jump stage");
                 break;
         }
 
@@ -172,7 +174,7 @@ public class EnemyAI : MonoBehaviour, ICastAbility {
         }
         
         //anim
-        StateAnim(rb.velocity.x != 0 ? 1 : 0);
+        StateAnim(force != Vector2.zero ? 1 : 0);
     }
     
     private void LateUpdate() {

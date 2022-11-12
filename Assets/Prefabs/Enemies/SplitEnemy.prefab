@@ -56,7 +56,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2347204046909630434}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.08, y: -0.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -303,9 +303,33 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 109207202212375729}
+        m_TargetAssemblyTypeName: EnemyHealthBar, Assembly-CSharp
+        m_MethodName: ChangeValue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnHeal:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 109207202212375729}
+        m_TargetAssemblyTypeName: EnemyHealthBar, Assembly-CSharp
+        m_MethodName: ChangeValue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnDeath:
     m_PersistentCalls:
       m_Calls:
@@ -558,7 +582,7 @@ GameObject:
   - component: {fileID: 4259570297434039549}
   - component: {fileID: 2746849845705756906}
   - component: {fileID: 1194711399099748042}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: DamageWave
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -791,6 +815,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2347204048323043260}
     m_Modifications:
+    - target: {fileID: 288077945382814263, guid: 7d30fc1aa3b0d4f3da04dc0d54b0931d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1692436979651753709, guid: 7d30fc1aa3b0d4f3da04dc0d54b0931d, type: 3}
       propertyPath: m_Name
       value: HpBarCanvas
@@ -879,12 +907,51 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3921989369075391807, guid: 7d30fc1aa3b0d4f3da04dc0d54b0931d, type: 3}
+      propertyPath: health
+      value: 
+      objectReference: {fileID: 2347204047316637612}
     - target: {fileID: 5640700392349916811, guid: 7d30fc1aa3b0d4f3da04dc0d54b0931d, type: 3}
       propertyPath: health
       value: 
       objectReference: {fileID: 2347204047316637612}
+    - target: {fileID: 5798283504631733807, guid: 7d30fc1aa3b0d4f3da04dc0d54b0931d, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5798283504631733807, guid: 7d30fc1aa3b0d4f3da04dc0d54b0931d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7422897476242766815, guid: 7d30fc1aa3b0d4f3da04dc0d54b0931d, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7422897476242766815, guid: 7d30fc1aa3b0d4f3da04dc0d54b0931d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7422897476242766815, guid: 7d30fc1aa3b0d4f3da04dc0d54b0931d, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8648369228933663073, guid: 7d30fc1aa3b0d4f3da04dc0d54b0931d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d30fc1aa3b0d4f3da04dc0d54b0931d, type: 3}
+--- !u!114 &109207202212375729 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3921989369075391807, guid: 7d30fc1aa3b0d4f3da04dc0d54b0931d, type: 3}
+  m_PrefabInstance: {fileID: 4030246480346395022}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c06e7a14eec98b348910e46304428da0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &2347204048038397792 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1692436979651753710, guid: 7d30fc1aa3b0d4f3da04dc0d54b0931d, type: 3}

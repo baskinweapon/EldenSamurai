@@ -18,6 +18,8 @@ public class CharacterMovement : MonoBehaviour, ICastAbility {
     
     [SerializeField] private GameObject attackColider;
 
+    [SerializeField] private float castTime;
+
     [Header("Effects")]
     [SerializeField] GameObject m_RunStopDust;
     [SerializeField] GameObject m_LandingDust;
@@ -42,13 +44,13 @@ public class CharacterMovement : MonoBehaviour, ICastAbility {
         Invoke(nameof(EndCasting), 0.3f);
     }
     
-    private void Update() {
-        
-    }
-    
     private void FixedUpdate() {
-        
         isGrounded = IsGrounded();
+
+        if (passDamage) {
+            Invoke(nameof(WaitDamagePass), 0.5f);
+            return;
+        }
         
         if (isCasting) {
             rb.velocity = new Vector2(0f, 0f);
@@ -79,8 +81,28 @@ public class CharacterMovement : MonoBehaviour, ICastAbility {
         rb.velocity = velocity;
     }
 
-    private const float extraHeight = .05f;
+    private bool passDamage;
+    private void OnCollisionEnter2D(Collision2D col) {
+        if (passDamage) return;
+        var velocity = col.relativeVelocity;
+        
+        if (col.gameObject.layer == LayerMask.NameToLayer("Enemy") || col.gameObject.layer == LayerMask.NameToLayer("Damager")) {
+            if (col.gameObject.layer == LayerMask.NameToLayer("Enemy")) {
+                Player.instance.health.Damage(50f);
+            }
+            
+            passDamage = true;
+            // animator.SetTrigger("Damaged");
+            rb.AddForce(Vector2.Reflect(velocity,Vector2.up) * 1000f);
+        }
+    }
 
+    private void WaitDamagePass() {
+        passDamage = false;
+    }
+    
+    
+    private const float extraHeight = .05f;
     private bool IsGrounded() {
         var bound = col.bounds;
         RaycastHit2D hit = Physics2D.Raycast(bound.center, Vector2.down, bound.extents.y + extraHeight, LayerMask.GetMask("Obstacle"));

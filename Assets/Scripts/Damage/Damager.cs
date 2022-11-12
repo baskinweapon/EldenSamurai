@@ -17,9 +17,9 @@ namespace Damage {
             if (col.gameObject.layer == 10) return; // Damager layer
             var health = col.GetComponentInParent<Health>();
             if (health) {
-                if (CheckOwners(col)) return;
+                if (CompareOwners(col)) return;
                 if (damageValue == 0) return;
-                if (col.transform == this.transform.parent) return;
+                if (col.transform == transform.parent) return;
                     
                 //pass damage
                 health.Damage(damageValue);
@@ -29,7 +29,7 @@ namespace Damage {
             }
         }
         
-        private bool CheckOwners(Collider2D col) {
+        private bool CompareOwners(Collider2D col) {
             var damager = transform.parent;
             if (damager == null) return false;
             var owner = damager.GetComponent<Owner>();
@@ -41,9 +41,14 @@ namespace Damage {
                     if (owner != null) break;
                 }
             }
+            
             var victim = col.transform.parent;
             if (victim == null) return false;
             var victimOwner = victim.GetComponent<Owner>();
+            
+            if (owner.gameObject.layer == victimOwner.gameObject.layer)
+                return true;
+            
             if (victimOwner != null) return owner && victimOwner && owner == victimOwner;
             while (victimOwner == null) {
                 victim = victim.parent;
@@ -51,6 +56,7 @@ namespace Damage {
                 victimOwner = victim.GetComponent<Owner>();
                 if (victimOwner != null) break;
             }
+            
             return owner && victimOwner && owner == victimOwner;
         }
     }
