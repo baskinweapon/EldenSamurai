@@ -46,7 +46,7 @@ namespace Damage {
             if (victim == null) return false;
             var victimOwner = victim.GetComponent<Owner>();
             
-            if (owner.gameObject.layer == victimOwner.gameObject.layer)
+            if (owner != null && victimOwner != null && owner.gameObject.layer == victimOwner.gameObject.layer)
                 return true;
             
             if (victimOwner != null) return owner && victimOwner && owner == victimOwner;

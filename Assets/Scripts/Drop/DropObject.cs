@@ -18,6 +18,7 @@ public class DropObject : MonoBehaviour {
     }
     
     private void OnCollisionEnter2D(Collision2D col) {
+        Debug.Log(col.gameObject.tag.Contains("Player"));
         if (!col.gameObject.tag.Contains("Player")) return;
         
         //Get a Drop

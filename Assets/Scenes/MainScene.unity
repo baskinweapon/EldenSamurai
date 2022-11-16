@@ -2022,7 +2022,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settingsAsset: {fileID: 11400000, guid: d89e5f1cfb877455bb189891d5b19fdc, type: 2}
   interactionAsset: {fileID: 11400000, guid: 676281e59eeb74239bd22d71949605e4, type: 2}
-  firstSceneId: 4
+  firstSceneId: 1
 --- !u!4 &900408733
 Transform:
   m_ObjectHideFlags: 0
@@ -2248,17 +2248,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 502022722}
   step: 1
---- !u!114 &969318722 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8171860879277532360, guid: d802c6296442840268bf5e254e301122, type: 3}
-  m_PrefabInstance: {fileID: 3064403374873117032}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f14feed20ab849b3b26147ef8b3bbd9b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &991047230
 GameObject:
   m_ObjectHideFlags: 0
@@ -4490,7 +4479,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.0362172, y: 1}
+    m_SensorSize: {x: 2.774, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -4745,6 +4734,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1965823835285916806, guid: d802c6296442840268bf5e254e301122, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1965823835285916806, guid: d802c6296442840268bf5e254e301122, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -4752,9 +4745,17 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3064403374259124120, guid: d802c6296442840268bf5e254e301122, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3064403374756844528, guid: d802c6296442840268bf5e254e301122, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3064403374756844528, guid: d802c6296442840268bf5e254e301122, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3064403374756844529, guid: d802c6296442840268bf5e254e301122, type: 3}
       propertyPath: m_RootOrder
@@ -4803,7 +4804,11 @@ PrefabInstance:
     - target: {fileID: 3064403374756844531, guid: d802c6296442840268bf5e254e301122, type: 3}
       propertyPath: OnDamage.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 969318722}
+      objectReference: {fileID: 0}
+    - target: {fileID: 3064403375742605889, guid: d802c6296442840268bf5e254e301122, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3064403375742605891, guid: d802c6296442840268bf5e254e301122, type: 3}
       propertyPath: m_FlipX
       value: 0
@@ -4827,6 +4832,10 @@ PrefabInstance:
     - target: {fileID: 3064403375742605892, guid: d802c6296442840268bf5e254e301122, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3566061207406935866, guid: d802c6296442840268bf5e254e301122, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4700581484417116521, guid: d802c6296442840268bf5e254e301122, type: 3}
       propertyPath: m_LocalScale.x

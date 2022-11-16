@@ -121,6 +121,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2001041204261003271}
+        m_TargetAssemblyTypeName: EnemyHealthBar, Assembly-CSharp
+        m_MethodName: ChangeValue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnHeal:
     m_PersistentCalls:
       m_Calls: []
@@ -719,12 +731,27 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3921989369075391807, guid: 7d30fc1aa3b0d4f3da04dc0d54b0931d, type: 3}
+      propertyPath: health
+      value: 
+      objectReference: {fileID: 4239060040130435866}
     - target: {fileID: 5640700392349916811, guid: 7d30fc1aa3b0d4f3da04dc0d54b0931d, type: 3}
       propertyPath: health
       value: 
       objectReference: {fileID: 4239060040130435866}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d30fc1aa3b0d4f3da04dc0d54b0931d, type: 3}
+--- !u!114 &2001041204261003271 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3921989369075391807, guid: 7d30fc1aa3b0d4f3da04dc0d54b0931d, type: 3}
+  m_PrefabInstance: {fileID: 3290043160217877816}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c06e7a14eec98b348910e46304428da0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &4239060041524431830 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1692436979651753710, guid: 7d30fc1aa3b0d4f3da04dc0d54b0931d, type: 3}
