@@ -62,37 +62,37 @@ public class Health : MonoBehaviour {
     }
 }
 
-#if UNITY_EDITOR
-[CustomEditor(typeof(Health))]
-public class HealthEditor : Editor {
-    public override void OnInspectorGUI() {
-        var me = target as Health;
-        base.OnInspectorGUI();
-
-        EditorGUILayout.BeginHorizontal();
-        if (GUILayout.Button("Damage")) {
-            if (me != null) me.Damage(10f);
-        }
-
-        if (GUILayout.Button("Heal")) {
-            if (me != null) me.Heal(10f);
-        }
-        
-        EditorGUILayout.EndHorizontal();
-
-        EditorGUILayout.Space();
-        
-        if (GUILayout.Button("Up max Health")) {
-            if (me != null) me.ChangeMaxHealth(100f);
-        }
-        
-        EditorGUILayout.Space();
-        
-        if (GUILayout.Button("Death")) {
-            if (me != null) me.Death();
-        }
-        
-    }
-}
-
-#endif
+// #if UNITY_EDITOR
+// [CustomEditor(typeof(Health))]
+// public class HealthEditor : Editor {
+//     public override void OnInspectorGUI() {
+//         var me = target as Health;
+//         base.OnInspectorGUI();
+//
+//         EditorGUILayout.BeginHorizontal();
+//         if (GUILayout.Button("Damage")) {
+//             if (me != null) me.Damage(10f);
+//         }
+//
+//         if (GUILayout.Button("Heal")) {
+//             if (me != null) me.Heal(10f);
+//         }
+//         
+//         EditorGUILayout.EndHorizontal();
+//
+//         EditorGUILayout.Space();
+//         
+//         if (GUILayout.Button("Up max Health")) {
+//             if (me != null) me.ChangeMaxHealth(100f);
+//         }
+//         
+//         EditorGUILayout.Space();
+//         
+//         if (GUILayout.Button("Death")) {
+//             if (me != null) me.Death();
+//         }
+//         
+//     }
+// }
+//
+// #endif

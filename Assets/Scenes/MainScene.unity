@@ -2022,7 +2022,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settingsAsset: {fileID: 11400000, guid: d89e5f1cfb877455bb189891d5b19fdc, type: 2}
   interactionAsset: {fileID: 11400000, guid: 676281e59eeb74239bd22d71949605e4, type: 2}
-  gameMode: 1
+  gameMode: 0
   firstSceneId: 1
 --- !u!4 &900408733
 Transform:
@@ -4801,6 +4801,14 @@ PrefabInstance:
     - target: {fileID: 3064403374756844529, guid: d802c6296442840268bf5e254e301122, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3064403374756844531, guid: d802c6296442840268bf5e254e301122, type: 3}
+      propertyPath: curHealth
+      value: 401.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3064403374756844531, guid: d802c6296442840268bf5e254e301122, type: 3}
+      propertyPath: maxHealth
+      value: 700
       objectReference: {fileID: 0}
     - target: {fileID: 3064403374756844531, guid: d802c6296442840268bf5e254e301122, type: 3}
       propertyPath: OnDamage.m_PersistentCalls.m_Calls.Array.data[0].m_Target
