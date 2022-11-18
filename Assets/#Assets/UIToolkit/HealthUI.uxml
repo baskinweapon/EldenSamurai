@@ -1,7 +1,8 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <ui:Template name="ProgressBar" src="project://database/Assets/%23Assets/UIToolkit/ProgressBar.uxml?fileID=9197481963319205126&amp;guid=5197d89e3de2b8845ae3cf500214325b&amp;type=3#ProgressBar" />
     <Style src="project://database/Assets/%23Assets/UIToolkit/USS/EditorUSS.uss?fileID=7433441132597879392&amp;guid=1be5892796cf4104ebd75a961aee3ddc&amp;type=3#EditorUSS" />
     <ui:VisualElement name="RootPanel">
-        <ui:ProgressBar title="100/300" name="HealthBar" high-value="1" low-value="0" />
+        <ui:Instance template="ProgressBar" name="ProgressBar" />
         <ui:VisualElement name="DamageHealPanel" style="flex-direction: row; align-items: center; justify-content: space-around; margin-left: 2px; margin-right: 2px; margin-top: 2px; margin-bottom: 2px; padding-left: 1px; padding-right: 1px; padding-top: 1px; padding-bottom: 1px; flex-wrap: nowrap;">
             <ui:Button text="Damage" display-tooltip-when-elided="true" name="DamageButton" class="button" style="width: 50%; height: auto;" />
             <ui:Button text="Heal" display-tooltip-when-elided="true" name="HealButton" class="button healButton" style="width: 50%;" />
@@ -11,4 +12,7 @@
         </ui:VisualElement>
         <ui:Button text="Kill" display-tooltip-when-elided="true" name="DeathButton" class="button buttonRed" />
     </ui:VisualElement>
+    <uie:PropertyField binding-path="curHealth" name="CurHealth" />
+    <uie:PropertyField binding-path="maxHealth" name="MaxHealth" />
+    <uie:PropertyField binding-path="persistantHealValue" />
 </ui:UXML>

@@ -5,18 +5,18 @@ using UnityEngine;
 using UnityEngine.Events;
 
 public class Health : MonoBehaviour {
-    [SerializeField]
+    [SerializeField][HideInInspector]
     private float curHealth = 100f;
-    [SerializeField]
+    [SerializeField][HideInInspector]
     private float maxHealth = 100f;
 
-    [SerializeField] 
+    [HideInInspector]
     public float persistantHealValue = 0.5f;
     
     public UnityEvent<float> OnDamage;
     public UnityEvent<float> OnHeal;
     public UnityEvent OnDeath;
-    public Action OnChangeMaxHealth;
+    public UnityEvent<float> OnChangeMaxHealth;
 
     public float GetCurrentHealth() => curHealth;
     public float GetCurrentHPPercent() => Mathf.InverseLerp(0, maxHealth, curHealth);
@@ -58,7 +58,7 @@ public class Health : MonoBehaviour {
         maxHealth += value;
         StopAllCoroutines();
         StartCoroutine(PersistandHeal());
-        OnChangeMaxHealth?.Invoke();
+        OnChangeMaxHealth?.Invoke(value);
     }
 }
 

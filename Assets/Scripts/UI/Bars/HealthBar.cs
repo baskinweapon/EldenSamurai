@@ -18,7 +18,7 @@ public class HealthBar : MonoBehaviour {
         // rect = GetComponent<RectTransform>();
         health.OnDamage.AddListener(Fade);
         health.OnHeal.AddListener(Fade);
-        health.OnChangeMaxHealth += ChangeMaxHealth;
+        health.OnChangeMaxHealth.AddListener(ChangeMaxHealth);
         sliderBar.maxValue = health.GetMaxHealth();
         sliderBar.value = health.GetCurrentHealth();
         // rect.SetRight(1000 - (health.GetMaxHealth() > 1000 ? 1000 : health.GetMaxHealth()));
@@ -49,7 +49,7 @@ public class HealthBar : MonoBehaviour {
         fadeCoroutine = null;
     }
 
-    private void ChangeMaxHealth() {
+    private void ChangeMaxHealth(float value) {
         // rect.SetRight(1000 - (health.GetMaxHealth() > 1000 ? 1000 : health.GetMaxHealth()));
         sliderBar.maxValue = health.GetMaxHealth();
         Fade(0);
@@ -58,6 +58,6 @@ public class HealthBar : MonoBehaviour {
     private void OnDestroy() {
         health.OnDamage.RemoveListener(Fade);
         health.OnHeal.RemoveListener(Fade);
-        health.OnChangeMaxHealth -= ChangeMaxHealth;
+        health.OnChangeMaxHealth.RemoveListener(ChangeMaxHealth);
     }
 }

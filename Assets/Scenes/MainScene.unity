@@ -4480,7 +4480,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.0595238, y: 1}
+    m_SensorSize: {x: 2.7534516, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -4804,11 +4804,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3064403374756844531, guid: d802c6296442840268bf5e254e301122, type: 3}
       propertyPath: curHealth
-      value: 401.5
+      value: 1600
       objectReference: {fileID: 0}
     - target: {fileID: 3064403374756844531, guid: d802c6296442840268bf5e254e301122, type: 3}
       propertyPath: maxHealth
-      value: 700
+      value: 1600
       objectReference: {fileID: 0}
     - target: {fileID: 3064403374756844531, guid: d802c6296442840268bf5e254e301122, type: 3}
       propertyPath: OnDamage.m_PersistentCalls.m_Calls.Array.data[0].m_Target

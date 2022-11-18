@@ -18,40 +18,55 @@ public class HealthEditor : Editor {
 		
 		root = new VisualElement();
 		
-		// standart Inspector
-		var foldout = new Foldout() { viewDataKey = "TankManagerFullInspectorFoldOut", text = "Full Inspector" };
-		InspectorElement.FillDefaultInspector(foldout, serializedObject, this);
-		root.Add(foldout);
-		
 		m_UXML.CloneTree(root);
 		
 		var rootPanel = root.Q<VisualElement>("RootPanel");
 		
 		DamageHealPanel(rootPanel);
 		
-		ChangeHealthBar();
+		ProgressBar();
+		
+		health.OnDamage.AddListener(ProgressBar);
+		health.OnHeal.AddListener(ProgressBar);
+		health.OnChangeMaxHealth.AddListener(ProgressBar);
 		
 		var maxXPPanel = rootPanel.Q<VisualElement>("MaxXPPanel");
 		
 		var changeMaxXp = maxXPPanel.Q<VisualElement>("MaxXP");
 		changeMaxXp.RegisterCallback<ClickEvent>(ChangeMaxXp);
 		
+		// standart Inspector
+		var foldout = new Foldout() { viewDataKey = "TankManagerFullInspectorFoldOut", text = "Full Inspector" };
+		InspectorElement.FillDefaultInspector(foldout, serializedObject, this);
+		root.Add(foldout);
+		
 		return root;
 	}
 
-	private void ChangeHealthBar() {
+	private void ProgressBar(float _ = 0f) {
 		var rootPanel = root.Q<VisualElement>("RootPanel");
+		var progressBar = rootPanel.Q<VisualElement>("ProgressBar");
+
+		var bg = progressBar.Q<VisualElement>("Background");
 		
-		var healthBar = rootPanel.Q<ProgressBar>("HealthBar");
-		healthBar.title = health.GetCurrentHealth() + " / " + health.GetMaxHealth();
+		var fill = bg.Q<VisualElement>("Fill");
+		var title = bg.Q<VisualElement>("Title");
 
-		healthBar.value = health.GetCurrentHealth() / health.GetMaxHealth();
+		var text = title.Q<Label>("Value");
+		text.text = health.GetCurrentHealth() + " / " + health.GetMaxHealth();
+		
+		var visual = fill.Q<VisualElement>("VisualElement");
+
+		var value = health.GetCurrentHealth() / health.GetMaxHealth();
+		Color color = new Color(value, 1, value, 1);
+		visual.style.backgroundColor = color;
+		
+		fill.style.width = Length.Percent(value * 100);
+		
 	}
-
 
 	private void ChangeMaxXp(ClickEvent evt) {
 		health.ChangeMaxHealth(100f);
-		ChangeHealthBar();
 	}
 
 	private void DamageHealPanel(VisualElement root) {
@@ -66,12 +81,10 @@ public class HealthEditor : Editor {
 
 	private void DamageButtonAction(ClickEvent evt) {
 		health.Damage(100f);
-		ChangeHealthBar();
 	}
 
 	private void HealButtonAction(ClickEvent evt) {
 		health.Heal(100f);
-		ChangeHealthBar();
 	}
 }
 

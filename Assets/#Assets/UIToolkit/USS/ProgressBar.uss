@@ -1,0 +1,10 @@
+.textStyle {
+    font-size: 100%;
+    -unity-font-style: normal;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 0;
+    padding-bottom: 0;
+    -unity-text-align: middle-center;
+    color: rgba(0, 0, 0, 255);
+}

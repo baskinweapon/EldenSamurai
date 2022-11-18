@@ -26,6 +26,8 @@ public class BalisticProjectile : MonoBehaviour {
         
         target = Player.instance.bodyTransform.position;
         isCasting = true;
+        applyDynamic = false;
+        Invoke(nameof(ApplyDynamic), 0.2f);
     }
     
     private Vector3 target;
@@ -35,18 +37,27 @@ public class BalisticProjectile : MonoBehaviour {
     private void FixedUpdate() {
         if (!isCasting) return;
         var isGrounded = IsGroundNearest();
-        if (isGrounded) {
+        if (isGrounded && applyDynamic) {
             rb.bodyType = RigidbodyType2D.Dynamic;
             isCasting = false;
         }
         Calculate();
     }
 
+    private bool applyDynamic;
+    private void ApplyDynamic() {
+        applyDynamic = true;
+    }
+
     private void Calculate() {
         var tr = transform;
         var gun = tr.parent.position;
+        
+        var speedCoef = Vector2.Distance(gun, target) * speed;
+        
+        
         var dist = target.x - gun.x;
-        var nextX = Mathf.MoveTowards(tr.position.x, target.x,  speed * Time.deltaTime);
+        var nextX = Mathf.MoveTowards(tr.position.x, target.x,  speedCoef * Time.deltaTime);
         var baseY = Mathf.Lerp(gun.y, target.y, (nextX - gun.x) / dist);
         var h = 2 * (nextX - gun.x) * (nextX - target.x) / (-0.25f * dist * dist);
         
@@ -55,12 +66,12 @@ public class BalisticProjectile : MonoBehaviour {
         tr.position = movePosition;
 
         if (Vector2.Distance(tr.position, target) <= 0.02f) {
-            rb.bodyType = RigidbodyType2D.Dynamic;
+            
         }
     }
 
     private bool IsGroundNearest() {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 0.5f, LayerMask.GetMask("Obstacle"));
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 0.2f, LayerMask.GetMask("Obstacle"));
         Color rayColor;
         var isGround = hit.collider != null;
         
