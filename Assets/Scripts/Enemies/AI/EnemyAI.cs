@@ -196,8 +196,7 @@ public class EnemyAI : MonoBehaviour, ICastAbility {
             Attack();
             s = Stage.attack;
             return;
-        }
-
+        } 
         Vector2 direction = ((Vector2)path.vectorPath[currentWapoint] - rb.position).normalized;
         
         force = speed * direction;

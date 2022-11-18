@@ -11,7 +11,7 @@ public class Health : MonoBehaviour {
     private float maxHealth = 100f;
 
     [SerializeField] 
-    private float persistantHealValue = 0.5f;
+    public float persistantHealValue = 0.5f;
     
     public UnityEvent<float> OnDamage;
     public UnityEvent<float> OnHeal;

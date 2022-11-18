@@ -2022,6 +2022,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settingsAsset: {fileID: 11400000, guid: d89e5f1cfb877455bb189891d5b19fdc, type: 2}
   interactionAsset: {fileID: 11400000, guid: 676281e59eeb74239bd22d71949605e4, type: 2}
+  gameMode: 1
   firstSceneId: 1
 --- !u!4 &900408733
 Transform:
@@ -4479,7 +4480,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.774, y: 1}
+    m_SensorSize: {x: 1.0595238, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

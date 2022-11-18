@@ -1,13 +1,8 @@
-using System;
-using System.Collections;
-using UnityEditor.Rendering;
 using UnityEngine;
-using UnityEngine.VFX;
 
 // ReSharper disable Unity.InefficientPropertyAccess
 
 public class BalisticProjectile : MonoBehaviour {
-    [SerializeField] private VisualEffect effect;
     [SerializeField] private Collider2D col;
     public GameObject damager;
     public Rigidbody2D rb;
@@ -15,21 +10,18 @@ public class BalisticProjectile : MonoBehaviour {
     public float speed;
     private Vector3 startPos;
     
-    private void Awake() {
+    void Awake() {
         startPos = transform.localPosition;
         ResetObj();
-        Physics2D.IgnoreCollision(Player.instance.bodyTransform.GetComponent<Collider2D>(), rb.GetComponent<Collider2D>());
-        Physics2D.IgnoreCollision(rb.GetComponent<Collider2D>(), damager.GetComponent<Collider2D>());
     }
 
     private void OnEnable() {
-        StartCast(2f);
+        StartCast();
     }
 
-    public void StartCast(float _duration) {
+    public void StartCast() {
         ResetObj();
         
-        duration = _duration;
         damager.SetActive(true);
         
         target = Player.instance.bodyTransform.position;
@@ -42,6 +34,11 @@ public class BalisticProjectile : MonoBehaviour {
     private bool isCasting;
     private void FixedUpdate() {
         if (!isCasting) return;
+        var isGrounded = IsGroundNearest();
+        if (isGrounded) {
+            rb.bodyType = RigidbodyType2D.Dynamic;
+            isCasting = false;
+        }
         Calculate();
     }
 
@@ -58,7 +55,7 @@ public class BalisticProjectile : MonoBehaviour {
         tr.position = movePosition;
 
         if (Vector2.Distance(tr.position, target) <= 0.02f) {
-            
+            rb.bodyType = RigidbodyType2D.Dynamic;
         }
     }
 
@@ -78,21 +75,9 @@ public class BalisticProjectile : MonoBehaviour {
         return Quaternion.Euler(0, 0, Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg);
     }
 
-    private float duration;
-    IEnumerator SecondStage() {
-        col.enabled = true;
-        rb.bodyType = RigidbodyType2D.Dynamic;
-        yield return new WaitForSeconds(duration / 3);
-        
-        effect.SendEvent("OnExplode");
-        damager.SetActive(true);
-        Invoke(nameof(ResetObj), duration / 3);
-    }
-    
-    public void ResetObj() {
+    private void ResetObj() {
         StopAllCoroutines();
         damager.SetActive(false);
-        col.enabled = false;
         transform.localPosition = startPos;
     }
 }
