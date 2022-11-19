@@ -10,12 +10,32 @@ using UnityEngine.UIElements;
 public class HealthEditor : Editor {
 	
 	public VisualTreeAsset m_UXML;
+	public Gradient gradient;
+	
 	private Health health;
 	private VisualElement root;
 	
 	public override VisualElement CreateInspectorGUI() {
 		health = target as Health;
+
+		gradient = new Gradient();
 		
+		
+		GradientColorKey[] colorKeys;
+		GradientAlphaKey[] alphaKeys;
+		alphaKeys = new GradientAlphaKey[2];
+		alphaKeys[0].alpha = 1;
+		alphaKeys[0].time = 0;
+		alphaKeys[1].alpha = 1;
+		alphaKeys[1].time = 1;
+		
+		colorKeys = new GradientColorKey[2];
+		colorKeys[0].color = Color.red;
+		colorKeys[0].time = 0;
+		colorKeys[1].color = Color.green;
+		colorKeys[1].time = 1;
+		gradient.SetKeys(colorKeys, alphaKeys);
+
 		root = new VisualElement();
 		
 		m_UXML.CloneTree(root);
@@ -58,8 +78,7 @@ public class HealthEditor : Editor {
 		var visual = fill.Q<VisualElement>("VisualElement");
 
 		var value = health.GetCurrentHealth() / health.GetMaxHealth();
-		Color color = new Color(value, 1, value, 1);
-		visual.style.backgroundColor = color;
+		visual.style.backgroundColor = gradient.Evaluate(value);
 		
 		fill.style.width = Length.Percent(value * 100);
 		

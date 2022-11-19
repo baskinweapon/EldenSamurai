@@ -6,5 +6,5 @@
     padding-top: 0;
     padding-bottom: 0;
     -unity-text-align: middle-center;
-    color: rgba(0, 0, 0, 255);
+    color: rgb(0, 255, 43);
 }

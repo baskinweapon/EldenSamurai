@@ -89,6 +89,7 @@ ScriptedImporter:
     tessellationDetail: 0
     parentGroupIndex: -1
     uvTransform: {x: 0, y: 0}
+    spritePosition: {x: 0, y: 0}
   mosaicSpriteImportData: []
   rigSpriteImportData:
   - name: "\u041D\u043E\u0436\u043A\u0430"
@@ -531,6 +532,7 @@ ScriptedImporter:
     tessellationDetail: 0
     parentGroupIndex: -1
     uvTransform: {x: -138, y: 4}
+    spritePosition: {x: 0, y: 0}
   - name: "\u0428\u043B\u044F\u043F\u043A\u0430"
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -1015,6 +1017,7 @@ ScriptedImporter:
     tessellationDetail: 0
     parentGroupIndex: -1
     uvTransform: {x: -429, y: 251}
+    spritePosition: {x: 0, y: 0}
   - name: "\u041D\u043E\u0436\u043A\u0430"
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -1320,6 +1323,7 @@ ScriptedImporter:
     tessellationDetail: 0
     parentGroupIndex: -1
     uvTransform: {x: -74, y: 917}
+    spritePosition: {x: 0, y: 0}
   - name: "\u0428\u043B\u044F\u043F\u043A\u0430"
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -1625,6 +1629,7 @@ ScriptedImporter:
     tessellationDetail: 0
     parentGroupIndex: -1
     uvTransform: {x: -121, y: 288}
+    spritePosition: {x: 0, y: 0}
   - name: "\u041D\u043E\u0436\u043A\u0430"
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -1961,6 +1966,7 @@ ScriptedImporter:
     tessellationDetail: 0
     parentGroupIndex: -1
     uvTransform: {x: -52, y: 459}
+    spritePosition: {x: 0, y: 0}
   - name: Layer 6
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -2436,6 +2442,7 @@ ScriptedImporter:
     tessellationDetail: 0
     parentGroupIndex: -1
     uvTransform: {x: -258, y: -336}
+    spritePosition: {x: 0, y: 0}
   - name: "\u041D\u043E\u0436\u043A\u0430"
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -2781,6 +2788,7 @@ ScriptedImporter:
     tessellationDetail: 0
     parentGroupIndex: -1
     uvTransform: {x: -179, y: 771}
+    spritePosition: {x: 0, y: 0}
   - name: "\u0428\u043B\u044F\u043F\u043A\u0430"
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -3115,6 +3123,7 @@ ScriptedImporter:
     tessellationDetail: 0
     parentGroupIndex: -1
     uvTransform: {x: -243, y: 637}
+    spritePosition: {x: 0, y: 0}
   characterData:
     bones:
     - name: bone_2
