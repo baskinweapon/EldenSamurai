@@ -5,7 +5,6 @@ using UnityEngine.UIElements;
 
 #if UNITY_EDITOR
 
-
 [CustomEditor(typeof(Health))]
 public class HealthEditor : Editor {
 	
@@ -17,24 +16,8 @@ public class HealthEditor : Editor {
 	
 	public override VisualElement CreateInspectorGUI() {
 		health = target as Health;
-
-		gradient = new Gradient();
 		
-		
-		GradientColorKey[] colorKeys;
-		GradientAlphaKey[] alphaKeys;
-		alphaKeys = new GradientAlphaKey[2];
-		alphaKeys[0].alpha = 1;
-		alphaKeys[0].time = 0;
-		alphaKeys[1].alpha = 1;
-		alphaKeys[1].time = 1;
-		
-		colorKeys = new GradientColorKey[2];
-		colorKeys[0].color = Color.red;
-		colorKeys[0].time = 0;
-		colorKeys[1].color = Color.green;
-		colorKeys[1].time = 1;
-		gradient.SetKeys(colorKeys, alphaKeys);
+		CreateGradient();
 
 		root = new VisualElement();
 		
@@ -105,6 +88,29 @@ public class HealthEditor : Editor {
 	private void HealButtonAction(ClickEvent evt) {
 		health.Heal(100f);
 	}
+	
+	#region Helpers
+	
+	private void CreateGradient() {
+		gradient = new Gradient();
+		
+		GradientColorKey[] colorKeys;
+		GradientAlphaKey[] alphaKeys;
+		alphaKeys = new GradientAlphaKey[2];
+		alphaKeys[0].alpha = 1;
+		alphaKeys[0].time = 0;
+		alphaKeys[1].alpha = 1;
+		alphaKeys[1].time = 1;
+		
+		colorKeys = new GradientColorKey[2];
+		colorKeys[0].color = Color.red;
+		colorKeys[0].time = 0;
+		colorKeys[1].color = Color.green;
+		colorKeys[1].time = 1;
+		gradient.SetKeys(colorKeys, alphaKeys);	
+	}
+
+	#endregion
 }
 
 #endif

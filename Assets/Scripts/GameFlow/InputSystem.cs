@@ -8,7 +8,6 @@ public class InputSystem : Singleton<InputSystem> {
 
     public static Action OnJump;
     public static Action OnInteraction;
-
     
     //ability input
     public static Action OnFirstAbility;
