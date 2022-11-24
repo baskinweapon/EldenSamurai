@@ -17,37 +17,44 @@ public class CharacterMovement : MonoBehaviour, ICastAbility {
     [SerializeField] private Rigidbody2D rb;
     
     [SerializeField] private GameObject attackColider;
-
-    [SerializeField] private float castTime;
-
-    [Header("Effects")]
-    [SerializeField] GameObject m_RunStopDust;
-    [SerializeField] GameObject m_LandingDust;
     
     private bool isGrounded;
+
+    private PlayerStates state;
+    public void ChangeState(PlayerStates _state) {
+        state = _state;
+    }
     
     private void Start() {
         InputSystem.OnJump += Jump;
         InputSystem.OnFirstAbility += Attack;
+
+        state = new IdleState(this);
     }
 
     private void Jump() {
+        state.PressJump();
+        
         if (!isGrounded) return;
         animator.SetTrigger(JumpString);
         rb.velocity += Vector2.up * jumpMultiplier;
     }
-
+    
     private void Attack() {
+        state.PressAttack();
+        
         animator.SetTrigger("Attack");
         isCasting = true;
         attackColider.SetActive(true);
         Invoke(nameof(EndCasting), 0.3f);
     }
     
+    
     private void FixedUpdate() {
         isGrounded = IsGrounded();
 
         if (passDamage) {
+            state.PassDamage();
             Invoke(nameof(WaitDamagePass), 0.5f);
             return;
         }
@@ -56,6 +63,7 @@ public class CharacterMovement : MonoBehaviour, ICastAbility {
             rb.velocity = new Vector2(0f, 0f);
             return;
         }
+        
         if (rb.velocity.y <= 0) {
             rb.velocity += Physics.gravity.y * Time.deltaTime * Vector2.up;
         } else if (rb.velocity.y > 0 && !InputSystem.instance.IsJumping()) {
@@ -83,6 +91,8 @@ public class CharacterMovement : MonoBehaviour, ICastAbility {
 
     private bool passDamage;
     private void OnCollisionEnter2D(Collision2D col) {
+        state.PassDamage();
+        
         if (passDamage) return;
         var velocity = col.relativeVelocity;
         
@@ -117,18 +127,6 @@ public class CharacterMovement : MonoBehaviour, ICastAbility {
         return isGround;
     }
     
-    void SpawnDustEffect(GameObject dust, int dir, float dustXOffset = 0)
-    {
-        if (dust != null)
-        {
-            // Set dust spawn position
-            Vector3 dustSpawnPosition = (Vector3)rb.position + new Vector3(dustXOffset, 0.0f, 0.0f);
-            GameObject newDust = Instantiate(dust, dustSpawnPosition, Quaternion.identity);
-            // Turn dust in correct X direction
-            newDust.transform.localScale = newDust.transform.localScale.x * new Vector3(dir, 1, 1);
-        }
-    }
-
     private bool isCasting;
     private static readonly int JumpString = Animator.StringToHash("Jump");
     private static readonly int AnimState = Animator.StringToHash("AnimState");
