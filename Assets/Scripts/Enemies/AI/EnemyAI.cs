@@ -4,6 +4,7 @@ using Architecture.Interfaces;
 using Pathfinding;
 using UnityEngine;
 using UnityEngine.Playables;
+using Random = UnityEngine.Random;
 
 public class EnemyAI : MonoBehaviour, ICastAbility {
     public Transform lookTransform;
@@ -67,6 +68,7 @@ public class EnemyAI : MonoBehaviour, ICastAbility {
     private static int DieString;
     private static int AnimState;
     private static int AttackString;
+    private static int AttackType;
     
     [Header("Animation Name")]
     [SerializeField, TextArea]
@@ -75,14 +77,18 @@ public class EnemyAI : MonoBehaviour, ICastAbility {
     private string dieString;
     [SerializeField, TextArea]
     private string animState;
+
     [SerializeField, TextArea]
     private string attackString;
+    [SerializeField, TextArea]
+    private string attackType;
     
     void SetAnimToHash() {
         DamageString = Animator.StringToHash(damageString);
         DieString = Animator.StringToHash(dieString);
         AnimState = Animator.StringToHash(animState);
         AttackString = Animator.StringToHash(attackString);
+        AttackType = Animator.StringToHash(attackType);
     }
 
     private int _prevState;
@@ -95,16 +101,18 @@ public class EnemyAI : MonoBehaviour, ICastAbility {
 
     private void AttackAnim() {
         animator.SetTrigger(AttackString);
+        animator.SetInteger(AttackType, Random.Range(0, 1));
     }
     
     public void DamageAnim() {
-        Debug.Log(damageString);
         animator.SetTrigger(DamageString);
     }
 
+    private bool isDie;
     public void DieAnim() {
         animator.SetTrigger(DieString);
-        Invoke(nameof(OnDestroy), 0.5f);
+        isDie = true;
+        Invoke(nameof(OnDestroy), animator.GetCurrentAnimatorClipInfo(0).Length + 0.1f);
     }
 
     #endregion
@@ -133,7 +141,10 @@ public class EnemyAI : MonoBehaviour, ICastAbility {
 
     private Stage s = Stage.sleep;
     private Vector2 force;
+  
+
     private void FixedUpdate() {
+        if (isDie) return;
         isGrounded = IsGrounded();
         isGroundedNextWayport = IsGroundedNextWayport();
         
@@ -156,6 +167,17 @@ public class EnemyAI : MonoBehaviour, ICastAbility {
             case Stage.findPath:
                 // Debug.Log("Find Path stage");
                 PathFollow();
+                
+                if (flyEnemy) {
+                    Debug.DrawRay(rb.position, rb.position + force.normalized);
+                    rb.AddForce(force);
+                } else if (isGrounded) {
+                    Debug.DrawRay(rb.position, rb.position + force.normalized);
+                    rb.AddForce(force);
+                }
+                
+                //anim
+                StateAnim(force != Vector2.zero ? 1 : 0);
                 break;
             case Stage.attack:
                 // Debug.Log("Attack stage");
@@ -173,8 +195,7 @@ public class EnemyAI : MonoBehaviour, ICastAbility {
             rb.AddForce(force);
         }
         
-        //anim
-        StateAnim(force != Vector2.zero ? 1 : 0);
+        
     }
     
     private void LateUpdate() {
@@ -213,12 +234,13 @@ public class EnemyAI : MonoBehaviour, ICastAbility {
     }
     
     private void Attack() {
-        playableDirector.Play();
+        AttackAnim();
+        // playableDirector.Play();
         StartCoroutine(AttackCoroutine());
     }
 
     IEnumerator AttackCoroutine() {
-        yield return new WaitForSeconds((float)playableDirector.duration);
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorClipInfo(0).Length);
         s = Stage.patrol;
     }
 

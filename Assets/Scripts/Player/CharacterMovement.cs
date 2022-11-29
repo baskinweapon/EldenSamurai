@@ -18,6 +18,7 @@ public class CharacterMovement : MonoBehaviour, ICastAbility {
     
     [SerializeField] private GameObject attackColider;
     
+    
     private bool isGrounded;
 
     private PlayerStates state;
@@ -55,7 +56,7 @@ public class CharacterMovement : MonoBehaviour, ICastAbility {
 
         if (passDamage) {
             state.PassDamage();
-            Invoke(nameof(WaitDamagePass), 0.5f);
+            Invoke(nameof(WaitDamagePass), Player.instance.damagePassTime);
             return;
         }
         
@@ -89,6 +90,8 @@ public class CharacterMovement : MonoBehaviour, ICastAbility {
         rb.velocity = velocity;
     }
 
+    
+    //Activate Damage effect
     private bool passDamage;
     private void OnCollisionEnter2D(Collision2D col) {
         state.PassDamage();
@@ -102,7 +105,7 @@ public class CharacterMovement : MonoBehaviour, ICastAbility {
             }
             
             passDamage = true;
-            // animator.SetTrigger("Damaged");
+            animator.SetTrigger("Damaged");
             rb.AddForce(Vector2.Reflect(velocity,Vector2.up) * 1000f);
         }
     }

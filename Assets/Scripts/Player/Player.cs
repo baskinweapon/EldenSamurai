@@ -15,6 +15,8 @@ public class Player : Singleton<Player> {
     private bool isCastingAbility;
     public bool IsCastingAbility() => isCastingAbility;
     public void SetCastingState(bool _state) => isCastingAbility = _state;
+
+    public float damagePassTime;
     
 
     public void ResetPlayer() {

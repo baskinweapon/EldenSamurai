@@ -27,11 +27,13 @@ public class Health : MonoBehaviour {
         if (curHealth == 0) return;
         curHealth -= value;
         if (curHealth <= 0) curHealth = 0;
+        if (curHealth <= 0) {
+            Death();
+            return;
+        }
         OnDamage?.Invoke(curHealth);
         StopAllCoroutines();
         StartCoroutine(PersistandHeal());
-        if (curHealth <= 0) 
-            Death();
     }
     
     public void Heal(float value) {

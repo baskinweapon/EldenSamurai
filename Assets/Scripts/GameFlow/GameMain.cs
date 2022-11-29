@@ -1,6 +1,8 @@
+
 public class GameMain : Singleton<GameMain> {
     public SettingsAsset settingsAsset;
     public InteractionAsset interactionAsset;
+    public GlobalVolume globalVolume;
 
     public GameMode gameMode;
     public Scenes firstSceneId;

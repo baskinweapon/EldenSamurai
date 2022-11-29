@@ -56,7 +56,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _BorderSize: 0.3
-    - _Health: 0.9509375
+    - _Health: 0.744375
     - _QueueControl: 0
     - _QueueOffset: 0
     - _RounedRadius: 0

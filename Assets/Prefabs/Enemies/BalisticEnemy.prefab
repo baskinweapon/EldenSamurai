@@ -163,6 +163,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnChangeMaxHealth:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &8122622387232438446
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -486,8 +489,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lookTransform: {fileID: 8255887212304119934}
   fallChecker: {fileID: 6832554965866452033}
-  distanceToAttack: 4
-  activateDistance: 7
+  distanceToAttack: 1.97
+  activateDistance: 7.8
   speed: 10
   nextWaypointDistance: 0.3
   jumpNodeHeightRequirement: 0.5
