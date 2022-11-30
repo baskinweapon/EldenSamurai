@@ -1,0 +1,45 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Assets/%23Assets/UIToolkit/USS/EditorUSS.uss?fileID=7433441132597879392&amp;guid=1be5892796cf4104ebd75a961aee3ddc&amp;type=3#EditorUSS" />
+    <ui:VisualElement name="RootPanel" style="align-items: stretch; justify-content: space-around; flex-direction: column;">
+        <ui:VisualElement name="CurentState" style="align-items: center; flex-direction: row; justify-content: space-between; padding-left: 5px;">
+            <ui:Label text="Current State:" display-tooltip-when-elided="true" style="padding-left: 5px;" />
+            <ui:Label text="Label" display-tooltip-when-elided="true" name="StateLabel" style="padding-right: 5px;" />
+        </ui:VisualElement>
+        <ui:VisualElement>
+            <ui:Label text="Animation" display-tooltip-when-elided="true" class="greenLebel HeaderLabel" />
+            <ui:VisualElement name="Fields" style="flex-direction: column; justify-content: center;">
+                <uie:PropertyField name="Rb" binding-path="animator" label="Animator" />
+                <uie:PropertyField name="Col" binding-path="vision" label="Vision" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="PhysicsPanel">
+            <ui:Label text="Physics" display-tooltip-when-elided="true" class="greenLebel HeaderLabel" />
+            <ui:VisualElement name="Fields" style="flex-direction: column; justify-content: center;">
+                <uie:PropertyField name="Rb" binding-path="rb" label="Rigidbody" />
+                <uie:PropertyField name="Col" binding-path="col" label="Collider" />
+                <uie:PropertyField binding-path="playerSpeed" label="Move Speed" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="PhysicsPanel">
+            <ui:Label text="Jump Settings" display-tooltip-when-elided="true" class="greenLebel HeaderLabel" />
+            <ui:VisualElement name="Fields" style="flex-direction: column; justify-content: center;">
+                <uie:PropertyField name="Rb" binding-path="lowJumpMultiplier" label="Low Jump Multiplier" />
+                <uie:PropertyField name="Col" binding-path="jumpMultiplier" label="Jump Multiplier" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="PhysicsPanel">
+            <ui:Label text="Timing" display-tooltip-when-elided="true" class="greenLebel HeaderLabel" />
+            <ui:VisualElement name="Fields" style="flex-direction: column; justify-content: center;">
+                <uie:PropertyField name="Rb" binding-path="attackCastingTime" label="Attack Cast Time" />
+                <uie:PropertyField name="Col" binding-path="hitTime" label="Pass Damage time" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="RenderTexture" style="align-items: center;">
+            <ui:VisualElement style="background-image: url(&apos;project://database/Assets/Sprites/RenderTextures/EditorPlayerTexture.renderTexture?fileID=8400000&amp;guid=cb3e6a70d6d7cf448be13985ab7db9d4&amp;type=2#EditorPlayerTexture&apos;); height: 300px; border-top-left-radius: 5px; border-bottom-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; width: 300px; align-items: flex-start; justify-content: center;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="IsGround" style="align-items: center; flex-direction: column-reverse; justify-content: space-around; -unity-background-scale-mode: stretch-to-fill;">
+            <ui:VisualElement name="Ground" style="background-image: url(&apos;project://database/Assets/Sprites/images/Tile_2.png?fileID=21300000&amp;guid=7debe200c4e04432abdc86e02687ee5d&amp;type=3#Tile_2&apos;); -unity-background-scale-mode: stretch-to-fill; rotate: 0; height: 74px; -unity-slice-left: 1; -unity-slice-top: 1; -unity-slice-right: 1; -unity-slice-bottom: 1; width: 308px; background-color: rgba(146, 229, 81, 0);" />
+            <ui:VisualElement name="Player" style="background-image: url(&apos;project://database/Assets/Characters/Hero%20and%20Opponents/Sprites/Player/Jump/attack-in-air-A7.png?fileID=21300000&amp;guid=518c9ffe57a64f34f94a5210149fea38&amp;type=3#attack-in-air-A7&apos;); width: 128px; height: 96px; flex-direction: column; top: 55px;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

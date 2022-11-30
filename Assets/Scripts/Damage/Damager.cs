@@ -16,7 +16,7 @@ namespace Damage {
 
 
         private void OnEnable() {
-            OnTriggerEnter2D(lastCollider);
+            if (lastCollider) OnTriggerEnter2D(lastCollider);
         }
 
         private Collider2D lastCollider;

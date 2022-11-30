@@ -4,9 +4,8 @@ using UnityEngine;
 public class JumpState : PlayerStates {
     private Animator animator;
     private Rigidbody2D rb;
-    private static readonly int JumpString = Animator.StringToHash("Jump");
     
- 
+    private static readonly int JumpString = Animator.StringToHash("Jump");
     
     public JumpState(PlayerMind _ch) : base(_ch) {
         animator = _ch.animator;
@@ -28,7 +27,7 @@ public class JumpState : PlayerStates {
         animator.SetTrigger(JumpString);
         rb.velocity += Vector2.up * playerMind.jumpMultiplier;
         playerMind.ChangeState(new FlyState(playerMind));
-        playerMind.stateType = PlayerStatesType.Fly;
+        playerMind.ChangeStateType(PlayerStatesType.Fly);
     }
 
     public override void Fly() {

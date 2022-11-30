@@ -54,7 +54,7 @@ public class FlyState : PlayerStates {
 
 		if (playerMind.isGrounded && rb.velocity.y < 0) {
 			playerMind.ChangeState(new IdleState(playerMind));
-			playerMind.stateType = PlayerStatesType.Movement;
+			playerMind.ChangeStateType(PlayerStatesType.Movement);
 		}
 	}
 }

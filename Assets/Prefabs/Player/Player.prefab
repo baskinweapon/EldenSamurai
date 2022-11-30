@@ -415,12 +415,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3064403375742605892}
+  - component: {fileID: 7401596883532562316}
   - component: {fileID: 3064403375742605891}
   - component: {fileID: 3064403375742605890}
   - component: {fileID: 3064403375742605895}
   - component: {fileID: 3064403375742605912}
   - component: {fileID: 1501951134181672844}
-  - component: {fileID: 7401596883532562316}
   m_Layer: 0
   m_Name: Character
   m_TagString: Player
@@ -446,6 +446,30 @@ Transform:
   m_Father: {fileID: 3064403374756844529}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &7401596883532562316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3064403375742605889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aefea24cf0474fe1ac293a664b9e6f6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stateType: 0
+  animator: {fileID: 3064403375742605890}
+  vision: {fileID: 3064403375742605892}
+  col: {fileID: 3064403375742605912}
+  rb: {fileID: 3064403375742605895}
+  playerSpeed: 200
+  lowJumpMultiplier: 5
+  jumpMultiplier: 4
+  attackCastingTime: 0.3
+  hitTime: 0.3
+  attackColider: {fileID: 3566061207406935866}
+  isGrounded: 0
 --- !u!212 &3064403375742605891
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -567,28 +591,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14e82ae2f97dd495894e04d649577f57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &7401596883532562316
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3064403375742605889}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aefea24cf0474fe1ac293a664b9e6f6d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stateType: 0
-  animator: {fileID: 3064403375742605890}
-  vision: {fileID: 3064403375742605892}
-  col: {fileID: 3064403375742605912}
-  rb: {fileID: 3064403375742605895}
-  playerSpeed: 200
-  lowJumpMultiplier: 5
-  jumpMultiplier: 4
-  attackColider: {fileID: 3566061207406935866}
-  isGrounded: 0
 --- !u!1 &3566061207406935866
 GameObject:
   m_ObjectHideFlags: 0

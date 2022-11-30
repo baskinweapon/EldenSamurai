@@ -18,7 +18,6 @@ public class PlayerMind : MonoBehaviour {
 	[Header("Physics")]
 	[SerializeField] private CapsuleCollider2D col;
 	public Rigidbody2D rb;
-	
 	public float playerSpeed = 10f;
 	
 	[Header("Jump Settings")]
@@ -29,10 +28,19 @@ public class PlayerMind : MonoBehaviour {
 	public float hitTime = 0.3f;
 	
 	[SerializeField] private GameObject attackColider;
-	
+
+	public Action<PlayerStatesType> OnChangeStateType;
+	public Action<bool> OnChangeIsGround;
+
 	public PlayerStates currentState;
 	public void ChangeState(PlayerStates _state) {
 		currentState = _state;
+	}
+
+	public void ChangeStateType(PlayerStatesType _states) {
+		stateType = _states;
+		
+		OnChangeStateType?.Invoke(stateType);
 	}
 
 	private void Start() {
@@ -41,7 +49,7 @@ public class PlayerMind : MonoBehaviour {
 
 		currentState = new IdleState(this);
 		
-		stateType = PlayerStatesType.Movement;
+		ChangeStateType(PlayerStatesType.Movement);
 	}
 	
 	private void Jump() {
@@ -49,13 +57,15 @@ public class PlayerMind : MonoBehaviour {
 		
 		currentState.PressJump();
 	}
+	
+	
 
 	
 	private bool isCasting;
 	private void Attack() {
 		if (isCasting || isDamaging) return;
 		currentState = new AttackState(this);
-		stateType = PlayerStatesType.Attack;
+		ChangeStateType(PlayerStatesType.Attack);
 		currentState.PressAttack();
 		
 		isCasting = true;
@@ -67,7 +77,7 @@ public class PlayerMind : MonoBehaviour {
 	public void PassDamage(float value, Collider2D _col) {
 		if (isDamaging) return;
 		currentState = new HitState(this, _col);
-		stateType = PlayerStatesType.Hit;
+		ChangeStateType(PlayerStatesType.Hit);
 		currentState.PassDamage();
 
 		isDamaging = true;
@@ -98,19 +108,20 @@ public class PlayerMind : MonoBehaviour {
 		isDamaging = false;
 		
 		currentState = new IdleState(this);
-		stateType = PlayerStatesType.Movement;
+		ChangeStateType(PlayerStatesType.Movement);
 	}
 	
 	public void EndCasting() {
 		attackColider.SetActive(false);
 		isCasting = false;
 
-		stateType = PlayerStatesType.Movement;
+		ChangeStateType(PlayerStatesType.Movement);
 	}
 	
 	private static readonly int Grounded = Animator.StringToHash("IsGround");
 	public bool isGrounded;
 	private const float extraHeight = .05f;
+	private bool prevIsGround;
 	private bool IsGrounded() {
 		var bound = col.bounds;
 		RaycastHit2D hit = Physics2D.Raycast(bound.center, Vector2.down, bound.extents.y + extraHeight, LayerMask.GetMask("Obstacle"));
@@ -121,7 +132,10 @@ public class PlayerMind : MonoBehaviour {
 		Debug.DrawRay(bound.center, Vector2.down * (bound.extents.y + extraHeight), rayColor);
         
 		animator.SetBool(Grounded, isGround);
-        
+		if (prevIsGround != isGround) {
+			OnChangeIsGround?.Invoke(isGround);
+		}
+		prevIsGround = isGround;
 		return isGround;
 	}
 
