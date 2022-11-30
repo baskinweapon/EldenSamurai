@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -13,6 +14,12 @@ namespace Damage {
         [HideInInspector]
         public float duration = 1f;
 
+
+        private void OnEnable() {
+            OnTriggerEnter2D(lastCollider);
+        }
+
+        private Collider2D lastCollider;
         private void OnTriggerEnter2D(Collider2D col) {
             if (col.gameObject.layer == 10) return; // Damager layer
             var health = col.GetComponentInParent<Health>();
@@ -22,7 +29,8 @@ namespace Damage {
                 if (col.transform == transform.parent) return;
                     
                 //pass damage
-                health.Damage(damageValue);
+                health.Damage(damageValue, col);
+                lastCollider = col;
                 OnDamaged?.Invoke();
             } else {
                 OnTriggered?.Invoke();

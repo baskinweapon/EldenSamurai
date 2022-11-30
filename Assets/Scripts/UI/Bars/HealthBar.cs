@@ -38,6 +38,11 @@ public class HealthBar : MonoBehaviour {
         fadeCoroutine = StartCoroutine(FadeProcess());
     }
     
+    private void Fade(float value, Collider2D col) {
+        if (fadeCoroutine != null) return;
+        fadeCoroutine = StartCoroutine(FadeProcess());
+    }
+    
     IEnumerator FadeProcess() {
         while (Math.Abs(sliderBar.value - health.GetCurrentHealth()) > 0.001f) {
             sliderBar.value = Mathf.Lerp(sliderBar.value, health.GetCurrentHealth(), Time.deltaTime * speed);

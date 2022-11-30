@@ -13,7 +13,7 @@ public class Health : MonoBehaviour {
     [HideInInspector]
     public float persistantHealValue = 0.5f;
     
-    public UnityEvent<float> OnDamage;
+    public UnityEvent<float, Collider2D> OnDamage;
     public UnityEvent<float> OnHeal;
     public UnityEvent OnDeath;
     public UnityEvent<float> OnChangeMaxHealth;
@@ -23,7 +23,7 @@ public class Health : MonoBehaviour {
     public float GetMaxHealth() => maxHealth;
     public float GetPersistantValue() => persistantHealValue;
     
-    public void Damage(float value) {
+    public void Damage(float value, Collider2D col) {
         if (curHealth == 0) return;
         curHealth -= value;
         if (curHealth <= 0) curHealth = 0;
@@ -31,7 +31,7 @@ public class Health : MonoBehaviour {
             Death();
             return;
         }
-        OnDamage?.Invoke(curHealth);
+        OnDamage?.Invoke(curHealth, col);
         StopAllCoroutines();
         StartCoroutine(PersistandHeal());
     }

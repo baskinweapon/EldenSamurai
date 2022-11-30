@@ -46,6 +46,26 @@ public class HealthEditor : Editor {
 		return root;
 	}
 
+	private void ProgressBar(float _, Collider2D col) {
+		var rootPanel = root.Q<VisualElement>("RootPanel");
+		var progressBar = rootPanel.Q<VisualElement>("ProgressBar");
+
+		var bg = progressBar.Q<VisualElement>("Background");
+		
+		var fill = bg.Q<VisualElement>("Fill");
+		var title = bg.Q<VisualElement>("Title");
+
+		var text = title.Q<Label>("Value");
+		text.text = health.GetCurrentHealth() + " / " + health.GetMaxHealth();
+		
+		var visual = fill.Q<VisualElement>("VisualElement");
+
+		var value = health.GetCurrentHealth() / health.GetMaxHealth();
+		visual.style.backgroundColor = gradient.Evaluate(value);
+		
+		fill.style.width = Length.Percent(value * 100);
+	}
+	
 	private void ProgressBar(float _ = 0f) {
 		var rootPanel = root.Q<VisualElement>("RootPanel");
 		var progressBar = rootPanel.Q<VisualElement>("ProgressBar");
@@ -64,7 +84,6 @@ public class HealthEditor : Editor {
 		visual.style.backgroundColor = gradient.Evaluate(value);
 		
 		fill.style.width = Length.Percent(value * 100);
-		
 	}
 
 	private void ChangeMaxXp(ClickEvent evt) {
@@ -82,7 +101,7 @@ public class HealthEditor : Editor {
 	}
 
 	private void DamageButtonAction(ClickEvent evt) {
-		health.Damage(100f);
+		health.Damage(100f, null);
 	}
 
 	private void HealButtonAction(ClickEvent evt) {

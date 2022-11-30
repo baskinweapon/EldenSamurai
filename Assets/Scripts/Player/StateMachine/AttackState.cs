@@ -1,23 +1,28 @@
 using UnityEngine;
 
-
 public class AttackState : PlayerStates {
-    public AttackState(CharacterMovement _ch) : base(_ch) {
+    private Animator animator;
+    
+    public AttackState(PlayerMind _ch) : base(_ch) {
+        animator = _ch.animator;
     }
 
     public override void PassDamage() {
-        characterMovement.ChangeState(new HitState(characterMovement));
+        playerMind.ChangeState(new HitState(playerMind));
     }
 
     public override void Movement() {
-        characterMovement.ChangeState(new MoveState(characterMovement));
+        playerMind.ChangeState(new MoveState(playerMind));
     }
 
     public override void PressAttack() {
-        
+        animator.SetTrigger("Attack");
     }
 
     public override void PressJump() {
-        characterMovement.ChangeState(new JumpState(characterMovement));
+    }
+
+    public override void Fly() {
+        
     }
 }

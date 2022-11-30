@@ -2,22 +2,36 @@ using UnityEngine;
 
 
 public class JumpState : PlayerStates {
-    public JumpState(CharacterMovement _ch) : base(_ch) {
+    private Animator animator;
+    private Rigidbody2D rb;
+    private static readonly int JumpString = Animator.StringToHash("Jump");
+    
+ 
+    
+    public JumpState(PlayerMind _ch) : base(_ch) {
+        animator = _ch.animator;
+        rb = _ch.rb;
     }
 
     public override void PassDamage() {
-        characterMovement.ChangeState(new HitState(characterMovement));
     }
 
     public override void Movement() {
-        characterMovement.ChangeState(new MoveState(characterMovement));
+       
     }
 
     public override void PressAttack() {
-        characterMovement.ChangeState(new AttackState(characterMovement));
+        
     }
 
     public override void PressJump() {
-        
+        animator.SetTrigger(JumpString);
+        rb.velocity += Vector2.up * playerMind.jumpMultiplier;
+        playerMind.ChangeState(new FlyState(playerMind));
+        playerMind.stateType = PlayerStatesType.Fly;
+    }
+
+    public override void Fly() {
+        throw new System.NotImplementedException();
     }
 }

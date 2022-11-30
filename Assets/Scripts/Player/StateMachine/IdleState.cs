@@ -2,21 +2,25 @@
 public class IdleState : PlayerStates {
     
     public override void PassDamage() {
-        characterMovement.ChangeState(new HitState(characterMovement));
+        playerMind.ChangeState(new HitState(playerMind));
     }
 
     public override void Movement() {
-        characterMovement.ChangeState(new MoveState(characterMovement));
+        playerMind.ChangeState(new MoveState(playerMind));
     }
 
     public override void PressAttack() {
-        characterMovement.ChangeState(new AttackState(characterMovement));
+        playerMind.ChangeState(new AttackState(playerMind));
     }
 
     public override void PressJump() {
-        characterMovement.ChangeState(new JumpState(characterMovement));
+        playerMind.ChangeState(new JumpState(playerMind));
     }
 
-    public IdleState(CharacterMovement _ch) : base(_ch) {
+    public override void Fly() {
+        throw new System.NotImplementedException();
+    }
+
+    public IdleState(PlayerMind _ch) : base(_ch) {
     }
 }

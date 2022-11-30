@@ -14,7 +14,7 @@ public class CharacterMovement : MonoBehaviour, ICastAbility {
     
     [Header("Physics")]
     [SerializeField] private CapsuleCollider2D col;
-    [SerializeField] private Rigidbody2D rb;
+    public Rigidbody2D rb;
     
     [SerializeField] private GameObject attackColider;
     
@@ -30,7 +30,7 @@ public class CharacterMovement : MonoBehaviour, ICastAbility {
         InputSystem.OnJump += Jump;
         InputSystem.OnFirstAbility += Attack;
 
-        state = new IdleState(this);
+        // state = new IdleState(this);
     }
 
     private void Jump() {
@@ -101,7 +101,7 @@ public class CharacterMovement : MonoBehaviour, ICastAbility {
         
         if (col.gameObject.layer == LayerMask.NameToLayer("Enemy") || col.gameObject.layer == LayerMask.NameToLayer("Damager")) {
             if (col.gameObject.layer == LayerMask.NameToLayer("Enemy")) {
-                Player.instance.health.Damage(50f);
+                Player.instance.health.Damage(50f, col.collider);
             }
             
             passDamage = true;

@@ -338,7 +338,19 @@ MonoBehaviour:
   persistantHealValue: 0.5
   OnDamage:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7401596883532562316}
+        m_TargetAssemblyTypeName: PlayerMind, Assembly-CSharp
+        m_MethodName: PassDamage
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnHeal:
     m_PersistentCalls:
       m_Calls: []
@@ -408,7 +420,7 @@ GameObject:
   - component: {fileID: 3064403375742605895}
   - component: {fileID: 3064403375742605912}
   - component: {fileID: 1501951134181672844}
-  - component: {fileID: 8457930621746917977}
+  - component: {fileID: 7401596883532562316}
   m_Layer: 0
   m_Name: Character
   m_TagString: Player
@@ -555,7 +567,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14e82ae2f97dd495894e04d649577f57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8457930621746917977
+--- !u!114 &7401596883532562316
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -564,20 +576,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 3064403375742605889}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4f9aa321a8274d7c8a772fd9d4e7dfe, type: 3}
+  m_Script: {fileID: 11500000, guid: aefea24cf0474fe1ac293a664b9e6f6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stateType: 0
+  animator: {fileID: 3064403375742605890}
+  vision: {fileID: 3064403375742605892}
+  col: {fileID: 3064403375742605912}
+  rb: {fileID: 3064403375742605895}
   playerSpeed: 200
   lowJumpMultiplier: 5
   jumpMultiplier: 4
-  animator: {fileID: 3064403375742605890}
-  spriteRenderer: {fileID: 3064403375742605891}
-  col: {fileID: 3064403375742605912}
-  rb: {fileID: 3064403375742605895}
   attackColider: {fileID: 3566061207406935866}
-  castTime: 0
-  m_RunStopDust: {fileID: 7310271610845027193, guid: 39afca3c109b26049a80bc07593eb271, type: 3}
-  m_LandingDust: {fileID: 9076098953984712191, guid: 0b745be9abb3a6d4dadd8705950196d1, type: 3}
+  isGrounded: 0
 --- !u!1 &3566061207406935866
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,18 +1,10 @@
 using UnityEngine;
 
-public enum PlayerStatesType {
-    Idle,
-    Run,
-    Attack,
-    Hit,
-    Jump,
-}
-
 public abstract class PlayerStates {
-    protected CharacterMovement characterMovement;
+    protected PlayerMind playerMind;
 
-    protected PlayerStates(CharacterMovement _ch) {
-        characterMovement = _ch;
+    protected PlayerStates(PlayerMind _ch) {
+        playerMind = _ch;
     }
     
     public abstract void PassDamage();
@@ -20,4 +12,5 @@ public abstract class PlayerStates {
     public abstract void PressAttack();
     
     public abstract void PressJump();
+    public abstract void Fly();
 }

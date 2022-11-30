@@ -272,7 +272,7 @@ AnimatorStateMachine:
     m_Position: {x: -10, y: -230, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6263247111074830309}
-    m_Position: {x: 220, y: -70, z: 0}
+    m_Position: {x: 150, y: -10, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -6595710345800364285}
     m_Position: {x: 820, y: 270, z: 0}
@@ -299,7 +299,7 @@ AnimatorStateMachine:
     m_Position: {x: -30, y: 140, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -7043235348351033514}
-    m_Position: {x: -50, y: -20, z: 0}
+    m_Position: {x: -60, y: -10, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -7736619321948687443}
     m_Position: {x: 400, y: 370, z: 0}
@@ -541,43 +541,43 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Jump
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Damaged
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Dead
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: VelocityY
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: AnimState
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: IsGround
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -637,7 +637,7 @@ BlendTree:
     m_Motion: {fileID: 7400000, guid: 61f26483c43fa43d5beb916db9dd1faa, type: 2}
     m_Threshold: 0.5
     m_Position: {x: 0, y: 0}
-    m_TimeScale: 1
+    m_TimeScale: 0.5
     m_CycleOffset: 0
     m_DirectBlendParameter: IdleWalkBlend
     m_Mirror: 0

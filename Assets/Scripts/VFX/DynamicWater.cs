@@ -104,7 +104,7 @@ public class DynamicWater : MonoBehaviour {
             time = 0;
             var health = other.GetComponentInParent<Health>();
             if (health) {
-                health.Damage(permanentDamage);
+                health.Damage(permanentDamage, other);
             }
         }
         
