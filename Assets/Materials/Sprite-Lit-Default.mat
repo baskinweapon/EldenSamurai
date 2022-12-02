@@ -140,8 +140,8 @@ Material:
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissionColor: {r: 0, g: 23.803293, b: 26.855001, a: 1}
+    - _EmissionColor: {r: 0.007843138, g: 0.84313726, b: 0.94509804, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
-    - _SpecColor: {r: 0.990566, g: 0.74112374, b: 0.032707386, a: 1}
+    - _SpecColor: {r: 1, g: 0.73877555, b: 0, a: 1}
   m_BuildTextureStacks: []

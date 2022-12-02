@@ -84,10 +84,26 @@ public class PlayerMind : MonoBehaviour {
 		Invoke(nameof(EndHitTime), hitTime);
 	}
 	
+	private static readonly int AirSpeedY = Animator.StringToHash("VelocityY");
+	
 	private void FixedUpdate() {
 		isGrounded = IsGrounded();
 		
 		Debug.Log("State type = " + stateType + " Current State = " + currentState);
+		
+		switch (rb.velocity.y) {
+			case <= 0:
+				rb.velocity += Physics2D.gravity.y * Vector2.up;
+				break;
+			case > 0 when !InputSystem.instance.IsJumping():
+				rb.velocity += Physics2D.gravity.y * lowJumpMultiplier * Vector2.up;
+				break;
+		}
+
+		
+		// Anim
+		var lerp = Mathf.InverseLerp(0, -1, rb.velocity.y);
+		animator.SetFloat(AirSpeedY, lerp);
 		
 		switch (stateType) {
 			case PlayerStatesType.Movement:
