@@ -101,6 +101,10 @@ public class PlayerMind : MonoBehaviour {
 		}
 
 		
+		
+		
+		
+		
 		// Anim
 		var lerp = Mathf.InverseLerp(0, -1, rb.velocity.y);
 		animator.SetFloat(AirSpeedY, lerp);
