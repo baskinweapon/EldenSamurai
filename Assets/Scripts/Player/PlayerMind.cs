@@ -19,10 +19,12 @@ public class PlayerMind : MonoBehaviour {
 	[SerializeField] private CapsuleCollider2D col;
 	public Rigidbody2D rb;
 	public float playerSpeed = 10f;
-	
+
 	[Header("Jump Settings")]
 	public float lowJumpMultiplier = 1f;
+	public float gravityMultiplier = 1f;
 	public float jumpMultiplier = 1f;
+	public float jumpMovementSpeed;
 
 	public float attackCastingTime = 0.3f;
 	public float hitTime = 0.3f;
@@ -90,20 +92,17 @@ public class PlayerMind : MonoBehaviour {
 		isGrounded = IsGrounded();
 		
 		Debug.Log("State type = " + stateType + " Current State = " + currentState);
-		
-		switch (rb.velocity.y) {
-			case <= 0:
-				rb.velocity += Physics2D.gravity.y * Vector2.up;
-				break;
-			case > 0 when !InputSystem.instance.IsJumping():
-				rb.velocity += Physics2D.gravity.y * lowJumpMultiplier * Vector2.up;
-				break;
-		}
 
+	
 		
-		
-		
-		
+		// switch (rb.velocity.y) {
+		// 	case <= 0:
+		// 		rb.velocity += Physics2D.gravity.y  * gravityMultiplier * Vector2.up;
+		// 		break;
+		// 	case > 0 when !InputSystem.instance.IsJumping():
+		// 		rb.velocity += Physics2D.gravity.y * lowJumpMultiplier * Vector2.up;
+		// 		break;
+		// }
 		
 		// Anim
 		var lerp = Mathf.InverseLerp(0, -1, rb.velocity.y);
@@ -122,6 +121,12 @@ public class PlayerMind : MonoBehaviour {
 				currentState.Fly();
 				break;
 		}
+		
+		// if (rb.velocity.y <= 0) {
+		// 	rb.velocity += Physics2D.gravity.y  * gravityMultiplier * Vector2.up;
+		// } else {
+		// 	rb.velocity += Physics2D.gravity.y * lowJumpMultiplier * Vector2.up;	
+		// }
 	}
 
 	private void EndHitTime() {

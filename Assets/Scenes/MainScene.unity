@@ -792,7 +792,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 376773282}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 28, y: 2, z: -10}
+  m_LocalPosition: {x: -6.0000005, y: -0.00000047683716, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -869,7 +869,7 @@ Camera:
   far clip plane: 5000
   field of view: 15
   orthographic: 1
-  orthographic size: 8
+  orthographic size: 10
   m_Depth: 10
   m_CullingMask:
     serializedVersion: 2
@@ -3955,12 +3955,19 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 52.69056, y: 34.892906}
+    - - {x: 117.341675, y: -11.018736}
+      - {x: 114.74105, y: 19.89561}
+      - {x: 113.710365, y: 35.36155}
+      - {x: 92.21227, y: 35.116905}
+      - {x: 52.69056, y: 34.892906}
       - {x: 2.9274206, y: 35.606297}
       - {x: -29.18362, y: 35.37189}
       - {x: -25.237118, y: -15.918496}
-      - {x: -15.791065, y: -15.824066}
-      - {x: 55.75135, y: -14.391687}
+      - {x: -19.501865, y: -10.360949}
+      - {x: -8.673955, y: -10.642132}
+      - {x: 9.972544, y: -11.767444}
+      - {x: 45.88515, y: -10.575494}
+      - {x: 54.23795, y: -13.089222}
 --- !u!50 &1831926185
 Rigidbody2D:
   serializedVersion: 4
@@ -4694,14 +4701,14 @@ MonoBehaviour:
   m_Follow: {fileID: 1282890540}
   m_Lens:
     FieldOfView: 15
-    OrthographicSize: 8
+    OrthographicSize: 10
     NearClipPlane: 0.1
     FarClipPlane: 5000
     Dutch: 0
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7788697, y: 1}
+    m_SensorSize: {x: 1.1941942, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -4718,7 +4725,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2121469452}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 28, y: 2, z: -10}
+  m_LocalPosition: {x: -6.0000005, y: -0.00000047683716, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4985,11 +4992,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3064403374756844529, guid: d802c6296442840268bf5e254e301122, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 28
+      value: -6
       objectReference: {fileID: 0}
     - target: {fileID: 3064403374756844529, guid: d802c6296442840268bf5e254e301122, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3064403374756844529, guid: d802c6296442840268bf5e254e301122, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5068,20 +5075,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3064403375742605895, guid: d802c6296442840268bf5e254e301122, type: 3}
-      propertyPath: m_Mass
-      value: 3.0373206
-      objectReference: {fileID: 0}
-    - target: {fileID: 3064403375742605895, guid: d802c6296442840268bf5e254e301122, type: 3}
       propertyPath: m_LinearDrag
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3064403375742605895, guid: d802c6296442840268bf5e254e301122, type: 3}
       propertyPath: m_UseAutoMass
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3064403375742605895, guid: d802c6296442840268bf5e254e301122, type: 3}
       propertyPath: m_GravityScale
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3566061207406935866, guid: d802c6296442840268bf5e254e301122, type: 3}
       propertyPath: m_Layer
@@ -5101,15 +5104,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7401596883532562316, guid: d802c6296442840268bf5e254e301122, type: 3}
       propertyPath: playerSpeed
-      value: 1000
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7401596883532562316, guid: d802c6296442840268bf5e254e301122, type: 3}
       propertyPath: jumpMultiplier
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7401596883532562316, guid: d802c6296442840268bf5e254e301122, type: 3}
+      propertyPath: gravityMultiplier
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401596883532562316, guid: d802c6296442840268bf5e254e301122, type: 3}
+      propertyPath: jumpMovementSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401596883532562316, guid: d802c6296442840268bf5e254e301122, type: 3}
       propertyPath: lowJumpMultiplier
-      value: 1
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8096226762337462228, guid: d802c6296442840268bf5e254e301122, type: 3}
       propertyPath: m_Offset.x

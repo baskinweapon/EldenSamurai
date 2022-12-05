@@ -20,12 +20,13 @@ public class FlyState : PlayerStates {
 
 	public override void Movement() {
 		var move = InputSystem.instance.GetMoveVector();
-        
+        if (move.x == 0) return;
+		
 		if (move.x > 0) vision.localScale = new Vector3(Mathf.Abs(vision.localScale.x), vision.localScale.y, vision.localScale.z);
 		else if (move.x < 0) vision.localScale = new Vector3(-Mathf.Abs(vision.localScale.x), vision.localScale.y, vision.localScale.z);;
 		
-		Vector2 velocity = new Vector2(move.x * playerMind.playerSpeed * Time.deltaTime, rb.velocity.y);
-		rb.velocity = velocity;
+		Vector2 velocity = new Vector2(move.x * playerMind.jumpMovementSpeed * Time.deltaTime, 0f);
+		rb.velocity += velocity;
 	}
 	
 	public override void PressAttack() {

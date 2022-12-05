@@ -25,6 +25,8 @@
             <ui:VisualElement name="Fields" style="flex-direction: column; justify-content: center;">
                 <uie:PropertyField name="Rb" binding-path="lowJumpMultiplier" label="Low Jump Multiplier" />
                 <uie:PropertyField name="Col" binding-path="jumpMultiplier" label="Jump Multiplier" />
+                <uie:PropertyField name="Col" binding-path="gravityMultiplier" label="Gravity Multiplier" />
+                <uie:PropertyField name="Col" binding-path="jumpMovementSpeed" label="Jump Movement Speed" />
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="PhysicsPanel">

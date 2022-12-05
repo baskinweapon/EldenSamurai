@@ -20,14 +20,15 @@ public class MoveState : PlayerStates {
 
     public override void Movement() {
         var move = InputSystem.instance.GetMoveVector();
-        
+
+        animator.SetFloat(AnimState, Mathf.InverseLerp(0, 1, Mathf.Abs(move.x)));
+        if (move.x == 0f) return;
+
         if (move.x > 0) vision.localScale = new Vector3(Mathf.Abs(vision.localScale.x), vision.localScale.y, vision.localScale.z);
         else if (move.x < 0) vision.localScale = new Vector3(-Mathf.Abs(vision.localScale.x), vision.localScale.y, vision.localScale.z);;
         
-        animator.SetFloat(AnimState, Mathf.InverseLerp(0, 1, Mathf.Abs(move.x)));
-        
-        Vector2 velocity = new Vector2(move.x * playerMind.playerSpeed * Time.deltaTime, rb.velocity.y);
-        rb.velocity = velocity;
+        Vector2 velocity = new Vector2(move.x * playerMind.playerSpeed * Time.deltaTime, 0f);
+        rb.velocity += velocity;
     }
 
     public override void PressAttack() {

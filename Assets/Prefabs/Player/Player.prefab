@@ -463,9 +463,11 @@ MonoBehaviour:
   vision: {fileID: 3064403375742605892}
   col: {fileID: 3064403375742605912}
   rb: {fileID: 3064403375742605895}
-  playerSpeed: 200
+  playerSpeed: 5
   lowJumpMultiplier: 5
+  gravityMultiplier: 1
   jumpMultiplier: 4
+  jumpMovementSpeed: 0
   attackCastingTime: 0.3
   hitTime: 0.3
   attackColider: {fileID: 3566061207406935866}
@@ -554,7 +556,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 50
+  m_Mass: 75
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
