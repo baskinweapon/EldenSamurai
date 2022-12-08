@@ -92,8 +92,6 @@ public class PlayerMind : MonoBehaviour {
 		isGrounded = IsGrounded();
 		
 		Debug.Log("State type = " + stateType + " Current State = " + currentState);
-
-	
 		
 		// switch (rb.velocity.y) {
 		// 	case <= 0:
@@ -121,12 +119,13 @@ public class PlayerMind : MonoBehaviour {
 				currentState.Fly();
 				break;
 		}
-		
-		// if (rb.velocity.y <= 0) {
-		// 	rb.velocity += Physics2D.gravity.y  * gravityMultiplier * Vector2.up;
-		// } else {
-		// 	rb.velocity += Physics2D.gravity.y * lowJumpMultiplier * Vector2.up;	
-		// }
+
+		rb.gravityScale = gravityMultiplier;
+		if (rb.velocity.y <= 0) {
+			rb.gravityScale = gravityMultiplier;
+		} else if (InputSystem.instance.IsJumping()) {
+			rb.gravityScale = lowJumpMultiplier;	
+		}
 	}
 
 	private void EndHitTime() {

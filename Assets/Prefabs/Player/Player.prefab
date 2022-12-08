@@ -463,15 +463,15 @@ MonoBehaviour:
   vision: {fileID: 3064403375742605892}
   col: {fileID: 3064403375742605912}
   rb: {fileID: 3064403375742605895}
-  playerSpeed: 5
-  lowJumpMultiplier: 5
-  gravityMultiplier: 1
-  jumpMultiplier: 4
-  jumpMovementSpeed: 0
+  playerSpeed: 40
+  lowJumpMultiplier: 2
+  gravityMultiplier: 11
+  jumpMultiplier: 15
+  jumpMovementSpeed: 3
   attackCastingTime: 0.3
   hitTime: 0.3
   attackColider: {fileID: 3566061207406935866}
-  isGrounded: 0
+  isGrounded: 1
 --- !u!212 &3064403375742605891
 SpriteRenderer:
   m_ObjectHideFlags: 0

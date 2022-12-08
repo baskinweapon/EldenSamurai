@@ -14,10 +14,10 @@ public class GameMain : Singleton<GameMain> {
 
     private void Start() {
         SceneController.instance.LoadScene(firstSceneId);
-        Player.instance.health.OnDeath.AddListener(FinishGame);
+        Player.instance.health.OnDeath.AddListener(RestartGame);
     }
 
-    private void FinishGame() {
+    private void RestartGame() {
         SceneController.instance.LoadScene(firstSceneId);
         Player.instance.ResetPlayer();
     }
@@ -27,7 +27,7 @@ public class GameMain : Singleton<GameMain> {
     }
 
     private void OnDestroy() {
-        Player.instance.health.OnDeath.RemoveListener(FinishGame);
+        Player.instance.health.OnDeath.RemoveListener(RestartGame);
     }
 }
 
