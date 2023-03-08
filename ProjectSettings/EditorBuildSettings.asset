@@ -24,4 +24,5 @@ EditorBuildSettings:
     path: Assets/Scenes/DeathScene.unity
     guid: 946e4662e665b44e8add5b461a6da89b
   m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: 03e88bd75dde844508f70a110f973553, type: 2}
     com.unity.input.settings: {fileID: 11400000, guid: e8cb39c69df7e46dd8455d920de73812, type: 2}
