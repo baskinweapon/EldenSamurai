@@ -21,11 +21,13 @@ ScriptedImporter:
     convertToNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
+    swizzle: 50462976
     isReadable: 0
     streamingMipmaps: 1
     streamingMipmapsPriority: 0
     vTOnly: 0
-    ignoreMasterTextureLimit: 0
+    ignoreMipmapLimit: 0
     nPOTScale: 1
     sRGBTexture: 1
     spriteMode: 2
@@ -47,6 +49,7 @@ ScriptedImporter:
     flipbookRows: 0
     flipbookColumns: 0
     ignorePngGamma: 0
+    cookieMode: 0
     filterMode: 1
     aniso: 1
     mipBias: 0
@@ -87,7 +90,6 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 0, y: 0}
     spritePosition: {x: 0, y: 0}
   mosaicSpriteImportData: []
@@ -485,7 +487,6 @@ ScriptedImporter:
     - {x: 25, y: 24}
     - {x: 0, y: 25}
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 187, y: 298}
     spritePosition: {x: 228, y: 238}
   - name: 16 arm front down
@@ -853,7 +854,6 @@ ScriptedImporter:
     - {x: 26, y: 25}
     - {x: 0, y: 26}
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 323, y: 153}
     spritePosition: {x: 159, y: 159}
   - name: "15 Staff \uBCF5\uC0AC"
@@ -1276,7 +1276,6 @@ ScriptedImporter:
     - {x: 34, y: 15}
     - {x: 35, y: 24}
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 137, y: 153}
     spritePosition: {x: 331, y: 0}
   - name: 14 arm front up
@@ -1701,7 +1700,6 @@ ScriptedImporter:
     - {x: 23, y: 22}
     - {x: 0, y: 23}
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 323, y: 334}
     spritePosition: {x: 185, y: 214}
   - name: 12 hair front
@@ -2080,7 +2078,6 @@ ScriptedImporter:
     - {x: 26, y: 27}
     - {x: 0, y: 27}
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 323, y: 249}
     spritePosition: {x: 256, y: 321}
   - name: 11 head
@@ -2426,7 +2423,6 @@ ScriptedImporter:
     - {x: 25, y: 24}
     - {x: 0, y: 25}
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 4, y: 324}
     spritePosition: {x: 200, y: 295}
   - name: "10 Cape \uBCF5\uC0AC"
@@ -2974,7 +2970,6 @@ ScriptedImporter:
     - {x: 40, y: 39}
     - {x: 40, y: 34}
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 137, y: 4}
     spritePosition: {x: 166, y: 150}
   - name: 09 Shirt
@@ -3341,7 +3336,6 @@ ScriptedImporter:
     - {x: 26, y: 25}
     - {x: 0, y: 26}
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 187, y: 153}
     spritePosition: {x: 217, y: 183}
   - name: 08 Skirt
@@ -3666,7 +3660,6 @@ ScriptedImporter:
     - {x: 24, y: 23}
     - {x: 0, y: 24}
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 4, y: 214}
     spritePosition: {x: 194, y: 124}
   - name: 07 leg front down
@@ -4102,9 +4095,8 @@ ScriptedImporter:
     - {x: 24, y: 23}
     - {x: 0, y: 24}
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 265, y: 270}
-    spritePosition: {x: 207, y: -2}
+    spritePosition: {x: 207, y: 0}
   - name: 06 leg front up
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -4498,7 +4490,6 @@ ScriptedImporter:
     - {x: 24, y: 23}
     - {x: 0, y: 24}
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 441, y: 4}
     spritePosition: {x: 214, y: 79}
   - name: 05 leg back down
@@ -4509,7 +4500,7 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 265
-      y: 390
+      y: 388
       width: 32
       height: 116
     spriteID: f26ae5003706cd64786ed6f729d85530
@@ -4903,8 +4894,7 @@ ScriptedImporter:
     - {x: 0, y: 34}
     - {x: 34, y: 22}
     tessellationDetail: 0
-    parentGroupIndex: -1
-    uvTransform: {x: 265, y: 390}
+    uvTransform: {x: 265, y: 388}
     spritePosition: {x: 272, y: 1}
   - name: 04 leg back up
     originalName: 
@@ -5260,7 +5250,6 @@ ScriptedImporter:
     - {x: 25, y: 24}
     - {x: 0, y: 25}
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 265, y: 153}
     spritePosition: {x: 257, y: 79}
   - name: 03 arm back down
@@ -5530,7 +5519,6 @@ ScriptedImporter:
     - {x: 18, y: 17}
     - {x: 0, y: 18}
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 288, y: 4}
     spritePosition: {x: 194, y: 158}
   - name: 02 arm back up
@@ -5886,7 +5874,6 @@ ScriptedImporter:
     - {x: 24, y: 23}
     - {x: 0, y: 24}
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 323, y: 415}
     spritePosition: {x: 260, y: 218}
   - name: 01 hair back
@@ -6297,7 +6284,6 @@ ScriptedImporter:
     - {x: 30, y: 29}
     - {x: 0, y: 30}
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 4, y: 4}
     spritePosition: {x: 182, y: 194}
   characterData:
@@ -6602,6 +6588,7 @@ ScriptedImporter:
       order: 0
     dimension: {x: 0, y: 0}
     characterGroups: []
+    pivot: {x: 0, y: 0}
     boneReadOnly: 0
   sharedRigSpriteImportData: []
   sharedRigCharacterData:
@@ -6609,6 +6596,7 @@ ScriptedImporter:
     parts: []
     dimension: {x: 0, y: 0}
     characterGroups: []
+    pivot: {x: 0, y: 0}
     boneReadOnly: 0
   platformSettings: []
   mosaicLayers: 1
@@ -6621,6 +6609,8 @@ ScriptedImporter:
   paperDollMode: 0
   keepDupilcateSpriteName: 0
   skeletonAssetReferenceID: 
+  padding: 4
+  spriteSizeExpand: 0
   spriteCategoryList:
     categories: []
   spritePackingTag: 
@@ -6743,7 +6733,7 @@ ScriptedImporter:
     parentIndex: -1
     spriteID: f26ae5003706cd64786ed6f729d85530
     layerID: 7
-    mosaicPosition: {x: 265, y: 390}
+    mosaicPosition: {x: 265, y: 388}
     flatten: 0
     isImported: 1
     isVisible: 1
@@ -6789,6 +6779,9 @@ ScriptedImporter:
     isVisible: 1
   sharedRigPSDLayers: []
   pSDLayerImportSetting: []
+  importFileNodeState: 1
+  platformSettingsDirtyTick: 0
+  spriteSizeExpandChanged: 0
   generateGOHierarchy: 0
   textureAssetName: Wizard Sprites Texture
   prefabAssetName: Wizard Sprites Prefab

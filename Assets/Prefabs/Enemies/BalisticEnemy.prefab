@@ -60,7 +60,7 @@ Transform:
   m_GameObject: {fileID: 4239060040130435868}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3, y: -0.37809947, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4239060041271513866}
@@ -507,6 +507,7 @@ MonoBehaviour:
   dieString: Die
   animState: AnimState
   attackString: Attack
+  attackType: 
 --- !u!320 &5295157276365463266
 PlayableDirector:
   m_ObjectHideFlags: 0
